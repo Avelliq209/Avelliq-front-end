@@ -39,6 +39,21 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+
+  --color-avelliq-primary-green: #176B5B;
+  --color-avelliq-text-primary: #17201E;
+  --color-avelliq-text-white: #ffffff;
+  --color-avelliq-text-black: #222222;
+  --color-avelliq-text-grey: #5F6B67;
+  --color-avelliq-bg-btn-light: #FAF9F6;
+  --color-avelliq-bg-green-light: #E8F4F0;
+  --color-avelliq-bg-green-dark: #0F4D42;
+  --color-avelliq-bg-brown-light: #F5EFE6;
+  --color-avelliq-border-brown-light: #D2CEC3;
+  --color-avelliq-border-grey-light: #BDBCDB;
+
+  --breakpoint-2xl: 1440px;
+  
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -125,6 +140,6 @@
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-sans;
+    @apply font-sans scrollbar-thin;
   }
 }
