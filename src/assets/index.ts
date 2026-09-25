@@ -1,0 +1,11 @@
+export { default as hero } from "./images/landing-page-hero.png";
+export { default as cleaner } from "./images/lady-takes-care-of-the-house.png";
+export { default as houseCare } from "./images/man-helping-old-woman.png";
+export { default as avelliqAgencies } from "./images/avelliq-agencies.jpg";
+export { default as childCareGiving } from "./images/child-care-giving.png";
+export { default as concierge } from "./images/concierge.png";
+export { default as houseKeeping } from "./images/house-keeping.png";
+export { default as houseSitting } from "./images/house-sitting.png";
+export { default as petCare } from "./images/pet-care.png";
+export { default as seniorCareGiving } from "./images/senior-care-giving.png";
+export { default as professional } from "./images/professional-high-rate.jpg";

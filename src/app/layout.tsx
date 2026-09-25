@@ -20,7 +20,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
-      <body className="min-h-screen flex flex-col selection:bg-avelliq-primary-green selection:text-avelliq-text-white">
+      <body className="min-h-screen flex flex-col selection:bg-avelliq-primary-green selection:text-avelliq-text-white bg-avelliq-bg-btn-light">
         {children}
       </body>
     </html>

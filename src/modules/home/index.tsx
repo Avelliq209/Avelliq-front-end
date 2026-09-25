@@ -1,11 +1,15 @@
 "use client"
-import hero from "@/assets/images/landing-page-hero.png"
 import { ArrowRight, Check, ChevronDown, MapPin, Search, ShieldCheck, Users, Verified } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 import SecondSection from "./second-section"
 import ThirdSection from "./third-section"
 import FourthSection from "./fourth-section"
+import { hero } from "@/assets"
+import FifthSection from "./fifth-section"
+import SixthSection from "./sixth-section"
+import SeventhSection from "./seventh-section"
+import EighthSection from "./eighth-section"
 
 
 const needOptions = [
@@ -185,6 +189,10 @@ const HomeIndex = () => {
       <SecondSection />
       <ThirdSection />
       <FourthSection />
+      <FifthSection />
+      <SixthSection />
+      <SeventhSection />
+      <EighthSection />
     </div>
   )
 }

@@ -1,8 +1,9 @@
 import Image from "next/image"
 
-import houseCare from "@/assets/images/man-helping-old-woman.png"
 import { Pill } from "@/components/ui/pill"
 import { ShieldCheck } from "lucide-react"
+import ButtonNav from "@/components/ui/button-nav"
+import { houseCare } from "@/assets"
 
 const professionalPoints: Pick<ProfessionalPoint, "title" | "description">[] = [
   {
@@ -35,16 +36,18 @@ const ProfessionalPointRow = ({ index, point }: { index: number, point: Pick<Pro
 
 
 const FourthSection = () => {
+  
   return (
-    <section className="grid grid-cols-[1fr_2fr] gap-10 p-17.5 bg-avelliq-bg-green-dark">
+    <section className="grid grid-cols-[1fr_1.5fr] gap-10 p-17.5 bg-avelliq-bg-green-dark">
       <Image 
         src={houseCare}
         height={602}
         width={517}
+        loading="eager"
         alt="Man helping an old woman"
         className=" h-full w-full object-cover object-top rounded-[16px]"
       />
-      <div className="space-y-5">
+      <div className="space-y-5 ">
         <div className="flex flex-col gap-5">
           <Pill className=" py-2 px-3 2xl:py-3 2xl:px-4 text-sm 2xl:text-base font-medium text-[#FFF4D6] bg-[#F5EFE626] border-avelliq-border-grey-light">
             <ShieldCheck size={18} strokeWidth={1.5} className="h-4.5 w-4.5" />
@@ -60,6 +63,13 @@ const FourthSection = () => {
             <ProfessionalPointRow key={point.title} index={index} point={point} />
           ))}
         </div>
+
+        <ButtonNav
+          name="Start Your Search"
+          isArror={true}
+          className="text-avelliq-primary-green bg-avelliq-bg-green-light mt-3"
+          onClick={()=> alert('coming soon!')}
+        />
 
       </div>
     </section>

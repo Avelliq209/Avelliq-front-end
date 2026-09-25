@@ -21,3 +21,16 @@ interface ProfessionalPoint {
   title: string;
   description: string;
 }
+
+interface ButtonNav {
+  name: string;
+  isArror: boolean;
+  className: string;
+  onClick: ()=> void;
+}
+
+interface ImageProps {
+  link: string;
+  alt: string;
+}
+

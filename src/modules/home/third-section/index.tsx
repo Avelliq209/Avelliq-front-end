@@ -1,8 +1,9 @@
 import { Pill } from "@/components/ui/pill"
-import { ArrowRight, Calendar, Heart, LifeBuoy, ShieldCheck, Verified } from "lucide-react"
+import { Calendar, Heart, LifeBuoy, ShieldCheck, Verified } from "lucide-react"
 import Image from "next/image"
 
-import cleaner from "@/assets/images/lady-takes-care-of-the-house.png"
+import ButtonNav from "@/components/ui/button-nav"
+import { cleaner } from "@/assets"
 
 const professionalPoints: ProfessionalPoint[] = [
   {
@@ -53,6 +54,7 @@ const ThirdSection = () => {
         src={cleaner}
         height={1048}
         width={650}
+        loading="eager"
         alt="lady taking care of the room"
         className=" h-full w-full object-cover object-right rounded-tl-[16px] rounded-bl-[16px] "
       />
@@ -77,14 +79,12 @@ const ThirdSection = () => {
           ))}
         </div>
 
-        <button
-          type="button"
-          className="inline-flex w-fit items-center gap-2 rounded-[8px] bg-avelliq-primary-green px-5 py-3 2xl:py-4 2xl:px-8 text-sm font-medium text-avelliq-text-white transition-colors cursor-pointer group"
+        <ButtonNav
+          name="Join as a Professional"
+          isArror={true}
+          className="bg-avelliq-primary-green text-avelliq-text-white"
           onClick={()=> alert('coming soon!')}
-        >
-          Join as a Professional
-          <ArrowRight size={12} className="h-3 w-3 group-hover:translate-x-0.5" />
-        </button>
+        />
       </div>
     </div>
   )
