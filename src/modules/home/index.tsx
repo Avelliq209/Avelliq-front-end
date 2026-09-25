@@ -4,6 +4,8 @@ import { ArrowRight, Check, ChevronDown, MapPin, Search, ShieldCheck, Users, Ver
 import Image from "next/image"
 import { useState } from "react"
 import SecondSection from "./second-section"
+import ThirdSection from "./third-section"
+import FourthSection from "./fourth-section"
 
 
 const needOptions = [
@@ -60,8 +62,8 @@ const HomeIndex = () => {
   const [activeTab, setActiveTab] = useState<Tab>("need");
 
   return (
-    <section className="flex flex-col relative">
-      <div className="relative flex flex-col">
+    <div className="flex flex-col relative">
+      <section className="relative flex flex-col">
         <Image
           src={hero}
           alt=""
@@ -73,11 +75,11 @@ const HomeIndex = () => {
         />
 
         {/* content */}
-        <div className="flex flex-col z-10 items-start justify-center w-full h-full bg-[linear-gradient(271.68deg,rgba(255,255,255,0.03)_25.02%,#FAF9F6_55.06%)] px-17.5 py-20 gap-8">
+        <div className="flex flex-col z-10 items-start justify-center w-full min-h-screen h-full bg-[linear-gradient(271.68deg,rgba(255,255,255,0.03)_25.02%,#FAF9F6_55.06%)] px-17.5 py-20 gap-8">
           {/* Background Card */}
           <div className="flex flex-col gap-5 max-w-114">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border-[.3px] border-avelliq-border-grey-light bg-avelliq-bg-green-light px-4 py-2.5 2xl:py-3 text-sm 2xl:text-base font-medium text-avelliq-bg-green-dark">
-              <ShieldCheck size={18} className="h-4.5 w-4.5" />
+              <ShieldCheck size={18} strokeWidth={1.5} className="h-4.5 w-4.5" />
               Background-checked Professionals
             </span>
             <div className=" space-y-4">
@@ -163,10 +165,10 @@ const HomeIndex = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
       
       {/* grid */}
-      <div className="grid grid-cols-1 divide-y-[.3px] divide-x-0 divide-avelliq-border-brown-light sm:grid-cols-3 sm:divide-x-[.3px] sm:divide-y-0 border-y-[.3px] border-avelliq-border-brown-light">
+      <section className="grid grid-cols-1 divide-y-[.3px] divide-x-0 divide-avelliq-border-brown-light sm:grid-cols-3 sm:divide-x-[.3px] sm:divide-y-0 border-y-[.3px] border-avelliq-border-brown-light">
         {trustPoints.map((point) => (
           <div key={point.title} className="flex items-center gap-4 px-6 py-6 2xl:py-9.75 sm:px-17.5">
             <div className="flex p-5 shrink-0 items-center justify-center rounded-full bg-avelliq-bg-green-light">
@@ -178,10 +180,12 @@ const HomeIndex = () => {
             </div>
           </div>
         ))}
-      </div>
+      </section>
 
       <SecondSection />
-    </section>
+      <ThirdSection />
+      <FourthSection />
+    </div>
   )
 }
 
