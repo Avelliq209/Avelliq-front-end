@@ -1,6 +1,5 @@
-import { professional } from "@/assets"
+import { professional,  ShieldCheck } from "@/assets"
 import { Pill } from "@/components/ui/pill"
-import { ShieldCheck } from "lucide-react"
 import Image from "next/image"
 
 const EighthSection = () => {

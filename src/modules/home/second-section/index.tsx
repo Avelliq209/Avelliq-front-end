@@ -1,5 +1,5 @@
 import { Pill } from "@/components/ui/pill"
-import { ArrowRight, Baby, Check, Home, ShieldCheck, Sparkles } from "lucide-react"
+import { ArrowRight, Baby, Check, Home, ShieldCheck, Sparkles } from "@/assets"
 import Link from "next/link"
 
 

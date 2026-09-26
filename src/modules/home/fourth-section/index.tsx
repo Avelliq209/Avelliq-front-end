@@ -1,9 +1,8 @@
 import Image from "next/image"
 
 import { Pill } from "@/components/ui/pill"
-import { ShieldCheck } from "lucide-react"
 import ButtonNav from "@/components/ui/button-nav"
-import { houseCare } from "@/assets"
+import { houseCare, ShieldCheck } from "@/assets"
 
 const professionalPoints: Pick<ProfessionalPoint, "title" | "description">[] = [
   {

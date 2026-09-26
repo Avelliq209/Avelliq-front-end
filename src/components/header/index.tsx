@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <div className="flex items-center justify-between gap-6 w-full">
       <div className="flex text-sm 2xl:text-base font-medium gap-10">
-        <Logo />
+        <Logo isFooter={false} />
         <div className="flex items-center gap-6">
           {nav.map((route, index) => (
             (index===3) ?

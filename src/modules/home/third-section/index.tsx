@@ -1,9 +1,8 @@
 import { Pill } from "@/components/ui/pill"
-import { Calendar, Heart, LifeBuoy, ShieldCheck, Verified } from "lucide-react"
 import Image from "next/image"
 
 import ButtonNav from "@/components/ui/button-nav"
-import { cleaner } from "@/assets"
+import { cleaner, Calendar, Heart, LifeBuoy, ShieldCheck, Verified } from "@/assets"
 
 const professionalPoints: ProfessionalPoint[] = [
   {

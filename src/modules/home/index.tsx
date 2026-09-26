@@ -1,16 +1,32 @@
 "use client"
-import { ArrowRight, Check, ChevronDown, MapPin, Search, ShieldCheck, Users, Verified } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 import SecondSection from "./second-section"
 import ThirdSection from "./third-section"
 import FourthSection from "./fourth-section"
-import { hero } from "@/assets"
+import { hero, ArrowRight, Check, ChevronDown, MapPin, Search, ShieldCheck, Users, Verified } from "@/assets"
 import FifthSection from "./fifth-section"
 import SixthSection from "./sixth-section"
 import SeventhSection from "./seventh-section"
 import EighthSection from "./eighth-section"
+import NinthSection from "./ninth-section"
+import Footer from "@/components/footer"
 
+export const AVATAR_COLORS = [
+  "bg-violet-100 text-violet-700",
+  "bg-blue-100 text-blue-700",
+  "bg-pink-100 text-pink-700",
+  "bg-emerald-100 text-emerald-700",
+  "bg-orange-100 text-orange-700",
+]
+export const initials = (name: string) => {
+  return name
+    .split(" ")
+    .map((part) => part[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+}
 
 const needOptions = [
   "What do you need?",
@@ -70,24 +86,24 @@ const HomeIndex = () => {
       <section className="relative flex flex-col">
         <Image
           src={hero}
-          alt=""
+          alt="hero"
           height={680}
           width={1440}
           priority
           draggable={false}
-          className="absolute w-full min-h-screen h-full object-cover object-right z-0"
+          className="absolute w-full min-h-screen h-full object-cover object-[100%_0%] z-0"
         />
 
         {/* content */}
         <div className="flex flex-col z-10 items-start justify-center w-full min-h-screen h-full bg-[linear-gradient(271.68deg,rgba(255,255,255,0.03)_25.02%,#FAF9F6_55.06%)] px-17.5 py-20 gap-8">
           {/* Background Card */}
-          <div className="flex flex-col gap-5 max-w-114">
+          <div className="flex flex-col flex-1 gap-5 max-w-114 2xl:max-w-160">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border-[.3px] border-avelliq-border-grey-light bg-avelliq-bg-green-light px-4 py-2.5 2xl:py-3 text-sm 2xl:text-base font-medium text-avelliq-bg-green-dark">
               <ShieldCheck size={18} strokeWidth={1.5} className="h-4.5 w-4.5" />
               Background-checked Professionals
             </span>
             <div className=" space-y-4">
-              <h1 className=" text-[52px] leading-[130%] font-bold text-avelliq-bg-green-dark">
+              <h1 className=" tracking-wide text-[52px] leading-[130%] font-bold text-avelliq-bg-green-dark">
                 Find trusted help for everyday life.
               </h1>
               <h2 className=" text-sm text-avelliq-text-grey font-normal 2xl:text-base text-start">
@@ -193,6 +209,8 @@ const HomeIndex = () => {
       <SixthSection />
       <SeventhSection />
       <EighthSection />
+      <NinthSection />
+      <Footer />
     </div>
   )
 }

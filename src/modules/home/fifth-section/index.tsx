@@ -1,4 +1,4 @@
-import { HeartHandshakeIcon, ShieldCheck, Verified } from "lucide-react"
+import { HeartHandshakeIcon, ShieldCheck, Verified } from "@/assets"
 
 const gridCards: ProfessionalPoint[] = [
   {
@@ -28,7 +28,7 @@ const GridCardDiv = ({ gridCard }: { gridCard: ProfessionalPoint }) => {
         {gridCard.icon}
       </div>
       <div className=" space-y-1.5 text-start">
-        <h4 className=" text-2xl font-medium">{gridCard.title}</h4>
+        <h4 className=" text-[22px] 2xl:text-2xl font-medium">{gridCard.title}</h4>
         <p className=" text-sm 2xl:text-base font-normal text-avelliq-text-grey leading-[153%]">{gridCard.description}</p>
       </div>
     </div>

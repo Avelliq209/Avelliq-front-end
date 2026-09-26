@@ -34,3 +34,18 @@ interface ImageProps {
   alt: string;
 }
 
+interface Testimonial {
+  id: string;
+  quote: string;
+  name: string;
+  role: string;
+  avatarUrl: string;
+  rating: number;
+}
+
+interface SlideCardProps {
+  index: number;
+  bg: number;
+  item: Testimonial;
+  onClick: (num: number) => void;
+}

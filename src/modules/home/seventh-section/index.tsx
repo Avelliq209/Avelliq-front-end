@@ -94,7 +94,7 @@ const SeventhSection = () => {
               alt="Avelliq Agency"
               height={602}
               width={650}
-              className=" h-full w-162.5 object-cover object-left"
+              className=" h-full w-full object-cover object-[0%_10%]"
             />
           </div>
         </div>
