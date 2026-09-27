@@ -2,7 +2,7 @@
 import Link from "next/link"
 import Logo from "../logo"
 import { usePathname } from "next/navigation"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, MenuIcon } from "lucide-react"
 
 const Header = () => {
   const pathname = usePathname()
@@ -20,7 +20,7 @@ const Header = () => {
     <div className="flex items-center justify-between gap-6 w-full">
       <div className="flex text-sm 2xl:text-base font-medium gap-10">
         <Logo isFooter={false} />
-        <div className="flex items-center gap-6">
+        <div aria-hidden className="hidden xl:flex items-center gap-6">
           {nav.map((route, index) => (
             (index===3) ?
             <button key={route.name} className="flex items-center gap-1.25 2xl:gap-2 outline-none cursor-pointer"
@@ -38,7 +38,7 @@ const Header = () => {
           ))}                
         </div>
       </div>
-      <div className="flex items-center gap-6">
+      <div aria-hidden className="hidden xl:flex items-center gap-6">
         <button className="text-sm font-medium text-avelliq-text-primary hover:bg-avelliq-bg-btn-light border-[.3px] hover:border-avelliq-border-brown-light shadow-[0px_0px_4px_0px_#0000000F] rounded-sm py-2 px-4 2xl:py-4 2xl:px-8 cursor-pointer"
         onClick={()=> alert('coming soon!')}>
           Sign In
@@ -50,6 +50,12 @@ const Header = () => {
         <button className="text-sm font-medium text-avelliq-text-white bg-avelliq-primary-green rounded-sm py-2 px-4 2xl:py-4 2xl:px-8 cursor-pointer"
         onClick={()=> alert('coming soon!')}>
           Find Care
+        </button>
+      </div>
+      <div className="flex xl:hidden">
+        <button className="text-sm font-medium text-avelliq-text-white bg-avelliq-primary-green rounded-sm py-1.5 px-3 md:px-3.5 lg:py-2 lg:px-4 cursor-pointer"
+        onClick={()=> alert('coming soon!')}>
+          <MenuIcon />
         </button>
       </div>
     </div>

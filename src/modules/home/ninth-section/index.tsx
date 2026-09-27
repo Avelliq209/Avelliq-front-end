@@ -48,7 +48,6 @@ const API_TESTIMONIALS: Testimonial[] = [
   },
 ]
 
-// [linear-gradient(312.09deg,#FF6F47_-1.05%,#FFCD0F_101.07%)]
 const StarRow = ({ count }: { count: number }) => {
   return (
     <div className="flex gap-0.5" aria-label={`${count} out of 5 stars`}>
@@ -129,14 +128,14 @@ const NinthSection = () => {
   )
 
   return (
-    <section className="pl-17.5 py-17.5">
+    <section className=" pl-10 py-17.5 lg:pl-17.5">
       <div className="flex flex-col">
-        <div className="pr-17.5 flex flex-col justify-center items-center">
-          <Pill className=" py-2 px-3 2xl:py-3 2xl:px-4 text-sm 2xl:text-base font-medium mb-5 text-avelliq-bg-green-dark bg-avelliq-bg-green-light border-avelliq-border-grey-light">
-            <ShieldCheck size={18} strokeWidth={1.5} className="h-4.5 w-4.5" />
+        <div className=" pr-10 lg:pr-17.5 flex flex-col justify-center items-center text-center self-center max-w-[80%] lg:max-w-full">
+          <Pill className=" py-2 px-3 2xl:py-3 2xl:px-4 text-[13px] lg:text-sm 2xl:text-base font-medium mb-5 text-avelliq-bg-green-dark bg-avelliq-bg-green-light border-avelliq-border-grey-light">
+            <ShieldCheck size={18} strokeWidth={1.5} className="h-4 w-4 lg:h-4.5 lg:w-4.5 shrink-0" />
             User Testimonial
           </Pill>
-          <h2 className="text-5xl leading-[120%] font-semibold text-avelliq-primary-green tracking-wide mb-3.5">
+          <h2 className="text-4xl md:text-[40px] lg:text-5xl leading-[120%] font-semibold text-avelliq-primary-green tracking-wide mb-3.5">
             Trusted By Our Users
           </h2>
           <p className="text-sm 2xl:text-base font-normal text-avelliq-text-grey mb-10">
@@ -146,7 +145,7 @@ const NinthSection = () => {
 
         {/* Dots Slide Nav */}
         {total > 1 && (
-          <div className="pr-17.5 flex justify-end gap-2">
+          <div className=" pr-10 lg:pr-17.5 flex justify-end gap-2">
             {API_TESTIMONIALS.map((_, i) => (
               <button
                 key={i}

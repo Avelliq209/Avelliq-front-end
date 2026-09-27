@@ -49,7 +49,7 @@ const ImageDiv = ({image}: {image: ImageCombo}) => {
         height={500}
         width={500}
         loading={"eager"}
-        className=" h-100 2xl:h-125 w-auto object-cover"
+        className=" h-65 md:h-100 2xl:h-125 w-auto object-cover"
       />
     </Link>
   )
@@ -58,7 +58,7 @@ const ImageDiv = ({image}: {image: ImageCombo}) => {
 const SixthSection = () => {
 
   return (
-    <section className="p-17.5">
+    <section className="px-10 py-17.5 lg:px-17.5">
       <div className="flex overflow-x-hidden bg-avelliq-text-white pl-5 py-5">
         {/* services animations */}
         <Marquee speed={50} pauseOnHover={true}>

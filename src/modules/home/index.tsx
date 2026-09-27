@@ -11,6 +11,7 @@ import SeventhSection from "./seventh-section"
 import EighthSection from "./eighth-section"
 import NinthSection from "./ninth-section"
 import Footer from "@/components/footer"
+import { Pill } from "@/components/ui/pill"
 
 export const AVATAR_COLORS = [
   "bg-violet-100 text-violet-700",
@@ -95,15 +96,15 @@ const HomeIndex = () => {
         />
 
         {/* content */}
-        <div className="flex flex-col z-10 items-start justify-center w-full min-h-screen h-full bg-[linear-gradient(271.68deg,rgba(255,255,255,0.03)_25.02%,#FAF9F6_55.06%)] px-17.5 py-20 gap-8">
+        <div className="flex flex-col z-10 items-start justify-center w-full min-h-screen h-full bg-[linear-gradient(271.68deg,rgba(255,255,255,0.03)_1.02%,#FAF9F6_45.06%)] md:bg-[linear-gradient(271.68deg,rgba(255,255,255,0.03)_25.02%,#FAF9F6_55.06%)] px-10 py-15 lg:px-17.5 md:py-20 gap-8">
           {/* Background Card */}
           <div className="flex flex-col flex-1 gap-5 max-w-114 2xl:max-w-160">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border-[.3px] border-avelliq-border-grey-light bg-avelliq-bg-green-light px-4 py-2.5 2xl:py-3 text-sm 2xl:text-base font-medium text-avelliq-bg-green-dark">
-              <ShieldCheck size={18} strokeWidth={1.5} className="h-4.5 w-4.5" />
+            <Pill className=" bg-avelliq-bg-green-light border-avelliq-border-grey-light px-3 md:px-4 py-2.5 2xl:py-3 text-[13px] lg:text-sm 2xl:text-base font-medium text-avelliq-bg-green-dark">
+              <ShieldCheck size={18} strokeWidth={1.5} className=" h-4 w-4 lg:h-4.5 lg:w-4.5" />
               Background-checked Professionals
-            </span>
+            </Pill>
             <div className=" space-y-4">
-              <h1 className=" tracking-wide text-[52px] leading-[130%] font-bold text-avelliq-bg-green-dark">
+              <h1 className=" tracking-wide text-[43px] md:text-[46px] lg:text-[52px] leading-[130%] font-bold text-avelliq-bg-green-dark">
                 Find trusted help for everyday life.
               </h1>
               <h2 className=" text-sm text-avelliq-text-grey font-normal 2xl:text-base text-start">
@@ -130,7 +131,7 @@ const HomeIndex = () => {
                 />
               </div>
               {(activeTab==="need") &&
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                <div className="flex flex-col gap-2 md:flex-row md:items-center">
                   <div className="relative flex-1 text-avelliq-text-grey">
                     <select
                       className="w-full appearance-none rounded-sm border border-avelliq-border-brown-light bg-avelliq-bg-btn-light px-3.5 py-3 text-sm 2xl:text-sm font-normal focus:border-avelliq-primary-green focus:outline-none focus:ring-1 focus:ring-avelliq-primary-green"
@@ -142,7 +143,7 @@ const HomeIndex = () => {
                         </option>
                       ))}
                     </select>
-                    <ChevronDown size={18} className="w-4.5 h-4.5 pointer-events-none absolute right-3 top-1/2 -translate-y-1/2" />
+                    <ChevronDown size={18} className="w-4.5 h-4.5 pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 bg-avelliq-bg-btn-light" />
                   </div>
                   {/* zip code */}
                   <div className="relative flex-1">
@@ -159,19 +160,20 @@ const HomeIndex = () => {
                   <button
                     type="button"
                     aria-label="Search"
-                    className="flex rounded-sm bg-avelliq-primary-green p-3.5 text-avelliq-text-white transition-colors hover:bg-emerald-800 cursor-pointer"
+                    className="flex items-center justify-center rounded-sm bg-avelliq-primary-green p-3.5 text-avelliq-text-white transition-colors hover:bg-emerald-800 cursor-pointer"
                     onClick={()=> alert('coming soon!')}
                   >
-                    <Search size={18} className="w-4.5 h-4.5" />
+                    <span className="block md:hidden text-sm">Search</span>
+                    <Search size={18} aria-hidden className="hidden md:block w-4.5 h-4.5" />
                   </button>
                 </div>
               }
               {(activeTab==="help") && 
-                <div className="flex items-start justify-between gap-3 text-sm">
+                <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 text-sm">
                   <span className=" text-avelliq-text-grey text-start font-normal">
                     Build a profile, set your availability, and meet people who value your work.
                   </span>
-                  <button className="group flex items-center gap-1 text-nowrap bg-avelliq-primary-green rounded-sm text-avelliq-text-white font-medium py-2 px-4 2xl:py-4 2xl:px-8 cursor-pointer"
+                  <button className="group flex items-center gap-1 text-nowrap bg-avelliq-primary-green rounded-sm text-avelliq-text-white font-medium w-fit py-2 px-4 2xl:py-4 2xl:px-8 cursor-pointer"
                   onClick={()=> alert('coming soon!')}>
                     <span className="">Explore Opportunities</span>
                     <ArrowRight size={12} className="w-3 h-3 group-hover:translate-x-1" />
@@ -188,15 +190,16 @@ const HomeIndex = () => {
       </section>
       
       {/* grid */}
-      <section className="grid grid-cols-1 divide-y-[.3px] divide-x-0 divide-avelliq-border-brown-light sm:grid-cols-3 sm:divide-x-[.3px] sm:divide-y-0 border-y-[.3px] border-avelliq-border-brown-light">
+      <section className="grid grid-cols-1 divide-y-[.3px] divide-x-0 divide-avelliq-border-brown-light md:grid-cols-3 md:divide-x-[.3px] md:divide-y-0 border-y-[.3px] border-avelliq-border-brown-light">
         {trustPoints.map((point) => (
-          <div key={point.title} className="flex items-center gap-4 px-6 py-6 2xl:py-9.75 sm:px-17.5">
-            <div className="flex p-5 shrink-0 items-center justify-center rounded-full bg-avelliq-bg-green-light">
-              <point.icon size={24} strokeWidth={1.5} className="w-6 h-6 text-avelliq-primary-green" />
+          <div key={point.title} className="flex flex-col lg:flex-row items-center gap-4 px-10 py-8 md:py-6 2xl:py-9.75 lg:px-17.5">
+            <div className="flex p-4 xl:p-5 shrink-0 items-center justify-center rounded-full bg-avelliq-bg-green-light">
+              <point.icon size={24} className=" w-5 h-5 xl:w-6 xl:h-6 text-avelliq-primary-green stroke-2 md:stroke-[1.5]" />
             </div>
-            <div>
+            
+            <div className="text-center lg:text-start">
               <p className="font-medium text-[18px] 2xl:text-[22px] text-avelliq-bg-green-dark">{point.title}</p>
-              <p className="text-[13px] 2xl:text-[15px] font-normal text-[#858486]">{point.subtitle}</p>
+              <p className="text-sm 2xl:text-[15px] font-normal text-[#858486]">{point.subtitle}</p>
             </div>
           </div>
         ))}

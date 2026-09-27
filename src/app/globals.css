@@ -53,6 +53,7 @@
   --color-avelliq-border-grey-light: #BDBCDB;
   --color-avelliq-hover: #CD9C16;
 
+  --breakpoint-sm: 425px;
   --breakpoint-2xl: 1440px;
   
   --radius-sm: calc(var(--radius) * 0.6);

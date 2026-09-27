@@ -14,7 +14,7 @@ const ButtonNav = ({
     >
       {name}
       {isArror && (
-        <ArrowRight size={12} className="h-3 w-3 group-hover:translate-x-0.5" />
+        <ArrowRight size={12} className="h-3 w-3 group-hover:translate-x-0.5 shrink-0" />
       )}
     </button>
   )
