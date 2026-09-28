@@ -8,6 +8,7 @@ export { default as houseKeeping } from "./images/house-keeping.png";
 export { default as houseSitting } from "./images/house-sitting.png";
 export { default as petCare } from "./images/pet-care.png";
 export { default as seniorCareGiving } from "./images/senior-care-giving.png";
+export { default as seniorCareGivingGrid } from "./images/bg-senior-care-giving.jpg";
 export { default as professional } from "./images/professional-high-rate.jpg";
 export { default as tenderCare } from "./images/a-lady-with-tender-care.png";
 export { default as Facebook } from "./icons/facebook";
@@ -16,4 +17,4 @@ export { default as Linkedin } from "./icons/linkedin";
 export { default as Twitter } from "./icons/twitter";
 export { default as Youtube } from "./icons/youtube";
 export { default as Quote } from "./icons/quote";
-export { ArrowRight, Baby, Calendar, Check, ChevronDown, Heart, HeartHandshakeIcon, Home, LifeBuoy, MapPin, Search, ShieldCheck, Sparkles, Star, Users, Verified, } from "lucide-react"
+export { Activity, ArrowRight, Baby, Calendar, Check, CircleXIcon, CircleCheckBig, Clock, ChevronDown, Heart, HeartPulse, HeartHandshakeIcon, Home, LifeBuoy, MapPin, Search, ShieldCheck, Sparkles, Star, Users, Verified, } from "lucide-react"

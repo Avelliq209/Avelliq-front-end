@@ -41,12 +41,12 @@ const ServiceCardView = ({ index, service }: {index: number, service: ServiceCar
 
       <div className="space-y-2.5">
         <h3 className="text-[22px] 2xl:text-2xl font-semibold text-avelliq-bg-green-dark">{service.title}</h3>
-        <p className="text-sm 2xl:text-base leading-relaxed font-normal text-avelliq-text-grey">{service.description}</p>
+        <p className="text-[15px] 2xl:text-base leading-relaxed font-normal text-avelliq-text-grey">{service.description}</p>
       </div>
 
       <ul className="flex-1 space-y-2">
         {service.items.map((item) => (
-          <li key={item} className="flex items-center justify-start gap-2 text-sm 2xl:text-base font-normal text-avelliq-text-primary">
+          <li key={item} className="flex items-center justify-start gap-2 text-[15px] 2xl:text-base font-normal text-avelliq-text-primary">
             <Check size={14} className="h-3.5 w-3.5 text-avelliq-primary-green shrink-0" />
             <span>{item}</span>
           </li>
@@ -55,7 +55,7 @@ const ServiceCardView = ({ index, service }: {index: number, service: ServiceCar
 
       <Link
         href=""
-        className="inline-flex items-center gap-1 text-sm 2xl:text-base font-medium text-avelliq-primary-green transition-colors group"
+        className="inline-flex items-center gap-1 text-[15px] 2xl:text-base font-medium text-avelliq-primary-green transition-colors group"
       >
         {service.ctaLabel}
         <ArrowRight size={12} className="h-3 w-3 group-hover:translate-x-1 shrink-0" />

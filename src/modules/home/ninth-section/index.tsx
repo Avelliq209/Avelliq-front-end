@@ -96,8 +96,7 @@ const SlideCard = ({index, bg, item, onClick}:
               alt={item.name}
               className="w-10.5 h-10.5 rounded-full object-cover text-[8px]"
             /> :
-            <span className={`inline-flex items-center text-sm justify-center shrink-0 w-10.5 h-10.5 rounded-full 
-              ${ AVATAR_COLORS[index % AVATAR_COLORS.length]}`}
+            <span className={`inline-flex items-center text-sm justify-center shrink-0 w-10.5 h-10.5 rounded-full ${AVATAR_COLORS[index % AVATAR_COLORS.length]}`}
             >{initials(item.name)}</span>
           }
           <div className="flex flex-col">
