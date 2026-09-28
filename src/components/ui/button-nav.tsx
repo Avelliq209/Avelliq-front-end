@@ -9,7 +9,7 @@ const ButtonNav = ({
   return (
     <button
       type="button"
-      className={`inline-flex w-fit items-center gap-2 rounded-[8px] px-5 py-3 2xl:py-4 2xl:px-8 text-sm font-medium cursor-pointer group ${className}`}
+      className={`inline-flex w-fit items-center gap-2 rounded-[8px] px-5 py-3 2xl:py-4 2xl:px-8 text-[15px] font-medium cursor-pointer group ${className}`}
       onClick={onClick}
     >
       {name}

@@ -86,7 +86,7 @@ const SlideCard = ({index, bg, item, onClick}:
       </div>
 
       <div className="flex flex-col justify-between flex-1 space-y-8">
-        <q className={`block text-sm 2xl:text-base leading-[157%] font-normal ${(index===bg)? 'text-avelliq-text-white': 'text-[#111827]'}`}>
+        <q className={`block text-[15px] 2xl:text-base leading-[157%] font-normal ${(index===bg)? 'text-avelliq-text-white': 'text-[#111827]'}`}>
           {item.quote}
         </q>
         <div className="flex items-center gap-2 pt-8 border-t-[.5px] border-t-[#FFFFFF26]">
@@ -101,10 +101,10 @@ const SlideCard = ({index, bg, item, onClick}:
             >{initials(item.name)}</span>
           }
           <div className="flex flex-col">
-            <span className={`inline-flex text-sm 2xl:text-base font-medium ${(index===bg)? 'text-avelliq-text-white': 'text-black'}`}>
+            <span className={`inline-flex text-base 2xl:text-lg font-medium ${(index===bg)? 'text-avelliq-text-white': 'text-black'}`}>
               {item.name}
             </span>
-            <span className={`inline-flex text-xs ${(index===bg)? 'text-avelliq-bg-green-light': 'text-avelliq-primary-green'} font-normal`}>
+            <span className={`inline-flex text-sm 2xl:text-base ${(index===bg)? 'text-avelliq-bg-green-light': 'text-avelliq-primary-green'} font-normal`}>
               {item.role}
             </span>
           </div>
@@ -128,24 +128,24 @@ const NinthSection = () => {
   )
 
   return (
-    <section className=" pl-10 py-17.5 lg:pl-17.5">
+    <section className="pl-5 sm:pl-10 py-17.5 lg:pl-17.5">
       <div className="flex flex-col">
-        <div className=" pr-10 lg:pr-17.5 flex flex-col justify-center items-center text-center self-center max-w-[80%] lg:max-w-full">
+        <div className=" pr-5 sm:pr-10 lg:pr-17.5 flex flex-col justify-center items-center text-center self-center max-w-[90%] sm:max-w-[80%] lg:max-w-full">
           <Pill className=" py-2 px-3 2xl:py-3 2xl:px-4 text-[13px] lg:text-sm 2xl:text-base font-medium mb-5 text-avelliq-bg-green-dark bg-avelliq-bg-green-light border-avelliq-border-grey-light">
-            <ShieldCheck size={18} strokeWidth={1.5} className="h-4 w-4 lg:h-4.5 lg:w-4.5 shrink-0" />
+            <ShieldCheck size={18} className="h-4 w-4 lg:h-4.5 lg:w-4.5 stroke-2 shrink-0" />
             User Testimonial
           </Pill>
-          <h2 className="text-4xl md:text-[40px] lg:text-5xl leading-[120%] font-semibold text-avelliq-primary-green tracking-wide mb-3.5">
+          <h2 className="text-[38px] md:text-[40px] lg:text-5xl leading-[120%] font-semibold text-avelliq-primary-green tracking-wide mb-3.5">
             Trusted By Our Users
           </h2>
-          <p className="text-sm 2xl:text-base font-normal text-avelliq-text-grey mb-10">
+          <p className="text-[15px] 2xl:text-base font-normal text-avelliq-text-grey mb-10">
             See what families and households value when finding help through Avelliq.
           </p>
         </div>
 
         {/* Dots Slide Nav */}
         {total > 1 && (
-          <div className=" pr-10 lg:pr-17.5 flex justify-end gap-2">
+          <div className=" pr-5 sm:pr-10 lg:pr-17.5 flex justify-end gap-2">
             {API_TESTIMONIALS.map((_, i) => (
               <button
                 key={i}

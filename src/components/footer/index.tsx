@@ -52,26 +52,38 @@ const Footer = () => {
   return (
     <>
       {/* Professional care giving Ads */}
-      <section className=" px-10 py-17.5 lg:px-17.5 pb-30">
-        <div className="flex items-center justify-center gap-5 bg-avelliq-bg-green-light px-10 xl:px-20 rounded-[16px]">
-          <div className="flex flex-col justify-center items-start text-start py-8 max-w-[50%]">
-            <h2 className="text-[40px] lg:text-5xl leading-[120%] font-semibold text-avelliq-primary-green tracking-wide mb-3.5">
+      <section className="px-5 sm:px-10 py-17.5 lg:px-17.5 pb-30">
+        <div className="flex items-center justify-center gap-5 bg-avelliq-bg-green-light px-5 md:px-10 xl:px-20 rounded-[16px]">
+          <div className="flex flex-col justify-center items-center text-center md:items-start md:text-start py-8 max-w-full md:max-w-[50%]">
+            <h2 className="text-[38px] md:text-[40px] lg:text-5xl leading-[120%] font-semibold text-avelliq-primary-green tracking-wide mb-3.5">
               Find care that feels right
             </h2>
-            <p className="text-sm 2xl:text-base font-normal text-avelliq-text-grey max-w-[80%] mb-8">
+            <p className="text-[15px] 2xl:text-base font-normal text-avelliq-text-grey max-w-[80%] mb-8">
               Whether you need care for your family or personal support  for daily lifestyle, or help with your pets, Avelliq makes it easier to find professionals who fit your needs.
             </p>
-            <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3">
+
+            {/* mobile view < 768 */}
+            <Image
+              src={tenderCare}
+              alt="a lady with tender care heart"
+              width={469}
+              height={385}
+              loading="eager"
+              className=" text-[8px] block md:hidden h-auto w-117.25 2xl:w-150 object-cover zoom-70"
+            />
+            {/* end view */}
+
+            <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row items-start lg:items-center gap-3">
               <ButtonNav
                 name={"Find Care Near You"}
                 isArror={true}
-                className=" bg-avelliq-primary-green text-avelliq-text-white whitespace-nowrap"
+                className=" bg-avelliq-primary-green text-avelliq-text-white "
                 onClick={()=> alert("coming soon!")}
               /> 
               <ButtonNav
                 name={"Join as a Professional"}
                 isArror={false}
-                className=" text-avelliq-text-primary bg-avelliq-bg-btn-light hover:bg-slate-50 transition-colors whitespace-nowrap shadow-[0px_0px_4px_0px_#0000000F] z-10"
+                className=" text-avelliq-text-primary bg-avelliq-bg-btn-light hover:bg-slate-50 transition-colors  shadow-[0px_0px_4px_0px_#0000000F] z-10"
                 onClick={()=> alert("coming soon!")}
               /> 
             </div>
@@ -83,17 +95,17 @@ const Footer = () => {
             width={469}
             height={385}
             loading="eager"
-            className=" text-[8px] h-auto w-117.25 2xl:w-150 object-cover"
+            className=" text-[8px] hidden md:block h-auto w-117.25 2xl:w-150 object-cover"
           />
         </div>
       </section>
 
       {/* Footer navigations */}
-      <footer className="px-10 pt-17.5 lg:px-17.5 border-t border-[#E1E4ED] bg-avelliq-bg-green-dark space-y-16 select-none">
+      <footer className="px-5 pt-10 sm:px-10 sm:pt-17.5 lg:px-17.5 border-t border-[#E1E4ED] bg-avelliq-bg-green-dark space-y-16 select-none">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
           <div className="flex flex-col gap-6">
             <Logo isFooter={true} />
-            <h6 className=" text-sm 2xl:text-base font-normal text-avelliq-text-white">
+            <h6 className="text-sm 2xl:text-base font-normal text-avelliq-text-white">
               Connect with independent professionals for childcare, senior care, housekeeping, pet care, and everyday household support.
             </h6>
             <div>
@@ -113,12 +125,12 @@ const Footer = () => {
           </div>
           {FooterLinks.map((item, index) => (
             <div key={index} className="flex flex-col items-start lg:items-end">
-              <div className="flex flex-col gap-5.25">
-                <h5 className=" tracking-wider font-semibold text-avelliq-text-white text-base mb-4">
+              <div className="flex flex-col gap-3 md:gap-5.25">
+                <h5 className=" tracking-wider font-semibold text-avelliq-text-white text-base mt-2 mb-4.5 md:mb-1 md:mt-3">
                   {item.title}
                 </h5>
                 {item.item.map(val => (
-                  <Link key={val.title} href={val.url} className="text-[.75rem] sm:text-sm lg:text-[15px] 2xl:text-base font-normal w-fit text-avelliq-bg-green-light hover:text-avelliq-hover ">
+                  <Link key={val.title} href={val.url} className=" break-all text-sm lg:text-[15px] 2xl:text-base font-normal w-fit text-avelliq-bg-green-light hover:text-avelliq-hover ">
                     {val.title}
                   </Link>
                 ))}

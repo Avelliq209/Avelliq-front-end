@@ -58,7 +58,7 @@ const ImageDiv = ({image}: {image: ImageCombo}) => {
 const SixthSection = () => {
 
   return (
-    <section className="px-10 py-17.5 lg:px-17.5">
+    <section className="px-5 sm:px-10 py-17.5 lg:px-17.5">
       <div className="flex overflow-x-hidden bg-avelliq-text-white pl-5 py-5">
         {/* services animations */}
         <Marquee speed={50} pauseOnHover={true}>

@@ -96,18 +96,18 @@ const HomeIndex = () => {
         />
 
         {/* content */}
-        <div className="flex flex-col z-10 items-start justify-center w-full min-h-screen h-full bg-[linear-gradient(271.68deg,rgba(255,255,255,0.03)_1.02%,#FAF9F6_45.06%)] md:bg-[linear-gradient(271.68deg,rgba(255,255,255,0.03)_25.02%,#FAF9F6_55.06%)] px-10 py-15 lg:px-17.5 md:py-20 gap-8">
+        <div className="flex flex-col z-10 items-start justify-center w-full min-h-screen h-full bg-[linear-gradient(271.68deg,rgba(255,255,255,0.03)_1.02%,#FAF9F6_45.06%)] md:bg-[linear-gradient(271.68deg,rgba(255,255,255,0.03)_25.02%,#FAF9F6_55.06%)] px-5 sm:px-10 py-15 lg:px-17.5 md:py-20 gap-8">
           {/* Background Card */}
-          <div className="flex flex-col flex-1 gap-5 max-w-114 2xl:max-w-160">
+          <div className="flex flex-col gap-5 max-w-114 2xl:max-w-160">
             <Pill className=" bg-avelliq-bg-green-light border-avelliq-border-grey-light px-3 md:px-4 py-2.5 2xl:py-3 text-[13px] lg:text-sm 2xl:text-base font-medium text-avelliq-bg-green-dark">
-              <ShieldCheck size={18} strokeWidth={1.5} className=" h-4 w-4 lg:h-4.5 lg:w-4.5" />
+              <ShieldCheck size={18} className=" h-4 w-4 lg:h-4.5 lg:w-4.5 stroke-2 shrink-0" />
               Background-checked Professionals
             </Pill>
             <div className=" space-y-4">
               <h1 className=" tracking-wide text-[43px] md:text-[46px] lg:text-[52px] leading-[130%] font-bold text-avelliq-bg-green-dark">
                 Find trusted help for everyday life.
               </h1>
-              <h2 className=" text-sm text-avelliq-text-grey font-normal 2xl:text-base text-start">
+              <h2 className=" text-base text-avelliq-text-grey font-normal text-start">
                 Connect with verified professionals for childcare, senior care, housekeeping, pet care, concierge services, and more.
               </h2>
             </div>
@@ -181,8 +181,8 @@ const HomeIndex = () => {
                 </div>
               }
             </div>
-            <div className="flex items-center gap-1.5 text-[13px] 2xl:text-sm font-normal text-avelliq-bg-green-dark">
-              <Check size={14} className="h-3.5 w-3.5" />
+            <div className="flex items-center gap-1.5 text-sm font-normal text-avelliq-bg-green-dark">
+              <Check size={14} className="h-3.5 w-3.5 shrink-0" />
               Browse profiles free. Connect when you're ready.
             </div>
           </div>
@@ -198,8 +198,8 @@ const HomeIndex = () => {
             </div>
             
             <div className="text-center lg:text-start">
-              <p className="font-medium text-[18px] 2xl:text-[22px] text-avelliq-bg-green-dark">{point.title}</p>
-              <p className="text-sm 2xl:text-[15px] font-normal text-[#858486]">{point.subtitle}</p>
+              <p className="font-medium text-[20px] 2xl:text-[22px] text-avelliq-bg-green-dark">{point.title}</p>
+              <p className="text-base 2xl:text-[15px] font-normal text-[#858486]">{point.subtitle}</p>
             </div>
           </div>
         ))}

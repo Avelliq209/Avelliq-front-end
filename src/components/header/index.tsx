@@ -55,7 +55,7 @@ const Header = () => {
       <div className="flex xl:hidden">
         <button className="text-sm font-medium text-avelliq-text-white bg-avelliq-primary-green rounded-sm py-1.5 px-3 md:px-3.5 lg:py-2 lg:px-4 cursor-pointer"
         onClick={()=> alert('coming soon!')}>
-          <MenuIcon />
+          <MenuIcon size={24} className="w-4.5 sm:w-5 md:w-6" />
         </button>
       </div>
     </div>
