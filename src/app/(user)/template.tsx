@@ -1,15 +1,10 @@
 "use client"
+
 import Footer from "@/components/footer"
 import Header from "@/components/header"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import Modal from "@/components/ui/modal"
-import ModalQueryProvider from "@/lib/modal-queryprovider"
-import { useState } from "react"
 
 const Template = ({ children }: 
 { children: React.ReactNode }) => {
-  const [isModal, setModal] = useState<boolean>(false)
-  const [modalContent, setModalContent] = useState<React.ReactNode>([])
 
   return (
     <div className="flex flex-col relative justify-between">
@@ -17,12 +12,10 @@ const Template = ({ children }:
         <Header />
       </div>
 
-      <ModalQueryProvider setModal={(val) => {setModal(val)}} contentModal={(val) => setModalContent(val)}>
-        <main className="relative">
-          {children}
-        </main>
-        <Footer />
-      </ModalQueryProvider>
+      <main className="relative">
+        {children}
+      </main>
+      <Footer />
     </div>
   )
 }

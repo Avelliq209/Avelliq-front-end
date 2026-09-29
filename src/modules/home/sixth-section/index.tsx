@@ -623,7 +623,7 @@ const ImageDiv = ({image, index}: ImageLink) => {
           className=" h-65 md:h-100 2xl:h-125 w-auto object-cover"
         />
       </DialogTrigger>
-      <DialogContent className={' p-0 overflow-hidden rounded-[24px] sm:max-w-[70%] shadow-[0px_24px_48px_0px_#0F4D4229]'} showCloseButton={false}>
+      <DialogContent className={' p-0 overflow-hidden rounded-[24px] xs:max-w-[90%] sm:max-w-[80%] lg:max-w-[70%] shadow-[0px_24px_48px_0px_#0F4D4229]'} showCloseButton={false}>
         <ModalContentID modalContent={MODAL_CONTENTS[index]} />
       </DialogContent>
     </Dialog>
