@@ -9,7 +9,7 @@ const Header = () => {
 
   const nav = [
     {name:"Home", route:"/"},
-    {name:"Services", route:""},
+    {name:"Services", route:"/services"},
     {name:"Trust & Safety", route:""},
     {name:"Resources", route:""},
     {name:"Contact Us", route:""},

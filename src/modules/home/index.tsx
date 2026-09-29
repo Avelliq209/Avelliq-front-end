@@ -1,4 +1,5 @@
 "use client"
+
 import Image from "next/image"
 import { useState } from "react"
 import SecondSection from "./second-section"
@@ -10,7 +11,6 @@ import SixthSection from "./sixth-section"
 import SeventhSection from "./seventh-section"
 import EighthSection from "./eighth-section"
 import NinthSection from "./ninth-section"
-import Footer from "@/components/footer"
 import { Pill } from "@/components/ui/pill"
 
 export const AVATAR_COLORS = [
@@ -213,7 +213,6 @@ const HomeIndex = () => {
       <SeventhSection />
       <EighthSection />
       <NinthSection />
-      <Footer />
     </div>
   )
 }

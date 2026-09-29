@@ -9,6 +9,11 @@ export { default as houseSitting } from "./images/house-sitting.png";
 export { default as petCare } from "./images/pet-care.png";
 export { default as seniorCareGiving } from "./images/senior-care-giving.png";
 export { default as seniorCareGivingGrid } from "./images/bg-senior-care-giving.jpg";
+export { default as childCareGivingGrid } from "./images/childCareGivingGrid.png";
+export { default as houseKeepingGrid } from "./images/houseKeepingGrid.jpg";
+export { default as petCareGrid } from "./images/petCareGrid.jpg";
+export { default as houseSettingServicesGrid } from "./images/houseSettingServicesGrid.jpg";
+export { default as personalConciergeGrid } from "./images/personalConciergeGrid.jpg";
 export { default as professional } from "./images/professional-high-rate.jpg";
 export { default as tenderCare } from "./images/a-lady-with-tender-care.png";
 export { default as Facebook } from "./icons/facebook";
@@ -17,4 +22,4 @@ export { default as Linkedin } from "./icons/linkedin";
 export { default as Twitter } from "./icons/twitter";
 export { default as Youtube } from "./icons/youtube";
 export { default as Quote } from "./icons/quote";
-export { Activity, ArrowRight, Baby, Calendar, Check, CircleXIcon, CircleCheckBig, Clock, ChevronDown, Heart, HeartPulse, HeartHandshakeIcon, Home, LifeBuoy, MapPin, Search, ShieldCheck, Sparkles, Star, Users, Verified, } from "lucide-react"
+export { Activity, AlertCircle, ArrowRight, Baby, Bath, BookOpen, BriefcaseBusiness, Car, Calendar, Check, CircleXIcon, CircleCheckBig, Clock, ChevronDown, Dog, FileText, Flower, Gift, Globe, Grid, Heart, HeartPulse, HeartHandshakeIcon, Home, LifeBuoy, Mail, MapPin, Moon, PawPrint, Pill, Scissors, Search, Shirt, ShoppingBag, Shield, ShieldCheck, Sparkles, Star, Trees, Truck, Users, Utensils, Verified, Wind } from "lucide-react"
