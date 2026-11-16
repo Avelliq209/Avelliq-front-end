@@ -1,14 +1,16 @@
 import type { Metadata } from "next"
-import { Geist_Mono, Inter } from "next/font/google"
+import { Inter, Montserrat, Playfair_Display } from "next/font/google"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
+const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" })
 
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" })
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" })
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter-family" })
 
 export const metadata: Metadata = {
   title: {
@@ -20,8 +22,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={cn("h-full font-sans antialiased", inter.variable, geistMono.variable)}>
-      <body className="flex min-h-screen flex-col bg-avelliq-bg-btn-light selection:bg-avelliq-primary-green selection:text-avelliq-text-white">
+    <html
+      lang="en"
+      className={cn(
+        "h-full font-sans antialiased",
+        montserrat.variable,
+        playfair.variable,
+        inter.variable
+      )}
+    >
+      <body className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
         {children}
       </body>
     </html>

@@ -1,11 +1,16 @@
-import { Baby, BriefcaseBusiness, HeartHandshake, Home, PawPrint, Sparkles } from "lucide-react"
+import childcareImage from "@/assets/images/services/cards/childcare.jpg"
+import houseSittersImage from "@/assets/images/services/cards/house-sitters.jpg"
+import housekeepingImage from "@/assets/images/services/cards/housekeeping.jpg"
+import conciergeImage from "@/assets/images/services/gallery/concierge.jpg"
+import petCareImage from "@/assets/images/services/gallery/pet-care.jpg"
+import seniorCareImage from "@/assets/images/services/gallery/senior-care.jpg"
 
 import type { ServiceCategory } from "../types"
 
 export const SERVICES: ServiceCategory[] = [
   {
     slug: "childcare",
-    title: "Childcare",
+    title: "Child Care",
     description: "Reliable support for every stage of your family's journey.",
     offerings: [
       "Nannies",
@@ -16,8 +21,8 @@ export const SERVICES: ServiceCategory[] = [
       "Special needs childcare",
     ],
     ctaLabel: "Explore Childcare",
-    icon: Baby,
-    iconClassName: "bg-[#FFF4D6]",
+    image: childcareImage,
+    imageAlt: "A caregiver reading a book with a toddler",
   },
   {
     slug: "housekeeping",
@@ -25,8 +30,8 @@ export const SERVICES: ServiceCategory[] = [
     description: "A beautifully cared-for home, on your terms.",
     offerings: ["General housekeeping", "Deep cleaning", "Move-in & move-out", "Laundry & ironing"],
     ctaLabel: "Explore Housekeeping",
-    icon: Sparkles,
-    iconClassName: "bg-[#F5EFE6]",
+    image: housekeepingImage,
+    imageAlt: "A smiling housekeeper holding cleaning supplies",
   },
   {
     slug: "house-sitters",
@@ -34,8 +39,8 @@ export const SERVICES: ServiceCategory[] = [
     description: "Trusted oversight while you're away from home.",
     offerings: ["House supervision", "Property check-ins", "Home routines"],
     ctaLabel: "Explore House Sitters",
-    icon: Home,
-    iconClassName: "bg-[#E8F4F0]",
+    image: houseSittersImage,
+    imageAlt: "Two people arriving at the front door of a house",
   },
   {
     slug: "senior-care",
@@ -47,9 +52,9 @@ export const SERVICES: ServiceCategory[] = [
       "Companion caregivers",
       "Special needs caregivers",
     ],
-    ctaLabel: "Explore Senior care",
-    icon: HeartHandshake,
-    iconClassName: "bg-[#F5EFE6]",
+    ctaLabel: "Explore Senior Care",
+    image: seniorCareImage,
+    imageAlt: "A caregiver smiling with an elderly woman",
   },
   {
     slug: "concierge",
@@ -57,8 +62,8 @@ export const SERVICES: ServiceCategory[] = [
     description: "Practical help that gives you time back.",
     offerings: ["Personal concierge", "Lifestyle assistant", "Errand services"],
     ctaLabel: "Explore Concierge",
-    icon: BriefcaseBusiness,
-    iconClassName: "bg-[#E8F4F0]",
+    image: conciergeImage,
+    imageAlt: "A personal concierge at work",
   },
   {
     slug: "pet-care",
@@ -66,7 +71,7 @@ export const SERVICES: ServiceCategory[] = [
     description: "Dependable care for every beloved companion.",
     offerings: ["Pet sitters", "Pet walkers", "At-home check-ins"],
     ctaLabel: "Explore Pet Care",
-    icon: PawPrint,
-    iconClassName: "bg-[#FFF4D6]",
+    image: petCareImage,
+    imageAlt: "A pet sitter with a dog",
   },
 ]

@@ -1,38 +1,18 @@
-import { MenuIcon } from "lucide-react"
-
-import { ComingSoonButton } from "@/components/shared/coming-soon-button"
-
+import { HeaderActions } from "./header-actions"
 import { Logo } from "./logo"
 import { MainNav } from "./main-nav"
+import { MobileNav } from "./mobile-nav"
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-20 flex w-full flex-col border-b-[.5px] border-b-avelliq-border-brown-light bg-avelliq-text-white px-5 py-5 sm:px-10 sm:py-6 lg:px-17.5">
-      <div className="flex w-full items-center justify-between gap-6">
-        <div className="flex gap-10">
+    <header className="sticky top-0 z-30 border-b-[0.5px] border-stroke bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/80">
+      <div className="flex items-center justify-between gap-6 px-5 py-4 sm:px-10 lg:px-17.5 lg:py-6">
+        <div className="flex items-center gap-10">
           <Logo />
           <MainNav />
         </div>
-
-        <div className="hidden items-center gap-6 xl:flex">
-          <ComingSoonButton variant="subtle-outline" size="nav">
-            Sign In
-          </ComingSoonButton>
-          <ComingSoonButton variant="subtle-outline" size="nav">
-            Join as a Professional
-          </ComingSoonButton>
-          <ComingSoonButton variant="brand" size="nav">
-            Find Care
-          </ComingSoonButton>
-        </div>
-
-        <ComingSoonButton
-          variant="brand"
-          aria-label="Open menu"
-          className="h-auto rounded-sm px-3 py-1.5 md:px-3.5 lg:px-4 lg:py-2 xl:hidden"
-        >
-          <MenuIcon className="size-4.5 sm:size-5 md:size-6" />
-        </ComingSoonButton>
+        <HeaderActions className="hidden xl:flex" />
+        <MobileNav />
       </div>
     </header>
   )

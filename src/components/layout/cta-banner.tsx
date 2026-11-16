@@ -1,47 +1,42 @@
 import Image from "next/image"
 
-import ctaTenderCare from "@/assets/images/cta-tender-care.png"
+import ctaThumbsUp from "@/assets/images/cta-thumbs-up.png"
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { Section } from "@/components/shared/section"
 import { SectionTitle } from "@/components/shared/section-title"
-import { cn } from "@/lib/utils"
-
-function BannerImage({ className }: { className: string }) {
-  return (
-    <Image
-      src={ctaTenderCare}
-      alt="A caregiver holding a heart"
-      width={469}
-      height={385}
-      className={cn("h-auto w-117.25 object-cover text-[8px] 2xl:w-150", className)}
-    />
-  )
-}
 
 export function CtaBanner() {
   return (
-    <Section className="pb-30">
-      <div className="flex items-center justify-center gap-5 rounded-[16px] bg-avelliq-bg-green-light px-5 md:px-10 xl:px-20">
-        <div className="flex max-w-full flex-col items-center justify-center py-8 text-center md:max-w-[50%] md:items-start md:text-start">
-          <SectionTitle className="mb-3.5">Find care that feels right</SectionTitle>
-          <p className="mb-8 max-w-[80%] text-[15px] font-normal text-avelliq-text-grey 2xl:text-base">
-            Whether you need care for your family or personal support for daily lifestyle, or help
-            with your pets, Avelliq makes it easier to find professionals who fit your needs.
-          </p>
-
-          <BannerImage className="block zoom-70 md:hidden" />
-
-          <div className="flex flex-col items-start gap-3 sm:flex-row md:flex-col lg:flex-row lg:items-center">
-            <ComingSoonButton variant="brand" size="cta" withArrow>
+    <Section className="py-15">
+      <div className="relative flex flex-col overflow-hidden rounded-[16px] bg-sage lg:h-98.5 lg:flex-row lg:items-center">
+        <div className="flex flex-col gap-8 px-6 pt-12 lg:w-163 lg:px-0 lg:pt-0 lg:pl-20">
+          <div className="flex flex-col gap-3.5">
+            <SectionTitle>Find care that feels right</SectionTitle>
+            <p className="max-w-123 text-base leading-[1.4] text-muted-foreground">
+              Whether you need care for your family or personal support for daily lifestyle, or
+              help with your pets, Avelliq makes it easier to find professionals who fit your
+              needs.
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <ComingSoonButton size="pill-sm" withArrow className="font-inter">
               Find Care Near You
             </ComingSoonButton>
-            <ComingSoonButton variant="subtle" size="cta" className="z-10">
+            <ComingSoonButton variant="white" size="pill-sm" className="font-inter">
               Join as a Professional
             </ComingSoonButton>
           </div>
         </div>
 
-        <BannerImage className="hidden md:block" />
+        <div className="relative mx-auto mt-8 h-80 w-full max-w-117 lg:absolute lg:top-3.25 lg:left-187.75 lg:mt-0 lg:h-109.5 lg:w-117">
+          <Image
+            src={ctaThumbsUp}
+            alt="A smiling woman giving a thumbs up"
+            fill
+            sizes="(min-width: 1024px) 468px, 100vw"
+            className="object-cover object-[96%_center]"
+          />
+        </div>
       </div>
     </Section>
   )

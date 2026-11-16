@@ -1,58 +1,40 @@
 "use client"
 
-import { useState } from "react"
-
-import { cn } from "@/lib/utils"
+import { CarouselDots } from "@/components/shared/carousel-dots"
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
+import { useAutoplay } from "@/hooks/use-autoplay"
+import { useCarouselIndex } from "@/hooks/use-carousel-index"
 
 import type { Testimonial } from "../types"
 import { TestimonialCard } from "./testimonial-card"
 
-interface TestimonialCarouselProps {
-  testimonials: Testimonial[]
-  initialIndex?: number
-}
-
-export function TestimonialCarousel({ testimonials, initialIndex = 1 }: TestimonialCarouselProps) {
-  const [activeIndex, setActiveIndex] = useState(initialIndex)
+export function TestimonialCarousel({ testimonials }: { testimonials: Testimonial[] }) {
+  const { setApi, selectedIndex, scrollTo } = useCarouselIndex()
+  const autoplay = useAutoplay()
 
   return (
-    <>
-      {testimonials.length > 1 && (
-        <div className="flex justify-end gap-2 pr-5 sm:pr-10 lg:pr-17.5">
-          {testimonials.map((testimonial, index) => (
-            <button
-              key={testimonial.id}
-              type="button"
-              aria-label={`Go to slide ${index + 1}`}
-              aria-current={index === activeIndex}
-              onClick={() => setActiveIndex(index)}
-              className={cn(
-                "h-2 cursor-pointer rounded-full transition-all",
-                index === activeIndex
-                  ? "w-10 bg-avelliq-primary-green"
-                  : "w-4 bg-[#FFF4D6] hover:bg-avelliq-text-grey"
-              )}
-            />
-          ))}
-        </div>
-      )}
+    <div className="flex flex-col">
+      <CarouselDots
+        count={testimonials.length}
+        activeIndex={selectedIndex}
+        onSelect={scrollTo}
+        label="Testimonial slides"
+        className="mr-5 self-end sm:mr-10 lg:mr-36.5"
+      />
 
-      <div className="overflow-x-auto scrollbar-none">
-        <div
-          className="grid w-full gap-5 py-7 pl-1"
-          style={{ gridTemplateColumns: `repeat(${testimonials.length}, minmax(300px, 1fr))` }}
-        >
+      <Carousel setApi={setApi} opts={{ align: "start", loop: true }} plugins={[autoplay]}>
+        <CarouselContent className="-ml-5 py-7 pr-5">
           {testimonials.map((testimonial, index) => (
-            <TestimonialCard
-              key={testimonial.id}
-              testimonial={testimonial}
-              index={index}
-              isActive={index === activeIndex}
-              onSelect={() => setActiveIndex(index)}
-            />
+            <CarouselItem key={testimonial.id} className="basis-[85%] pl-5 sm:basis-95.75">
+              <TestimonialCard
+                testimonial={testimonial}
+                isActive={index === selectedIndex}
+                onSelect={() => scrollTo(index)}
+              />
+            </CarouselItem>
           ))}
-        </div>
-      </div>
-    </>
+        </CarouselContent>
+      </Carousel>
+    </div>
   )
 }

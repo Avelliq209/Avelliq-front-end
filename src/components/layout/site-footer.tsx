@@ -1,82 +1,99 @@
+import Image from "next/image"
 import Link from "next/link"
+import { Fragment } from "react"
 
+import footerTexture from "@/assets/images/textures/footer-linen.jpg"
 import { FOOTER_NAV, LEGAL_NAV, SOCIAL_LINKS, siteConfig } from "@/config/site"
 
 import { Logo } from "./logo"
 import { NewsletterForm } from "./newsletter-form"
 
+function Separator() {
+  return (
+    <span aria-hidden="true" className="text-mint">
+      |
+    </span>
+  )
+}
+
 export function SiteFooter() {
   return (
-    <footer className="space-y-16 border-t border-[#E1E4ED] bg-avelliq-bg-green-dark px-5 pt-10 select-none sm:px-10 sm:pt-17.5 lg:px-17.5">
-      <div className="grid grid-cols-2 gap-8 md:gap-10 lg:grid-cols-4">
-        <div className="flex flex-col gap-6">
-          <Logo inverted />
-          <p className="text-sm font-normal text-avelliq-text-white 2xl:text-base">
-            Connect with independent professionals for childcare, senior care, housekeeping, pet
-            care, and everyday household support.
-          </p>
-          <div>
-            <h2 className="mb-4 text-sm font-medium text-avelliq-text-white 2xl:text-base">
-              Get the latest news and updates
-            </h2>
-            <NewsletterForm />
-          </div>
-        </div>
+    <footer className="relative isolate overflow-hidden border-t border-[#E1E4ED] bg-primary px-5 pt-12 sm:px-10 lg:px-17.5 lg:pt-18">
+      <Image
+        src={footerTexture}
+        alt=""
+        fill
+        sizes="100vw"
+        className="-z-10 object-cover opacity-[0.02]"
+      />
 
-        {FOOTER_NAV.map((group) => (
-          <nav
-            key={group.title}
-            aria-label={group.title}
-            className="flex flex-col items-start lg:items-end"
-          >
-            <div className="flex flex-col gap-3 md:gap-5.25">
-              <h2 className="mt-2 mb-4.5 text-base font-semibold tracking-wider text-avelliq-text-white md:mt-3 md:mb-1">
+      <div className="flex flex-col gap-16">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:flex lg:justify-between">
+          <div className="flex max-w-76 flex-col gap-6">
+            <Logo inverted />
+            <p className="text-base leading-[1.4] text-white">
+              Connect with independent professionals for childcare, senior care, housekeeping, pet
+              care, and everyday household support.
+            </p>
+            <div className="flex flex-col gap-4">
+              <h2 className="font-heading text-base leading-[1.4] font-medium text-white">
+                Get the latest news and updates
+              </h2>
+              <NewsletterForm />
+            </div>
+          </div>
+
+          {FOOTER_NAV.map((group) => (
+            <nav key={group.title} aria-label={group.title} className="flex flex-col gap-8">
+              <h2 className="font-heading text-base leading-[1.4] font-semibold text-white">
                 {group.title}
               </h2>
-              {group.items.map((item) => (
+              <ul className="flex flex-col gap-6">
+                {group.items.map((item) => (
+                  <li key={item.title}>
+                    <Link
+                      href={item.href}
+                      className="text-base leading-[1.4] break-all text-mint transition-colors hover:text-gold"
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+        </div>
+
+        <div className="flex flex-col items-center justify-between gap-6 border-t-[0.5px] border-[#E1E4ED] py-6 md:flex-row">
+          <p className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-2 font-inter text-sm leading-5.5 text-footer-muted lg:text-base">
+            <span>
+              Copyright © {new Date().getFullYear()} {siteConfig.name}
+            </span>
+            <Separator />
+            <span>All Rights Reserved</span>
+            {LEGAL_NAV.map((item) => (
+              <Fragment key={item.title}>
+                <Separator />
                 <Link
-                  key={item.title}
                   href={item.href}
-                  className="w-fit text-sm font-normal break-all text-avelliq-bg-green-light hover:text-avelliq-hover lg:text-[15px] 2xl:text-base"
+                  className="text-white/59 underline transition-colors hover:text-gold"
                 >
                   {item.title}
                 </Link>
-              ))}
-            </div>
-          </nav>
-        ))}
-      </div>
+              </Fragment>
+            ))}
+          </p>
 
-      <div className="flex flex-col items-center justify-between gap-5 border-t border-[#E1E4ED] py-6 text-xs font-normal tracking-wide md:flex-row lg:text-[13px] 2xl:text-base 2xl:tracking-normal">
-        <div className="order-2 flex gap-2 divide-x-[1.5px] divide-avelliq-bg-green-light text-[#B4B9C9] md:order-1">
-          <span className="pr-2">
-            Copyright © {new Date().getFullYear()} {siteConfig.name}
-          </span>
-          <span className="pr-2">All Rights Reserved</span>
-          {LEGAL_NAV.map((item) => (
-            <Link
-              key={item.title}
-              href={item.href}
-              className="pr-2 text-[#FFFFFF96] underline underline-offset-3 hover:text-avelliq-hover"
-            >
-              {item.title}
-            </Link>
-          ))}
+          <ul className="flex items-center gap-4">
+            {SOCIAL_LINKS.map(({ label, href, icon }) => (
+              <li key={label}>
+                <Link href={href} aria-label={label} className="block transition-opacity hover:opacity-80">
+                  <Image src={icon} alt="" width={24} height={24} />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-
-        <ul className="order-1 flex items-center gap-4 md:order-2">
-          {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
-            <li key={label}>
-              <Link
-                href={href}
-                aria-label={label}
-                className="flex size-6 rounded-[4px] bg-avelliq-text-white p-1.5"
-              >
-                <Icon className="size-full" />
-              </Link>
-            </li>
-          ))}
-        </ul>
       </div>
     </footer>
   )

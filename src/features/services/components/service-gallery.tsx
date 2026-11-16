@@ -1,49 +1,64 @@
 "use client"
 
-import Image from "next/image"
-import Marquee from "react-fast-marquee"
-
+import { CarouselDots } from "@/components/shared/carousel-dots"
+import { PhotoCard } from "@/components/shared/photo-card"
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { useAutoplay } from "@/hooks/use-autoplay"
+import { useCarouselIndex } from "@/hooks/use-carousel-index"
 
 import { SERVICE_DETAILS } from "../data/service-details"
-import type { ServiceDetail as ServiceDetailData } from "../types"
 import { ServiceDetail } from "./service-detail"
 
-function ServiceGalleryItem({ detail }: { detail: ServiceDetailData }) {
-  return (
-    <Dialog>
-      <DialogTrigger
-        aria-label={`Learn more about ${detail.title}`}
-        className="ml-4 cursor-pointer ring-0 outline-none"
-      >
-        <Image
-          src={detail.thumbnail}
-          alt={detail.thumbnailAlt}
-          height={500}
-          width={500}
-          className="h-65 w-auto object-cover md:h-100 2xl:h-125"
-        />
-      </DialogTrigger>
-      <DialogContent
-        showCloseButton={false}
-        className="overflow-hidden rounded-[24px] p-0 shadow-[0px_24px_48px_0px_#0F4D4229] xs:max-w-[90%] sm:max-w-[80%] lg:max-w-[70%]"
-      >
-        <ServiceDetail detail={detail} />
-      </DialogContent>
-    </Dialog>
-  )
-}
-
 export function ServiceGallery() {
+  const { setApi, selectedIndex, scrollTo } = useCarouselIndex()
+  const autoplay = useAutoplay()
+
   return (
-    <div className="flex overflow-x-hidden bg-avelliq-text-white py-5 pl-5">
-      <Marquee speed={50} pauseOnHover>
-        <div className="flex">
+    <div className="flex flex-col gap-5">
+      <CarouselDots
+        count={SERVICE_DETAILS.length}
+        activeIndex={selectedIndex}
+        onSelect={scrollTo}
+        label="Service gallery slides"
+        className="self-end"
+      />
+
+      <Carousel
+        setApi={setApi}
+        opts={{ align: "start", loop: true }}
+        plugins={[autoplay]}
+        className="overflow-hidden rounded-l-[30px]"
+      >
+        <CarouselContent className="-ml-5 py-5">
           {SERVICE_DETAILS.map((detail) => (
-            <ServiceGalleryItem key={detail.slug} detail={detail} />
+            <CarouselItem key={detail.slug} className="basis-[85%] pl-5 sm:basis-auto">
+              <Dialog>
+                <DialogTrigger
+                  aria-label={`Learn more about ${detail.title}`}
+                  className="block w-full cursor-pointer rounded-[24px] outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                >
+                  <PhotoCard
+                    image={detail.thumbnail}
+                    alt={detail.thumbnailAlt}
+                    title={detail.label}
+                    withOverlay
+                    sizes="(min-width: 640px) 500px, 85vw"
+                    className="aspect-square w-full rounded-[24px] sm:w-125"
+                    titleClassName="bottom-8 left-8 text-2xl font-medium"
+                  />
+                </DialogTrigger>
+                <DialogContent
+                  showCloseButton={false}
+                  className="overflow-hidden rounded-[24px] p-0 shadow-[0px_24px_48px_0px_rgba(76,90,61,0.16)] xs:max-w-[90%] sm:max-w-[80%] lg:max-w-[70%]"
+                >
+                  <ServiceDetail detail={detail} />
+                </DialogContent>
+              </Dialog>
+            </CarouselItem>
           ))}
-        </div>
-      </Marquee>
+        </CarouselContent>
+      </Carousel>
     </div>
   )
 }

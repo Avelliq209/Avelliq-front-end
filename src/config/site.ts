@@ -1,10 +1,10 @@
-import type { ComponentType, SVGProps } from "react"
+import type { StaticImageData } from "next/image"
 
-import { FacebookIcon } from "@/components/icons/facebook"
-import { InstagramIcon } from "@/components/icons/instagram"
-import { LinkedInIcon } from "@/components/icons/linkedin"
-import { TwitterIcon } from "@/components/icons/twitter"
-import { YoutubeIcon } from "@/components/icons/youtube"
+import facebookIcon from "@/assets/icons/social/facebook.svg"
+import instagramIcon from "@/assets/icons/social/instagram.svg"
+import linkedinIcon from "@/assets/icons/social/linkedin.svg"
+import twitterIcon from "@/assets/icons/social/twitter.svg"
+import youtubeIcon from "@/assets/icons/social/youtube.svg"
 
 export interface NavItem {
   title: string
@@ -20,7 +20,7 @@ export interface NavGroup {
 export interface SocialLink {
   label: string
   href: string
-  icon: ComponentType<SVGProps<SVGSVGElement>>
+  icon: StaticImageData
 }
 
 export const siteConfig = {
@@ -54,7 +54,7 @@ export const FOOTER_NAV: NavGroup[] = [
     items: [
       { title: "Home", href: ROUTES.home },
       { title: "Services", href: ROUTES.services },
-      { title: "How It Works", href: "#" },
+      { title: "How It Works", href: `${ROUTES.home}#how-it-works` },
       { title: "Resources", href: "#" },
       { title: "Contact Us", href: "#" },
       { title: "FAQs", href: "#" },
@@ -88,9 +88,15 @@ export const LEGAL_NAV: NavItem[] = [
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  { label: "Facebook", href: "#", icon: FacebookIcon },
-  { label: "Twitter", href: "#", icon: TwitterIcon },
-  { label: "Instagram", href: "#", icon: InstagramIcon },
-  { label: "LinkedIn", href: "#", icon: LinkedInIcon },
-  { label: "YouTube", href: "#", icon: YoutubeIcon },
+  { label: "Facebook", href: "#", icon: facebookIcon },
+  { label: "Twitter", href: "#", icon: twitterIcon },
+  { label: "Instagram", href: "#", icon: instagramIcon },
+  { label: "LinkedIn", href: "#", icon: linkedinIcon },
+  { label: "YouTube", href: "#", icon: youtubeIcon },
 ]
+
+export const ANNOUNCEMENT = {
+  title: "LOREM IPSUM!",
+  message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  ctaLabel: "Join as a Professional",
+} as const

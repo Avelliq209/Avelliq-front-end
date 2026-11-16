@@ -12,7 +12,7 @@ function handleSubmit(event: FormEvent<HTMLFormElement>) {
 
 export function NewsletterForm() {
   return (
-    <form className="flex flex-col space-y-3" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
       <label htmlFor="newsletter-email" className="sr-only">
         Email address
       </label>
@@ -22,12 +22,12 @@ export function NewsletterForm() {
         name="email"
         autoComplete="email"
         placeholder="Enter your email address"
-        className="h-auto rounded-[6px] border-[.5px] border-[#F1F3F7] px-4 py-3 text-sm font-normal text-avelliq-text-white shadow-[0px_1px_4px_0px_#19213D14] placeholder:text-[#6D758F] md:text-sm 2xl:py-4.5"
+        className="h-auto rounded-[6px] border-[0.5px] border-[#F1F3F7] bg-transparent px-4 py-4.5 text-sm leading-[1.3] text-white shadow-[0px_1px_4px_0px_rgba(25,33,61,0.08)] placeholder:text-sand focus-visible:border-white focus-visible:ring-white/30 md:text-sm"
       />
       <Button
         type="submit"
-        variant="brand"
-        className="h-auto w-fit rounded-[6px] px-4.5 py-3 text-[13px] font-bold tracking-wider shadow-[0px_1px_4px_0px_#19213D14] 2xl:py-3.75 2xl:text-sm 2xl:font-semibold"
+        variant="light"
+        className="h-auto w-fit rounded-[6px] px-4.5 py-3.75 text-sm leading-5 font-semibold shadow-[0px_1px_2px_rgba(25,33,61,0.08)]"
       >
         Subscribe
       </Button>

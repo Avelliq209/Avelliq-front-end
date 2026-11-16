@@ -25,3 +25,7 @@ Use shadcn/ui for all UI components. Do not reinvent the wheel. If a shadcn/ui c
 ## 6. Modern Best Practices
 
 Follow modern, industry-standard best practices when implementing any feature.
+
+## 7. Mobile Responsiveness
+
+Every UI must be mobile responsive, and this is a priority, not an afterthought. Build mobile first, verify layouts at phone, tablet, and desktop widths, and make sure nothing overflows horizontally, text stays readable, and touch targets remain usable on small screens.

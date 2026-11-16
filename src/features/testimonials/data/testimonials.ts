@@ -1,44 +1,43 @@
+import michealWardAvatar from "@/assets/images/testimonials/micheal-ward.png"
+import sarahGealAvatar from "@/assets/images/testimonials/sarah-geal.png"
+
 import type { Testimonial } from "../types"
+
+const CHILDCARE_QUOTE =
+  "\u201CFinding reliable childcare used to take so much time. Nestora made it easier to compare professionals and understand their experience before reaching out.\u201D"
 
 export const TESTIMONIALS: Testimonial[] = [
   {
-    id: "t0",
-    quote:
-      "Finding reliable childcare used to take so much time. Nestora made it easier to compare professionals and understand their experience before reaching out.",
+    id: "sarah-geal-1",
+    quote: CHILDCARE_QUOTE,
     name: "Sarah Geal",
     role: "Medical Doctor",
     rating: 5,
+    avatar: sarahGealAvatar,
   },
   {
-    id: "t1",
-    quote:
-      "Finding reliable childcare used to take so much time. Nestora made it easier to compare professionals and understand their experience before reaching out.",
-    name: "Sarah Geal",
-    role: "Medical Doctor",
-    rating: 4,
-  },
-  {
-    id: "t2",
+    id: "micheal-ward",
     quote:
       "I wanted someone who could work around my schedule. Being able to see availability upfront made the search much easier.",
     name: "Micheal Ward",
-    role: "Managment Director",
+    role: "Management Director",
     rating: 5,
+    avatar: michealWardAvatar,
   },
   {
-    id: "t3",
-    quote:
-      "Finding reliable childcare used to take so much time. Nestora made it easier to compare professionals and understand their experience before reaching out.",
+    id: "sarah-geal-2",
+    quote: CHILDCARE_QUOTE,
     name: "Sarah Geal",
     role: "Medical Doctor",
-    rating: 1,
+    rating: 5,
+    avatar: sarahGealAvatar,
   },
   {
-    id: "t4",
-    quote:
-      "Finding reliable childcare used to take so much time. Nestora made it easier to compare professionals and understand their experience before reaching out.",
+    id: "sarah-geal-3",
+    quote: CHILDCARE_QUOTE,
     name: "Sarah Geal",
     role: "Medical Doctor",
-    rating: 2,
+    rating: 5,
+    avatar: sarahGealAvatar,
   },
 ]

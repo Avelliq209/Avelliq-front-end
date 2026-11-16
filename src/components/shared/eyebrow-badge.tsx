@@ -1,17 +1,19 @@
 import { cva, type VariantProps } from "class-variance-authority"
-import { ShieldCheck } from "lucide-react"
+import Image from "next/image"
 import type { ReactNode } from "react"
 
+import shieldCheckLightIcon from "@/assets/icons/shield-check-light.svg"
+import shieldCheckIcon from "@/assets/icons/shield-check.svg"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
 const eyebrowBadgeVariants = cva(
-  "h-auto gap-1.5 rounded-full border-[.3px] border-avelliq-border-grey-light px-3 py-2 text-[13px] font-medium lg:text-sm 2xl:px-4 2xl:py-3 2xl:text-base [&>svg]:size-4! [&>svg]:stroke-2 lg:[&>svg]:size-4.5!",
+  "h-auto gap-1.5 rounded-full border-[0.3px] border-stroke-muted px-4 py-3 text-sm leading-[1.3] font-medium lg:text-base",
   {
     variants: {
       tone: {
-        light: "bg-avelliq-bg-green-light text-avelliq-bg-green-dark",
-        dark: "bg-[#F5EFE626] text-[#FFF4D6]",
+        light: "bg-sand text-support",
+        dark: "bg-sand/15 text-white",
       },
     },
     defaultVariants: {
@@ -28,7 +30,13 @@ interface EyebrowBadgeProps extends VariantProps<typeof eyebrowBadgeVariants> {
 export function EyebrowBadge({ children, tone, className }: EyebrowBadgeProps) {
   return (
     <Badge className={cn(eyebrowBadgeVariants({ tone }), className)}>
-      <ShieldCheck />
+      <Image
+        src={tone === "dark" ? shieldCheckLightIcon : shieldCheckIcon}
+        alt=""
+        width={18}
+        height={18}
+        className="size-4.5! shrink-0"
+      />
       {children}
     </Badge>
   )

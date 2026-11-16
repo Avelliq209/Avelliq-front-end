@@ -7,9 +7,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/80",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
         outline:
-          "border-border bg-background shadow-xs hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
+          "border-[0.3px] border-primary bg-background text-ink-strong shadow-[0px_0px_2px_rgba(0,0,0,0.06)] hover:bg-secondary aria-expanded:bg-secondary",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
         ghost:
@@ -17,16 +17,11 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
-        brand:
-          "bg-avelliq-primary-green text-avelliq-text-white hover:bg-avelliq-primary-green/90",
-        "brand-soft":
-          "bg-avelliq-bg-green-light text-avelliq-primary-green hover:bg-avelliq-bg-green-light/90",
-        "brand-outline":
-          "border-[.5px] border-avelliq-primary-green bg-avelliq-text-white text-avelliq-primary-green hover:bg-slate-50",
-        subtle:
-          "bg-avelliq-bg-btn-light text-avelliq-text-primary shadow-[0px_0px_4px_0px_#0000000F] hover:bg-slate-50",
-        "subtle-outline":
-          "border-[.3px] border-border text-avelliq-text-primary shadow-[0px_0px_4px_0px_#0000000F] hover:border-avelliq-border-brown-light hover:bg-avelliq-bg-btn-light",
+        light: "bg-sage text-primary hover:bg-sage/90",
+        white:
+          "bg-white text-primary shadow-[0px_0px_2px_rgba(0,0,0,0.06)] hover:bg-white/90",
+        "outline-primary":
+          "border-[0.5px] border-primary bg-transparent text-primary hover:bg-primary/5",
       },
       size: {
         default:
@@ -40,8 +35,9 @@ const buttonVariants = cva(
         "icon-sm":
           "size-8 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-md",
         "icon-lg": "size-10",
-        nav: "h-auto rounded-sm px-4 py-2 2xl:px-8 2xl:py-4",
-        cta: "h-auto w-fit gap-2 rounded-[8px] px-5 py-3 text-[15px] 2xl:px-8 2xl:py-4",
+        "pill-lg": "h-12 gap-1.5 rounded-full px-8 text-base",
+        pill: "h-12 gap-1.5 rounded-full px-8 text-sm",
+        "pill-sm": "h-9 gap-1.5 rounded-full px-8 text-sm",
       },
     },
     defaultVariants: {

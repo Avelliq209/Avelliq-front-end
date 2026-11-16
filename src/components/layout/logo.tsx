@@ -12,17 +12,17 @@ export function Logo({ inverted = false }: LogoProps) {
     <Link
       href={ROUTES.home}
       aria-label={`${siteConfig.name} home`}
-      className="flex flex-nowrap items-center gap-2.5 bg-transparent text-[18px] font-semibold select-none sm:text-[20px] md:text-[22px] 2xl:text-2xl"
+      className="flex shrink-0 items-center gap-2.5 font-heading text-xl leading-[1.2] font-medium select-none lg:text-2xl"
     >
-      <span className="flex size-9.25 items-center justify-center rounded-[5px] bg-avelliq-primary-green px-2.25 py-1 text-avelliq-text-white">
-        A
-      </span>
       <span
         className={cn(
-          "whitespace-nowrap",
-          inverted ? "text-avelliq-text-white" : "text-avelliq-primary-green"
+          "flex w-8 items-center justify-center rounded-[5px] px-2 py-1 lg:w-9.25",
+          inverted ? "bg-white text-primary" : "bg-primary text-white"
         )}
       >
+        A
+      </span>
+      <span className={cn("whitespace-nowrap", inverted ? "text-white" : "text-primary")}>
         {siteConfig.name}
       </span>
     </Link>

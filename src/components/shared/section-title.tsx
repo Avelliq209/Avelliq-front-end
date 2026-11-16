@@ -10,7 +10,7 @@ export function SectionTitle({ as: Heading = "h2", className, ...props }: Sectio
   return (
     <Heading
       className={cn(
-        "text-[38px] leading-[120%] font-semibold tracking-wide text-avelliq-primary-green md:text-[40px] lg:text-5xl",
+        "font-heading text-[34px] leading-[1.2] font-medium tracking-[0.504px] text-primary md:text-[40px] lg:text-5xl",
         className
       )}
       {...props}

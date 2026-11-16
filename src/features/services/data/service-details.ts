@@ -33,26 +33,28 @@ import {
   Wind,
 } from "lucide-react"
 
+import childcareThumbnail from "@/assets/images/services/gallery/childcare.jpg"
+import conciergeThumbnail from "@/assets/images/services/gallery/concierge.jpg"
+import houseSittingThumbnail from "@/assets/images/services/gallery/house-sitting.jpg"
+import housekeepingThumbnail from "@/assets/images/services/gallery/housekeeping.jpg"
+import petCareThumbnail from "@/assets/images/services/gallery/pet-care.jpg"
+import seniorCareThumbnail from "@/assets/images/services/gallery/senior-care.jpg"
 import childcareDetail from "@/assets/images/services/childcare-detail.png"
-import childcareThumbnail from "@/assets/images/services/childcare.png"
 import conciergeDetail from "@/assets/images/services/concierge-detail.jpg"
-import conciergeThumbnail from "@/assets/images/services/concierge.png"
 import houseSittingDetail from "@/assets/images/services/house-sitting-detail.jpg"
-import houseSittingThumbnail from "@/assets/images/services/house-sitting.png"
 import housekeepingDetail from "@/assets/images/services/housekeeping-detail.jpg"
-import housekeepingThumbnail from "@/assets/images/services/housekeeping.png"
 import petCareDetail from "@/assets/images/services/pet-care-detail.jpg"
-import petCareThumbnail from "@/assets/images/services/pet-care.png"
 import seniorCareDetail from "@/assets/images/services/senior-care-detail.jpg"
-import seniorCareThumbnail from "@/assets/images/services/senior-care.png"
 
 import type { ServiceDetail } from "../types"
 
-export const SERVICE_DETAILS: ServiceDetail[] = [
+export const SERVICE_DETAILS: ServiceDetail[
+] = [
   {
     slug: "senior-care",
+    label: "Senior Caregiving",
     thumbnail: seniorCareThumbnail,
-    thumbnailAlt: "Senior caregiver supporting an elderly person",
+    thumbnailAlt: "A caregiver smiling with an elderly woman",
     image: seniorCareDetail,
     imageAlt: "A warm comforting photo of an elderly person smiling with a supportive female",
     badge: "Specialized Care",
@@ -143,8 +145,9 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
   },
   {
     slug: "childcare",
+    label: "Child Caregiving",
     thumbnail: childcareThumbnail,
-    thumbnailAlt: "Child care giving",
+    thumbnailAlt: "A caregiver reading with a young child",
     image: childcareDetail,
     imageAlt: "A warm photo of a supportive lady and a child both laughing and playing together",
     badge: "Specialized Care",
@@ -235,8 +238,9 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
   },
   {
     slug: "housekeeping",
+    label: "House Keeping",
     thumbnail: housekeepingThumbnail,
-    thumbnailAlt: "House keeping",
+    thumbnailAlt: "A housekeeper preparing a bed",
     image: housekeepingDetail,
     imageAlt: "Minimalist editorial of a bright clean modern kitchen with natural morning",
     badge: "Home Maintenance",
@@ -326,101 +330,10 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     ctaLabel: "Find a House Keeper",
   },
   {
-    slug: "house-sitting",
-    thumbnail: houseSittingThumbnail,
-    thumbnailAlt: "House sitting",
-    image: houseSittingDetail,
-    imageAlt: "Minimal warm beautiful house living",
-    badge: "Property Care",
-    title: "House Sitting Services",
-    subtitle: "Reliable property preservation and home care during your absence",
-    overviewTitle: "Your home, kept safe and exactly as you left it",
-    overview: "We connect property owners with vetted, reliable house sitters who maintain your residence with care. From basic property check-ins and mail collection to plant watering and emergency coordination, our specialists ensure your home stays protected, secure, and pristine while you are away.",
-    inclusionsTitle: "What This Service Includes",
-    inclusions: [
-      {
-        icon: Shield,
-        title: "Home Security & Presence",
-        description: "Establishing an active presence to deter intruders and maintain safety.",
-      },
-      {
-        icon: Mail,
-        title: "Mail & Package Collection",
-        description: "Securing all letters and deliveries inside so nothing piles up outside.",
-      },
-      {
-        icon: Flower,
-        title: "Plant & Garden Care",
-        description: "Regular watering and maintenance of indoor plants and small patio gardens.",
-      },
-      {
-        icon: PawPrint,
-        title: "Pet Feeding & Support",
-        description: "Basic care, light play, and consistent feeding schedules for companion pets.",
-      },
-      {
-        icon: AlertCircle,
-        title: "Emergency Coordination",
-        description: "Acting as local keyholders and dispatching professional contractors if needed.",
-      },
-      {
-        icon: Home,
-        title: "Regular Check-Ins",
-        description: "Thorough walks through the property to verify utilities are functioning perfectly.",
-      },
-    ],
-    audiences: [
-      {
-        title: "For Families & Clients",
-        icon: Check,
-        points: [
-          {
-            title: "Vetted & Background Checked",
-            description: "Every house sitter completes multi-level security screenings.",
-          },
-          {
-            title: "Photo Updates & Daily Logs",
-            description: "Receive digital reports and property images directly to your inbox.",
-          },
-          {
-            title: "Insurance-Backed Protection",
-            description: "Complete platform guarantee and coverage on your residence during the booking.",
-          },
-          {
-            title: "Neighbors-Notified Protocol",
-            description: "Optional contact registration with your neighbors to ensure clear visual communication.",
-          },
-        ],
-      },
-      {
-        title: "For Care Professionals",
-        icon: Shield,
-        points: [
-          {
-            title: "Comfortable Stays",
-            description: "Stay in highly-rated homes with pre-agreed house rules and amenities.",
-          },
-          {
-            title: "Flexible Availability Windows",
-            description: "Pick long-term seasonal sits or local weekend assignments that fit your rhythm.",
-          },
-          {
-            title: "Build a Repeat-Client Roster",
-            description: "Become the preferred trusted keysholder for neighborhood families.",
-          },
-          {
-            title: "Home Management Training",
-            description: "Get access to professional guides, smart-home operation guides, and safety training.",
-          },
-        ],
-      },
-    ],
-    ctaLabel: "Find a House Sitter",
-  },
-  {
     slug: "pet-care",
+    label: "Pet Care",
     thumbnail: petCareThumbnail,
-    thumbnailAlt: "Pet care",
+    thumbnailAlt: "A pet sitter with a dog",
     image: petCareDetail,
     imageAlt: "A happy pet running through a sunny grassy",
     badge: "Pet Wellness",
@@ -510,9 +423,103 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     ctaLabel: "Find a Pet Caregiver",
   },
   {
+    slug: "house-sitting",
+    label: "House Sitting",
+    thumbnail: houseSittingThumbnail,
+    thumbnailAlt: "A house sitter relaxing in a living room",
+    image: houseSittingDetail,
+    imageAlt: "Minimal warm beautiful house living",
+    badge: "Property Care",
+    title: "House Sitting Services",
+    subtitle: "Reliable property preservation and home care during your absence",
+    overviewTitle: "Your home, kept safe and exactly as you left it",
+    overview: "We connect property owners with vetted, reliable house sitters who maintain your residence with care. From basic property check-ins and mail collection to plant watering and emergency coordination, our specialists ensure your home stays protected, secure, and pristine while you are away.",
+    inclusionsTitle: "What This Service Includes",
+    inclusions: [
+      {
+        icon: Shield,
+        title: "Home Security & Presence",
+        description: "Establishing an active presence to deter intruders and maintain safety.",
+      },
+      {
+        icon: Mail,
+        title: "Mail & Package Collection",
+        description: "Securing all letters and deliveries inside so nothing piles up outside.",
+      },
+      {
+        icon: Flower,
+        title: "Plant & Garden Care",
+        description: "Regular watering and maintenance of indoor plants and small patio gardens.",
+      },
+      {
+        icon: PawPrint,
+        title: "Pet Feeding & Support",
+        description: "Basic care, light play, and consistent feeding schedules for companion pets.",
+      },
+      {
+        icon: AlertCircle,
+        title: "Emergency Coordination",
+        description: "Acting as local keyholders and dispatching professional contractors if needed.",
+      },
+      {
+        icon: Home,
+        title: "Regular Check-Ins",
+        description: "Thorough walks through the property to verify utilities are functioning perfectly.",
+      },
+    ],
+    audiences: [
+      {
+        title: "For Families & Clients",
+        icon: Check,
+        points: [
+          {
+            title: "Vetted & Background Checked",
+            description: "Every house sitter completes multi-level security screenings.",
+          },
+          {
+            title: "Photo Updates & Daily Logs",
+            description: "Receive digital reports and property images directly to your inbox.",
+          },
+          {
+            title: "Insurance-Backed Protection",
+            description: "Complete platform guarantee and coverage on your residence during the booking.",
+          },
+          {
+            title: "Neighbors-Notified Protocol",
+            description: "Optional contact registration with your neighbors to ensure clear visual communication.",
+          },
+        ],
+      },
+      {
+        title: "For Care Professionals",
+        icon: Shield,
+        points: [
+          {
+            title: "Comfortable Stays",
+            description: "Stay in highly-rated homes with pre-agreed house rules and amenities.",
+          },
+          {
+            title: "Flexible Availability Windows",
+            description: "Pick long-term seasonal sits or local weekend assignments that fit your rhythm.",
+          },
+          {
+            title: "Build a Repeat-Client Roster",
+            description: "Become the preferred trusted keysholder for neighborhood families.",
+          },
+          {
+            title: "Home Management Training",
+            description: "Get access to professional guides, smart-home operation guides, and safety training.",
+          },
+        ],
+      },
+    ],
+    ctaLabel: "Find a House Sitter",
+  },
+  {
     slug: "concierge",
+    label: "Concierge",
     thumbnail: conciergeThumbnail,
-    thumbnailAlt: "Concierge",
+    thumbnailAlt: "A personal concierge at work",
     image: conciergeDetail,
     imageAlt: "Residence lobby",
     badge: "Premium Assistance",

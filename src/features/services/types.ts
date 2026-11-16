@@ -7,8 +7,8 @@ export interface ServiceCategory {
   description: string
   offerings: string[]
   ctaLabel: string
-  icon: LucideIcon
-  iconClassName: string
+  image: StaticImageData
+  imageAlt: string
 }
 
 export interface ServiceFeature {
@@ -25,6 +25,7 @@ export interface ServiceAudience {
 
 export interface ServiceDetail {
   slug: string
+  label: string
   thumbnail: StaticImageData
   thumbnailAlt: string
   image: StaticImageData

@@ -1,51 +1,43 @@
-import Image from "next/image"
-
-import topRatedProfessional from "@/assets/images/home/top-rated-professional.jpg"
+import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { EyebrowBadge } from "@/components/shared/eyebrow-badge"
 import { Section } from "@/components/shared/section"
+import { SectionDescription } from "@/components/shared/section-description"
 import { SectionTitle } from "@/components/shared/section-title"
 
 import { MATCH_FACTORS } from "../data/content"
+import { MatchProfileCard } from "./match-profile-card"
 
 export function MatchSection() {
   return (
-    <Section>
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-[1fr_1fr] lg:grid-cols-[1.15fr_1.15fr_.7fr]">
-        <div className="flex h-full w-full max-w-[90%] flex-col items-center justify-center justify-self-center text-center md:col-span-2 md:max-w-[80%] lg:col-span-1 lg:max-w-full lg:items-start lg:justify-self-auto lg:text-start">
-          <EyebrowBadge className="mb-5">The Right Match</EyebrowBadge>
-          <SectionTitle className="mb-3.5">
-            More than a search <br /> Find your match.
+    <Section className="grid grid-cols-1 items-start gap-5 lg:grid-cols-2 xl:grid-cols-[476fr_451fr_333fr]">
+      <div className="flex flex-col gap-5 lg:col-span-2 xl:col-span-1">
+        <EyebrowBadge>The Right Match</EyebrowBadge>
+        <div className="flex flex-col items-start gap-4.5">
+          <SectionTitle>
+            More than a search <br className="hidden xl:block" />
+            Find your match.
           </SectionTitle>
-          <p className="mb-10 text-[15px] font-normal text-avelliq-text-grey 2xl:text-base">
-            Every household is different, and every person is different. Avelliq helps you
-            discover professionals based on what actually matters to you, not just what service
-            you selected.
-          </p>
+          <SectionDescription>
+            <strong className="font-semibold">Every household</strong> is different, and every
+            person is different. Avelliq helps you discover professionals{" "}
+            <strong className="font-semibold">based on what actually matters to you,</strong> not
+            just what service you selected.
+          </SectionDescription>
+          <ComingSoonButton size="pill" withArrow className="font-inter">
+            Start Your Search
+          </ComingSoonButton>
         </div>
+      </div>
 
-        <div className="h-full w-full rounded-[12px] bg-avelliq-text-white p-5">
-          <div className="grid grid-cols-2">
-            <Image
-              src={topRatedProfessional}
-              alt="A top rated professional"
-              height={201}
-              width={201}
-              draggable={false}
-              className="h-full w-50.25 rounded-[8px] object-cover text-[8px] select-none"
-            />
-          </div>
-        </div>
+      <MatchProfileCard />
 
-        <div className="rounded-[12px] bg-avelliq-bg-green-light">
-          <div className="h-full space-y-4 p-5 text-sm font-normal text-avelliq-primary-green">
-            <h3 className="text-xl font-medium text-avelliq-bg-green-dark">Match Factors</h3>
-            <ul className="list-disc pl-3 leading-[191%]">
-              {MATCH_FACTORS.map((factor) => (
-                <li key={factor}>{factor}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      <div className="rounded-[12px] bg-sage p-5 text-primary">
+        <h3 className="mb-4 font-heading text-xl leading-[1.2] font-medium">Match Factors</h3>
+        <ul className="list-disc ps-5.25 font-inter text-sm leading-[2.88]">
+          {MATCH_FACTORS.map((factor) => (
+            <li key={factor}>{factor}</li>
+          ))}
+        </ul>
       </div>
     </Section>
   )
