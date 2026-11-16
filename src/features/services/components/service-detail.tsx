@@ -52,7 +52,7 @@ export function ServiceDetail({ detail }: { detail: ServiceDetailData }) {
         </div>
       </DialogHeader>
 
-      <div className="flex flex-1 flex-col overflow-y-auto p-5 scrollbar-thin xl:p-10">
+      <div data-lenis-prevent className="flex flex-1 flex-col overflow-y-auto p-5 scrollbar-thin xl:p-10">
         <section className="mb-9 space-y-3">
           <h3 className="text-base font-bold text-primary xl:text-lg">
             {detail.overviewTitle}

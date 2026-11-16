@@ -1,5 +1,7 @@
 import Image from "next/image"
 
+import { ImageReveal } from "@/components/motion/image-reveal"
+import { Reveal } from "@/components/motion/reveal"
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { EyebrowBadge } from "@/components/shared/eyebrow-badge"
 import { Section } from "@/components/shared/section"
@@ -28,7 +30,7 @@ export function ProfessionalsSection() {
         </ComingSoonButton>
       </div>
 
-      <ul className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+      <Reveal as="ul" stagger={0.15} className="grid grid-cols-1 gap-5 lg:grid-cols-3">
         {PROFESSIONAL_BENEFITS.map(({ title, description, image, alt, imagePosition }) => (
           <li
             key={title}
@@ -37,7 +39,7 @@ export function ProfessionalsSection() {
               imagePosition === "top" ? "flex-col" : "flex-col-reverse"
             )}
           >
-            <div className="relative h-68.25 overflow-hidden rounded-[8px]">
+            <ImageReveal className="relative h-68.25 overflow-hidden rounded-[8px]">
               <Image
                 src={image}
                 alt={alt}
@@ -46,7 +48,7 @@ export function ProfessionalsSection() {
                 placeholder="blur"
                 className="object-cover"
               />
-            </div>
+            </ImageReveal>
             <div className="flex min-h-45.75 flex-col gap-2 rounded-[8px] border-[0.5px] border-sand p-4">
               <h3 className="border-b-[0.5px] border-sand py-1.5 font-inter text-lg leading-[1.3] font-semibold text-primary">
                 {title}
@@ -55,7 +57,7 @@ export function ProfessionalsSection() {
             </div>
           </li>
         ))}
-      </ul>
+      </Reveal>
     </Section>
   )
 }

@@ -1,6 +1,8 @@
 import Image from "next/image"
 
 import ctaThumbsUp from "@/assets/images/cta-thumbs-up.png"
+import { Magnetic } from "@/components/motion/magnetic"
+import { Reveal } from "@/components/motion/reveal"
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { Section } from "@/components/shared/section"
 import { SectionTitle } from "@/components/shared/section-title"
@@ -19,16 +21,24 @@ export function CtaBanner() {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <ComingSoonButton size="pill-sm" withArrow className="font-inter">
-              Find Care Near You
-            </ComingSoonButton>
-            <ComingSoonButton variant="white" size="pill-sm" className="font-inter">
-              Join as a Professional
-            </ComingSoonButton>
+            <Magnetic>
+              <ComingSoonButton size="pill-sm" withArrow className="font-inter">
+                Find Care Near You
+              </ComingSoonButton>
+            </Magnetic>
+            <Magnetic>
+              <ComingSoonButton variant="white" size="pill-sm" className="font-inter">
+                Join as a Professional
+              </ComingSoonButton>
+            </Magnetic>
           </div>
         </div>
 
-        <div className="relative mx-auto mt-8 h-80 w-full max-w-117 lg:absolute lg:top-3.25 lg:left-187.75 lg:mt-0 lg:h-109.5 lg:w-117">
+        <Reveal
+          y={120}
+          delay={0.2}
+          className="relative mx-auto mt-8 h-80 w-full max-w-117 lg:absolute lg:top-3.25 lg:left-187.75 lg:mt-0 lg:h-109.5 lg:w-117"
+        >
           <Image
             src={ctaThumbsUp}
             alt="A smiling woman giving a thumbs up"
@@ -36,7 +46,7 @@ export function CtaBanner() {
             sizes="(min-width: 1024px) 468px, 100vw"
             className="object-cover object-[96%_center]"
           />
-        </div>
+        </Reveal>
       </div>
     </Section>
   )

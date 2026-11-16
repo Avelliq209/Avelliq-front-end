@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion/reveal"
 import { EyebrowBadge } from "@/components/shared/eyebrow-badge"
 import { Section } from "@/components/shared/section"
 import { SectionDescription } from "@/components/shared/section-description"
@@ -19,7 +20,9 @@ export function TestimonialsSection() {
         </div>
       </div>
 
-      <TestimonialCarousel testimonials={TESTIMONIALS} />
+      <Reveal y={80}>
+        <TestimonialCarousel testimonials={TESTIMONIALS} />
+      </Reveal>
     </Section>
   )
 }

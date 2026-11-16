@@ -1,10 +1,15 @@
 import Image from "next/image"
 
+import { Reveal } from "@/components/motion/reveal"
+
 import { TRUST_HIGHLIGHTS } from "../data/content"
 
 export function TrustHighlights() {
   return (
-    <section
+    <Reveal
+      as="section"
+      stagger={0.12}
+      y={32}
       aria-label="Why families trust Avelliq"
       className="grid grid-cols-1 divide-y-[0.3px] divide-stroke border-y-[0.3px] border-stroke bg-white md:grid-cols-3 md:divide-x-[0.3px] md:divide-y-0"
     >
@@ -19,6 +24,6 @@ export function TrustHighlights() {
           </div>
         </div>
       ))}
-    </section>
+    </Reveal>
   )
 }

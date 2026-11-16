@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Fragment } from "react"
 
 import footerTexture from "@/assets/images/textures/footer-linen.jpg"
+import { RevealText } from "@/components/motion/reveal-text"
 import { FOOTER_NAV, LEGAL_NAV, SOCIAL_LINKS, siteConfig } from "@/config/site"
 
 import { Logo } from "./logo"
@@ -95,6 +96,13 @@ export function SiteFooter() {
           </ul>
         </div>
       </div>
+
+      <p
+        aria-hidden="true"
+        className="pointer-events-none -mx-5 -mb-[3vw] text-center font-heading text-[24vw] leading-[0.85] font-medium text-white/6 select-none sm:-mx-10 lg:-mx-17.5"
+      >
+        <RevealText>{siteConfig.name}</RevealText>
+      </p>
     </footer>
   )
 }

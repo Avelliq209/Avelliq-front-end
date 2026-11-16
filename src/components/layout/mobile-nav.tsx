@@ -15,15 +15,17 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { MAIN_NAV, siteConfig } from "@/config/site"
+import { useScrollLock } from "@/hooks/use-scroll-lock"
 import { cn } from "@/lib/utils"
 
 import { HeaderActions } from "./header-actions"
 
 export function MobileNav() {
   const pathname = usePathname()
+  const setScrollLocked = useScrollLock()
 
   return (
-    <Sheet>
+    <Sheet onOpenChange={setScrollLocked}>
       <SheetTrigger
         render={
           <Button aria-label="Open menu" size="icon-lg" className="rounded-full xl:hidden" />
@@ -31,7 +33,7 @@ export function MobileNav() {
       >
         <MenuIcon className="size-5" />
       </SheetTrigger>
-      <SheetContent side="right" className="w-full gap-0 bg-background sm:max-w-sm">
+      <SheetContent data-lenis-prevent side="right" className="w-full gap-0 bg-background sm:max-w-sm">
         <SheetHeader className="border-b-[0.5px] border-stroke p-5">
           <SheetTitle className="font-heading text-2xl font-medium text-primary">
             {siteConfig.name}
@@ -60,7 +62,7 @@ export function MobileNav() {
           ))}
         </nav>
 
-        <HeaderActions className="mt-auto flex-col items-stretch gap-3 p-5 [&>button]:w-full" />
+        <HeaderActions className="mt-auto flex-col items-stretch gap-3 p-5 [&_button]:w-full [&>*]:w-full" />
       </SheetContent>
     </Sheet>
   )

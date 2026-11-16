@@ -1,21 +1,20 @@
 "use client"
 
-import Autoplay from "embla-carousel-autoplay"
+import Autoplay, { type AutoplayOptionsType } from "embla-carousel-autoplay"
 import { useState } from "react"
+
+import { prefersReducedMotion } from "@/lib/motion"
 
 const DEFAULT_DELAY_MS = 4000
 
-function prefersReducedMotion() {
-  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
-}
-
-export function useAutoplay(delay = DEFAULT_DELAY_MS) {
+export function useAutoplay(options: Partial<AutoplayOptionsType> = {}) {
   const [plugin] = useState(() =>
     Autoplay({
-      delay,
+      delay: DEFAULT_DELAY_MS,
       active: !prefersReducedMotion(),
       stopOnInteraction: false,
       stopOnMouseEnter: true,
+      ...options,
     })
   )
 

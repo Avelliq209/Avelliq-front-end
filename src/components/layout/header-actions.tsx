@@ -1,5 +1,6 @@
 import { User } from "lucide-react"
 
+import { Magnetic } from "@/components/motion/magnetic"
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { cn } from "@/lib/utils"
 
@@ -13,7 +14,9 @@ export function HeaderActions({ className }: { className?: string }) {
       <ComingSoonButton variant="outline" size="pill-lg">
         Join as a Professional
       </ComingSoonButton>
-      <ComingSoonButton size="pill-lg">Find Care</ComingSoonButton>
+      <Magnetic>
+        <ComingSoonButton size="pill-lg">Find Care</ComingSoonButton>
+      </Magnetic>
     </div>
   )
 }

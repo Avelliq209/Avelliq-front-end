@@ -1,6 +1,8 @@
 import Image from "next/image"
 
 import agenciesTeam from "@/assets/images/home/agencies-team.jpg"
+import { ImageReveal } from "@/components/motion/image-reveal"
+import { Reveal } from "@/components/motion/reveal"
 import { CheckListItem } from "@/components/shared/check-list-item"
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { EyebrowBadge } from "@/components/shared/eyebrow-badge"
@@ -27,20 +29,25 @@ export function AgenciesSection() {
             </div>
           </div>
 
-          <ul className="grid grid-cols-1 gap-x-8.5 gap-y-5.75 sm:grid-cols-[max-content_max-content]">
+          <Reveal
+            as="ul"
+            stagger={0.08}
+            y={20}
+            className="grid grid-cols-1 gap-x-8.5 gap-y-5.75 sm:grid-cols-[max-content_max-content]"
+          >
             {AGENCY_STEPS.map((step) => (
               <CheckListItem key={step} className="text-base font-medium" iconClassName="size-5.25">
                 {step}
               </CheckListItem>
             ))}
-          </ul>
+          </Reveal>
 
           <ComingSoonButton size="pill" withArrow className="w-fit font-inter">
             Register Your Agency
           </ComingSoonButton>
         </div>
 
-        <div className="relative min-h-80">
+        <ImageReveal className="relative min-h-80 overflow-hidden">
           <Image
             src={agenciesTeam}
             alt="A care agency team planning together"
@@ -49,10 +56,10 @@ export function AgenciesSection() {
             placeholder="blur"
             className="object-cover"
           />
-        </div>
+        </ImageReveal>
       </div>
 
-      <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <Reveal as="ul" stagger={0.1} className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {AGENCY_FEATURES.map(({ icon, title, description }) => (
           <li
             key={title}
@@ -63,7 +70,7 @@ export function AgenciesSection() {
             <p className="font-inter text-sm leading-[1.45] text-ink">{description}</p>
           </li>
         ))}
-      </ul>
+      </Reveal>
     </Section>
   )
 }

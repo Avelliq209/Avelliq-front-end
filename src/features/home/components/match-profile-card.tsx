@@ -3,6 +3,7 @@ import Image from "next/image"
 
 import checkCircleLightIcon from "@/assets/icons/check-circle-light.svg"
 import checkCircleIcon from "@/assets/icons/check-circle.svg"
+import { CountUp } from "@/components/motion/count-up"
 import { StarRating } from "@/components/shared/star-rating"
 
 import { MATCH_PROFILE } from "../data/content"
@@ -29,7 +30,7 @@ export function MatchProfileCard() {
         <div className="flex flex-col gap-4">
           <span className="flex w-fit items-center gap-0.75 rounded-[11px] bg-primary p-1 text-[11px] leading-[1.2] text-white">
             <Image src={checkCircleLightIcon} alt="" width={11} height={11} />
-            {matchScore}% Match
+            <CountUp value={matchScore} suffix="%" /> Match
           </span>
 
           <div className="flex flex-col gap-2.25">

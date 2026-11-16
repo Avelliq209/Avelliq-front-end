@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/motion/reveal"
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { EyebrowBadge } from "@/components/shared/eyebrow-badge"
 import { Section } from "@/components/shared/section"
@@ -29,16 +30,18 @@ export function MatchSection() {
         </div>
       </div>
 
-      <MatchProfileCard />
+      <Reveal y={80} delay={0.1}>
+        <MatchProfileCard />
+      </Reveal>
 
-      <div className="rounded-[12px] bg-sage p-5 text-primary">
+      <Reveal y={80} delay={0.25} className="rounded-[12px] bg-sage p-5 text-primary">
         <h3 className="mb-4 font-heading text-xl leading-[1.2] font-medium">Match Factors</h3>
         <ul className="list-disc ps-5.25 font-inter text-sm leading-[2.88]">
           {MATCH_FACTORS.map((factor) => (
             <li key={factor}>{factor}</li>
           ))}
         </ul>
-      </div>
+      </Reveal>
     </Section>
   )
 }

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "lenis/dist/lenis.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -145,5 +146,18 @@
   }
   html {
     @apply font-sans scrollbar-thin;
+  }
+}
+@layer components {
+  .split-line-mask {
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
+}
+
+@keyframes intro-fallback {
+  to {
+    opacity: 0;
+    visibility: hidden;
   }
 }

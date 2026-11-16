@@ -4,6 +4,7 @@ import type { ReactNode } from "react"
 
 import shieldCheckLightIcon from "@/assets/icons/shield-check-light.svg"
 import shieldCheckIcon from "@/assets/icons/shield-check.svg"
+import { Reveal } from "@/components/motion/reveal"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
@@ -25,10 +26,11 @@ const eyebrowBadgeVariants = cva(
 interface EyebrowBadgeProps extends VariantProps<typeof eyebrowBadgeVariants> {
   children: ReactNode
   className?: string
+  animate?: boolean
 }
 
-export function EyebrowBadge({ children, tone, className }: EyebrowBadgeProps) {
-  return (
+export function EyebrowBadge({ children, tone, className, animate = true }: EyebrowBadgeProps) {
+  const badge = (
     <Badge className={cn(eyebrowBadgeVariants({ tone }), className)}>
       <Image
         src={tone === "dark" ? shieldCheckLightIcon : shieldCheckIcon}
@@ -39,5 +41,13 @@ export function EyebrowBadge({ children, tone, className }: EyebrowBadgeProps) {
       />
       {children}
     </Badge>
+  )
+
+  if (!animate) return badge
+
+  return (
+    <Reveal y={24} className="w-fit">
+      {badge}
+    </Reveal>
   )
 }

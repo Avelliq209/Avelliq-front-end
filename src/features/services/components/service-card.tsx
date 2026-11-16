@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
+import { ImageReveal } from "@/components/motion/image-reveal"
 import { CheckListItem } from "@/components/shared/check-list-item"
 import { buttonVariants } from "@/components/ui/button"
 import { ROUTES } from "@/config/site"
@@ -17,7 +18,7 @@ export function ServiceCard({ service }: { service: ServiceCategory }) {
       id={slug}
       className="flex h-full scroll-mt-32 flex-col gap-5 rounded-[12px] border-[0.5px] border-stroke bg-white p-5"
     >
-      <div className="relative h-49.5 overflow-hidden rounded-[12px]">
+      <ImageReveal className="relative h-49.5 overflow-hidden rounded-[12px]">
         <Image
           src={image}
           alt={imageAlt}
@@ -26,7 +27,7 @@ export function ServiceCard({ service }: { service: ServiceCategory }) {
           placeholder="blur"
           className="object-cover"
         />
-      </div>
+      </ImageReveal>
 
       <div className="flex flex-1 flex-col gap-5">
         <div className="flex flex-col gap-2.5">
