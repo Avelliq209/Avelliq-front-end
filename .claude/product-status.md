@@ -14,7 +14,8 @@ Read `.claude/rules/rules.md` before starting any task. Those rules are mandator
 | Services page, new Figma design | Done (hero with live search, six-card grid) |
 | Trust & Safety page, new Figma design | Done (`/trust-safety`) |
 | Contact Us page, new Figma design | Done (`/contact`, validated form, FAQ preview) |
-| Remaining pages (Resources, FAQs) | Not started |
+| FAQs page, new Figma design | Done (`/faqs`, hero illustration, category tabs, four FAQ categories) |
+| Remaining pages (Resources) | Not started |
 | Real CTAs, forms, auth | Not started (buttons show a "Coming soon" alert) |
 
 ## Stack
@@ -39,6 +40,7 @@ src/
       services/page.tsx      services page (ServicesCatalog: hero, live search, card grid)
       trust-safety/page.tsx  trust & safety page (hero, framework, screening, safety features, stats, guidelines, support)
       contact/page.tsx       contact page (hero, highlights strip, contact form, contact methods, FAQ preview)
+      faqs/page.tsx          FAQs page (hero, category tab strip, one section per FAQ category)
   components/
     ui/                      shadcn primitives only (button has custom variants and sizes)
     form/                    TextInput, SelectInput (styled, usable without a form) and react-hook-form bound InputField, SelectField, TextareaField, CheckboxField built on a shared FormField (label, optional marker, description, error, aria wiring)
@@ -50,7 +52,7 @@ src/
     services/                service-card, service-grid, services-heading, services-catalog, service-search, services-empty-state, service-gallery, service-detail (dialog), lib/filter-services, data, types
     trust-safety/            hero, framework, screening, safety-features (families and professionals), stats, guidelines, support, feature-card, data, types
     contact/                 hero, highlights, form section, contact-form (client), methods, faq preview, schema (zod), actions (server action), data, types
-    faq/                     FaqAccordion and FAQS data (reuse on the FAQs page)
+    faq/                     FaqAccordion (preview and list variants), hero, category nav and section, FAQ_CATEGORIES data (FAQS is the contact preview subset)
     testimonials/            section, carousel, card, data, types
   config/site.ts             site config, ROUTES, MAIN_NAV, FOOTER_NAV, LEGAL_NAV, SOCIAL_LINKS, ANNOUNCEMENT
   hooks/                     use-autoplay, use-carousel-index, use-scroll-lock
@@ -69,6 +71,7 @@ src/
   - Services page frame: node `13620:85`
   - Trust & Safety page frame: node `13738:3382`
   - Contact Us page frame: node `13819:2849`
+  - FAQs page frame: node `13745:4944`
 - Use the Figma MCP (`get_design_context`) and follow the `figma-design-to-code` skill. Download assets locally, compress large photos with `sips` (resize, JPEG quality 80).
 - Theme tokens live in `src/app/globals.css`:
   - shadcn tokens: `background` #F5F2E8, `foreground` #111827, `primary` #4C5A3D, `secondary`/`muted` #F5EFE6, `muted-foreground` #5F6B67, `border` #D2CEC3
@@ -113,13 +116,15 @@ Carousels:
 - Contact form validates on the client and again in the server action, then shows a success state, but nothing is delivered yet
 - Contact page uses `siteConfig.contact` for email, phone and hours instead of the mismatched Figma values (Avelliq@gmail.com, support@avelliq.com, +1 (800) 555-CARE)
 - Contact topics and the answers to the second and third FAQ are placeholder copy written in code; Figma had none
+- FAQs page: Figma only had the answer to "What is Avelliq?"; the other 15 answers are placeholder copy to review. Figma's "Nestora" mentions were changed to Avelliq
+- FAQ hero illustration (`assets/images/faq/faq-illustration.svg`) was merged from the Figma layer SVGs because the file has no export access for this account
 - Form inputs use the `stroke` border instead of Figma's near-invisible `sand` border for contrast
 - Service detail dialog content uses the new tokens but has not been redesigned against its Figma frames
 
 ## Next Steps
 
 1. Redesign the service detail dialogs against their Figma frames (layers named "House-Keeping Modal", "Pet-Care Modal" and similar) and open them from the services page card CTAs
-2. Build the remaining pages (Resources, FAQs); the FAQs page should reuse `FaqAccordion`
+2. Build the remaining page (Resources)
 3. Wire `sendContactMessage` (src/features/contact/actions.ts) to a real delivery channel (email service or API); it only validates today
 4. Replace "Coming soon" alerts with real routes or flows as they become available
 

@@ -1,11 +1,13 @@
 import Image from "next/image"
+import Link from "next/link"
 
 import questionCircleIcon from "@/assets/icons/question-circle.svg"
 import wavyPattern from "@/assets/patterns/wavy.png"
 import { Reveal } from "@/components/motion/reveal"
-import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { Section } from "@/components/shared/section"
 import { SectionTitle } from "@/components/shared/section-title"
+import { Button } from "@/components/ui/button"
+import { ROUTES } from "@/config/site"
 import { FaqAccordion } from "@/features/faq/components/faq-accordion"
 import { FAQS } from "@/features/faq/data/faqs"
 
@@ -31,13 +33,15 @@ export function FaqPreviewSection() {
           >
             Do you have more questions?
           </SectionTitle>
-          <ComingSoonButton
+          <Button
             variant="white"
+            nativeButton={false}
+            render={<Link href={ROUTES.faqs} />}
             className="h-10 shrink-0 gap-1.25 rounded-full px-8 font-inter text-sm"
           >
             Read the FAQs
             <Image src={questionCircleIcon} alt="" className="size-4 p-[2.3px]" />
-          </ComingSoonButton>
+          </Button>
         </div>
         <Reveal y={32}>
           <FaqAccordion faqs={FAQS} />

@@ -60,6 +60,7 @@
   --color-error: #C73E3E;
   --color-warning: #B7791F;
   --color-ink-muted: #6D758F;
+  --color-leaf: #E7F0DE;
 
   --breakpoint-xs: 320px;
   --breakpoint-sm: 425px;
@@ -165,5 +166,13 @@
   to {
     opacity: 0;
     visibility: hidden;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }

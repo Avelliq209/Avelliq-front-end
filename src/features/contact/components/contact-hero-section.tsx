@@ -2,9 +2,8 @@ import Image from "next/image"
 
 import supportAgentImage from "@/assets/images/contact/support-agent.png"
 import { HeroMotion } from "@/components/motion/hero-motion"
-import { Magnetic } from "@/components/motion/magnetic"
-import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { EyebrowBadge } from "@/components/shared/eyebrow-badge"
+import { HeroActions } from "@/components/shared/hero-actions"
 import { HeroTexture } from "@/components/shared/hero-texture"
 import { Section } from "@/components/shared/section"
 
@@ -34,18 +33,7 @@ export function ContactHeroSection() {
               </p>
             </div>
           </div>
-          <div data-hero-fade className="flex flex-wrap items-center gap-3">
-            <Magnetic>
-              <ComingSoonButton size="pill" withArrow>
-                Find Care Near You
-              </ComingSoonButton>
-            </Magnetic>
-            <Magnetic>
-              <ComingSoonButton variant="outline" size="pill-lg">
-                Join as a Professional
-              </ComingSoonButton>
-            </Magnetic>
-          </div>
+          <HeroActions />
         </div>
 
         <div className="flex w-full justify-center xl:w-auto xl:flex-1">

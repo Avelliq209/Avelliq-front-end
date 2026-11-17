@@ -40,6 +40,7 @@ export const ROUTES = {
   services: "/services",
   trustSafety: "/trust-safety",
   contact: "/contact",
+  faqs: "/faqs",
 } as const
 
 export const MAIN_NAV: NavItem[] = [
@@ -48,7 +49,7 @@ export const MAIN_NAV: NavItem[] = [
   { title: "Trust & Safety", href: ROUTES.trustSafety },
   { title: "Resources", href: "#", hasMenu: true },
   { title: "Contact Us", href: ROUTES.contact },
-  { title: "FAQs", href: "#" },
+  { title: "FAQs", href: ROUTES.faqs },
 ]
 
 export const FOOTER_NAV: NavGroup[] = [
@@ -60,7 +61,7 @@ export const FOOTER_NAV: NavGroup[] = [
       { title: "How It Works", href: `${ROUTES.home}#how-it-works` },
       { title: "Resources", href: "#" },
       { title: "Contact Us", href: ROUTES.contact },
-      { title: "FAQs", href: "#" },
+      { title: "FAQs", href: ROUTES.faqs },
     ],
   },
   {
