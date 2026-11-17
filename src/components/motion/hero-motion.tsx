@@ -8,9 +8,10 @@ import { DESKTOP_MOTION, MOTION_OK, onIntroComplete, SPLIT_LINE_CLASS } from "@/
 interface HeroMotionProps {
   children: ReactNode
   className?: string
+  parallax?: boolean
 }
 
-export function HeroMotion({ children, className }: HeroMotionProps) {
+export function HeroMotion({ children, className, parallax = true }: HeroMotionProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   useGSAP(
@@ -51,6 +52,8 @@ export function HeroMotion({ children, className }: HeroMotionProps) {
           title.revert()
         }
       })
+
+      if (!parallax) return
 
       media.add(DESKTOP_MOTION, () => {
         gsap.to(heroMedia, {

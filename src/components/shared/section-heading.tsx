@@ -14,6 +14,7 @@ interface SectionHeadingProps {
   align?: "center" | "start"
   as?: "h1" | "h2"
   className?: string
+  labelClassName?: string
   titleClassName?: string
   descriptionClassName?: string
 }
@@ -26,6 +27,7 @@ export function SectionHeading({
   align = "center",
   as = "h2",
   className,
+  labelClassName,
   titleClassName,
   descriptionClassName,
 }: SectionHeadingProps) {
@@ -44,7 +46,10 @@ export function SectionHeading({
         <Reveal
           as="p"
           y={24}
-          className="font-inter text-sm leading-normal font-bold tracking-[1px] text-support uppercase"
+          className={cn(
+            "font-inter text-sm leading-normal font-bold tracking-[1px] text-support uppercase",
+            labelClassName
+          )}
         >
           {label}
         </Reveal>

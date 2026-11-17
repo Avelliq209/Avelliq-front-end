@@ -13,13 +13,15 @@ Read `.claude/rules/rules.md` before starting any task. Those rules are mandator
 | Home page animations (Awwwards style) | Done (`2edf050`) |
 | Services page, new Figma design | Done (hero with live search, six-card grid) |
 | Trust & Safety page, new Figma design | Done (`/trust-safety`) |
-| Remaining pages (Resources, Contact, FAQs) | Not started |
+| Contact Us page, new Figma design | Done (`/contact`, validated form, FAQ preview) |
+| Remaining pages (Resources, FAQs) | Not started |
 | Real CTAs, forms, auth | Not started (buttons show a "Coming soon" alert) |
 
 ## Stack
 
 - Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS v4
-- shadcn/ui on Base UI (`components.json` style `base-vega`). Installed: badge, button, carousel, dialog, input, scroll-area, sheet
+- shadcn/ui on Base UI (`components.json` style `base-vega`). Installed: accordion, badge, button, carousel, checkbox, dialog, field, input, label, scroll-area, select, separator, sheet, textarea
+- Forms: react-hook-form + zod (`@hookform/resolvers`), reusable fields in `src/components/form`
 - Embla Carousel with `embla-carousel-autoplay`
 - GSAP 3 (ScrollTrigger, SplitText, `@gsap/react`) and Lenis smooth scroll
 - Fonts via `next/font`: Playfair Display (`font-heading`), Montserrat (`font-sans`), Inter (`font-inter`)
@@ -36,8 +38,10 @@ src/
       page.tsx               home page (composes feature sections)
       services/page.tsx      services page (ServicesCatalog: hero, live search, card grid)
       trust-safety/page.tsx  trust & safety page (hero, framework, screening, safety features, stats, guidelines, support)
+      contact/page.tsx       contact page (hero, highlights strip, contact form, contact methods, FAQ preview)
   components/
     ui/                      shadcn primitives only (button has custom variants and sizes)
+    form/                    TextInput, SelectInput (styled, usable without a form) and react-hook-form bound InputField, SelectField, TextareaField, CheckboxField built on a shared FormField (label, optional marker, description, error, aria wiring)
     layout/                  announcement-bar, site-header, header-actions, main-nav, mobile-nav (Sheet), logo, site-footer, newsletter-form, cta-banner
     shared/                  Section, SectionHeading (eyebrow or label, title, description, align), HeroTexture, SectionTitle, SectionDescription, EyebrowBadge, PhotoCard, CarouselDots, CheckListItem, IconTile, StarRating, CirclePattern, ComingSoonButton
     motion/                  HeroMotion (intro-synced hero entrance), SmoothScroll, IntroOverlay, Reveal, RevealText, ImageReveal, Magnetic, CountUp
@@ -45,6 +49,8 @@ src/
     home/                    components (one file per section plus hero-motion, how-it-works-motion, match-profile-card), data/content.ts
     services/                service-card, service-grid, services-heading, services-catalog, service-search, services-empty-state, service-gallery, service-detail (dialog), lib/filter-services, data, types
     trust-safety/            hero, framework, screening, safety-features (families and professionals), stats, guidelines, support, feature-card, data, types
+    contact/                 hero, highlights, form section, contact-form (client), methods, faq preview, schema (zod), actions (server action), data, types
+    faq/                     FaqAccordion and FAQS data (reuse on the FAQs page)
     testimonials/            section, carousel, card, data, types
   config/site.ts             site config, ROUTES, MAIN_NAV, FOOTER_NAV, LEGAL_NAV, SOCIAL_LINKS, ANNOUNCEMENT
   hooks/                     use-autoplay, use-carousel-index, use-scroll-lock
@@ -62,6 +68,7 @@ src/
   - Hero images: node `14152:3648`
   - Services page frame: node `13620:85`
   - Trust & Safety page frame: node `13738:3382`
+  - Contact Us page frame: node `13819:2849`
 - Use the Figma MCP (`get_design_context`) and follow the `figma-design-to-code` skill. Download assets locally, compress large photos with `sips` (resize, JPEG quality 80).
 - Theme tokens live in `src/app/globals.css`:
   - shadcn tokens: `background` #F5F2E8, `foreground` #111827, `primary` #4C5A3D, `secondary`/`muted` #F5EFE6, `muted-foreground` #5F6B67, `border` #D2CEC3
@@ -103,13 +110,18 @@ Carousels:
 - Service card CTAs link to their own anchor; they should open the detail dialogs once those are redesigned
 - Generic icons (chevrons, arrows, check, user) use lucide; brand icons are Figma SVGs. Trust & Safety Feather-style icons map to lucide equivalents; the hugeicons customer-support icon is a local SVG
 - Trust & Safety CTAs (File Safety Report, Speak to Trust Agent) show the Coming soon alert until support flows exist
+- Contact form validates on the client and again in the server action, then shows a success state, but nothing is delivered yet
+- Contact page uses `siteConfig.contact` for email, phone and hours instead of the mismatched Figma values (Avelliq@gmail.com, support@avelliq.com, +1 (800) 555-CARE)
+- Contact topics and the answers to the second and third FAQ are placeholder copy written in code; Figma had none
+- Form inputs use the `stroke` border instead of Figma's near-invisible `sand` border for contrast
 - Service detail dialog content uses the new tokens but has not been redesigned against its Figma frames
 
 ## Next Steps
 
 1. Redesign the service detail dialogs against their Figma frames (layers named "House-Keeping Modal", "Pet-Care Modal" and similar) and open them from the services page card CTAs
-2. Build the remaining pages (Resources, Contact, FAQs)
-3. Replace "Coming soon" alerts with real routes or flows as they become available
+2. Build the remaining pages (Resources, FAQs); the FAQs page should reuse `FaqAccordion`
+3. Wire `sendContactMessage` (src/features/contact/actions.ts) to a real delivery channel (email service or API); it only validates today
+4. Replace "Coming soon" alerts with real routes or flows as they become available
 
 ## Working Agreements
 

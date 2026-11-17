@@ -31,6 +31,7 @@ export const siteConfig = {
     email: "avelliqsupport@gmail.com",
     phone: "+224 7879 88 99",
     phoneHref: "tel:+22478798899",
+    hours: "Mon–Fri 8am–8pm ET · Sat 9am–5pm ET",
   },
 } as const
 
@@ -38,6 +39,7 @@ export const ROUTES = {
   home: "/",
   services: "/services",
   trustSafety: "/trust-safety",
+  contact: "/contact",
 } as const
 
 export const MAIN_NAV: NavItem[] = [
@@ -45,7 +47,7 @@ export const MAIN_NAV: NavItem[] = [
   { title: "Services", href: ROUTES.services },
   { title: "Trust & Safety", href: ROUTES.trustSafety },
   { title: "Resources", href: "#", hasMenu: true },
-  { title: "Contact Us", href: "#" },
+  { title: "Contact Us", href: ROUTES.contact },
   { title: "FAQs", href: "#" },
 ]
 
@@ -57,7 +59,7 @@ export const FOOTER_NAV: NavGroup[] = [
       { title: "Services", href: ROUTES.services },
       { title: "How It Works", href: `${ROUTES.home}#how-it-works` },
       { title: "Resources", href: "#" },
-      { title: "Contact Us", href: "#" },
+      { title: "Contact Us", href: ROUTES.contact },
       { title: "FAQs", href: "#" },
     ],
   },
@@ -77,7 +79,7 @@ export const FOOTER_NAV: NavGroup[] = [
     items: [
       { title: siteConfig.contact.email, href: `mailto:${siteConfig.contact.email}` },
       { title: siteConfig.contact.phone, href: siteConfig.contact.phoneHref },
-      { title: "Help center", href: "#" },
+      { title: "Help center", href: ROUTES.contact },
       { title: "Terms and conditions", href: "#" },
     ],
   },
