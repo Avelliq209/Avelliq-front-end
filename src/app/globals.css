@@ -54,6 +54,8 @@
   --color-stroke-subtle: #C9C8D3;
   --color-footer-muted: #B4B9C9;
   --color-gold: #CD9C16;
+  --color-grey-400: #BDBDBD;
+  --color-grey-500: #9E9E9E;
 
   --breakpoint-xs: 320px;
   --breakpoint-sm: 425px;

@@ -1,0 +1,113 @@
+# Product Status
+
+Last updated: 2026-11-17. Branch: `dev`. Services page work is uncommitted at time of writing.
+
+Read `.claude/rules/rules.md` before starting any task. Those rules are mandatory.
+
+## Summary
+
+| Area | Status |
+|---|---|
+| Architecture restructure | Done (`d7369b9`) |
+| Home page, new Figma design | Done (`e5224a9`) |
+| Home page animations (Awwwards style) | Done (`2edf050`) |
+| Services page, new Figma design | Done (hero with live search, six-card grid) |
+| Remaining pages (Trust & Safety, Resources, Contact, FAQs) | Not started |
+| Real CTAs, forms, auth | Not started (buttons show a "Coming soon" alert) |
+
+## Stack
+
+- Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS v4
+- shadcn/ui on Base UI (`components.json` style `base-vega`). Installed: badge, button, carousel, dialog, input, scroll-area, sheet
+- Embla Carousel with `embla-carousel-autoplay`
+- GSAP 3 (ScrollTrigger, SplitText, `@gsap/react`) and Lenis smooth scroll
+- Fonts via `next/font`: Playfair Display (`font-heading`), Montserrat (`font-sans`), Inter (`font-inter`)
+
+## Project Structure
+
+```
+src/
+  app/
+    layout.tsx               root: fonts, metadata template "%s - Avelliq"
+    globals.css              theme tokens, Lenis CSS, SplitText mask spacing, intro fallback keyframes
+    (marketing)/
+      layout.tsx             SmoothScroll > IntroOverlay, AnnouncementBar, SiteHeader, main, CtaBanner, SiteFooter
+      page.tsx               home page (composes feature sections)
+      services/page.tsx      services page (ServicesCatalog: hero, live search, card grid)
+  components/
+    ui/                      shadcn primitives only (button has custom variants and sizes)
+    layout/                  announcement-bar, site-header, header-actions, main-nav, mobile-nav (Sheet), logo, site-footer, newsletter-form, cta-banner
+    shared/                  Section, SectionTitle, SectionDescription, EyebrowBadge, PhotoCard, CarouselDots, CheckListItem, IconTile, StarRating, CirclePattern, ComingSoonButton
+    motion/                  SmoothScroll, IntroOverlay, Reveal, RevealText, ImageReveal, Magnetic, CountUp
+  features/
+    home/                    components (one file per section plus hero-motion, how-it-works-motion, match-profile-card), data/content.ts
+    services/                service-card, service-grid, services-heading, services-catalog, service-search, services-empty-state, service-gallery, service-detail (dialog), lib/filter-services, data, types
+    testimonials/            section, carousel, card, data, types
+  config/site.ts             site config, ROUTES, MAIN_NAV, FOOTER_NAV, LEGAL_NAV, SOCIAL_LINKS, ANNOUNCEMENT
+  hooks/                     use-autoplay, use-carousel-index, use-scroll-lock
+  lib/                       utils (cn, getInitials, slugify), gsap (plugin registration), motion (media queries, reveal trigger, intro state, pin helpers)
+  assets/
+    images/                  home/, services/cards, services/gallery, services/* (dialog images), testimonials/, textures/
+    icons/                   Figma SVG icons, social/
+    patterns/                circle pattern SVGs
+```
+
+## Design System
+
+- Figma file: `https://www.figma.com/design/dVxdWlGsVpYkiB0j8zRASf/Avelliq`
+  - Home page frame: node `14148:1346`
+  - Hero images: node `14152:3648`
+  - Services page frame: node `13620:85`
+- Use the Figma MCP (`get_design_context`) and follow the `figma-design-to-code` skill. Download assets locally, compress large photos with `sips` (resize, JPEG quality 80).
+- Theme tokens live in `src/app/globals.css`:
+  - shadcn tokens: `background` #F5F2E8, `foreground` #111827, `primary` #4C5A3D, `secondary`/`muted` #F5EFE6, `muted-foreground` #5F6B67, `border` #D2CEC3
+  - Extra tokens: `support` #50160D, `sand`, `mint`, `sage`, `tan`, `ink`, `ink-strong`, `ink-soft`, `stroke`, `stroke-muted`, `stroke-subtle`, `footer-muted`, `gold`
+- Button (`src/components/ui/button.tsx`): variants `default`, `outline`, `outline-primary`, `light`, `white`, plus shadcn defaults; sizes `pill-lg` (48px, 16px text), `pill` (48px, 14px text), `pill-sm` (36px)
+- Layout gutter: `Section` uses `px-5 py-17.5 sm:px-10 lg:px-17.5` (70px at desktop, content width 1300 at 1440)
+
+## Home Page
+
+Sections in order: AnnouncementBar, header, Hero (carousel plus five category cards), TrustHighlights, ServicesPreview (circle pattern), Professionals, HowItWorks, Safety, ServiceGallery, Agencies, Match (profile card plus match factors), Testimonials, CtaBanner, footer.
+
+Responsive behaviour:
+- Header nav and actions show at `xl` (1280px); below that a Sheet menu opens from the hamburger
+- Hero and How It Works switch to two columns at `xl`; Professionals cards go to three columns at `lg`; Match goes to two columns at `lg` and three at `xl`
+- Verified at 375, 768, 1024 and 1440px with no horizontal overflow
+
+Carousels:
+- Hero, gallery and testimonials autoplay (4s, pause on hover, disabled for reduced motion) via `useAutoplay`
+- Gallery on desktop (1024px and up, motion allowed) is a pinned, scroll-driven horizontal track; Embla and autoplay are disabled at that breakpoint. Mobile keeps the autoplay carousel
+
+## Animation System
+
+- All media queries and shared settings are in `src/lib/motion.ts`: `MOTION_OK`, `DESKTOP_MOTION`, `WIDE_MOTION`, `FINE_POINTER_MOTION`, `REVEAL_TRIGGER`
+- Always use `REVEAL_TRIGGER` for scroll reveals. It uses `toggleActions: "play complete none none"` so fast flicks never leave content invisible
+- `SmoothScroll` refreshes ScrollTrigger on body resize and `document.fonts.ready`; needed because font loading re-wraps headings on mobile
+- `SectionTitle` reveals line by line automatically; `SectionDescription` and `EyebrowBadge` fade up (pass `animate={false}` to opt out)
+- Intro overlay plays once per session (`sessionStorage`), locks Lenis, and dispatches an intro-complete event that the hero waits for; a CSS fallback hides it after 3s
+- Use `useScrollLock` for any dialog or sheet (stops Lenis), and add `data-lenis-prevent` to scrollable overlay content
+- Sections stay server components; only the thin motion wrappers are client components
+- Reduced motion: no intro, no Lenis, no pins, content renders static
+
+## Known Placeholders and Decisions
+
+- Announcement bar copy is lorem ipsum from Figma (`ANNOUNCEMENT` in `src/config/site.ts`)
+- Testimonial quotes mention "Nestora" (likely an old brand name), kept as in the design
+- Match card shows two stars next to "4.9", matching Figma
+- Services page search filters cards client side by title, description and offerings; the Figma search field has no spec beyond its look
+- Figma typos not copied: House Sitters CTA reads "Explore House-keeping" and Pet Care reuses the Concierge description
+- Service card CTAs link to their own anchor; they should open the detail dialogs once those are redesigned
+- Generic icons (chevrons, arrows, check, user) use lucide; brand icons are Figma SVGs
+- Service detail dialog content uses the new tokens but has not been redesigned against its Figma frames
+
+## Next Steps
+
+1. Redesign the service detail dialogs against their Figma frames (layers named "House-Keeping Modal", "Pet-Care Modal" and similar) and open them from the services page card CTAs
+2. Build the remaining pages (Trust & Safety, Resources, Contact, FAQs)
+3. Replace "Coming soon" alerts with real routes or flows as they become available
+
+## Working Agreements
+
+- Follow `.claude/rules/rules.md` (no em-dashes, DRY, shadcn first, mobile first, minimal comments)
+- Verify UI changes in the browser at phone, tablet and desktop widths before finishing
+- End every change with a short one-line conventional commit message; the user commits and pushes

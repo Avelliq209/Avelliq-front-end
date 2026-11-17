@@ -1,10 +1,9 @@
-import Image from "next/image"
 import Link from "next/link"
 
-import heroTexture from "@/assets/images/textures/hero-linen.jpg"
 import { Magnetic } from "@/components/motion/magnetic"
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { EyebrowBadge } from "@/components/shared/eyebrow-badge"
+import { HeroTexture } from "@/components/shared/hero-texture"
 import { PhotoCard } from "@/components/shared/photo-card"
 import { Section } from "@/components/shared/section"
 
@@ -15,14 +14,7 @@ import { HeroMotion } from "./hero-motion"
 export function HeroSection() {
   return (
     <Section className="relative isolate overflow-hidden">
-      <Image
-        src={heroTexture}
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="-z-10 object-cover opacity-[0.02]"
-      />
+      <HeroTexture />
 
       <HeroMotion className="flex flex-col gap-20">
         <div className="flex flex-col items-center gap-12 xl:flex-row xl:gap-15">

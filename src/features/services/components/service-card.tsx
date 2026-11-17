@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils"
 import type { ServiceCategory } from "../types"
 
 export function ServiceCard({ service }: { service: ServiceCategory }) {
-  const { slug, title, description, offerings, ctaLabel, image, imageAlt } = service
+  const { slug, title, description, offerings, ctaLabel, image, imageAlt, imagePosition } = service
 
   return (
     <article
@@ -26,6 +26,7 @@ export function ServiceCard({ service }: { service: ServiceCategory }) {
           sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
           placeholder="blur"
           className="object-cover"
+          style={imagePosition ? { objectPosition: imagePosition } : undefined}
         />
       </ImageReveal>
 

@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 
-import { Section } from "@/components/shared/section"
-import { ServiceGrid } from "@/features/services/components/service-grid"
+import { ServicesCatalog } from "@/features/services/components/services-catalog"
 import { ServicesHeading } from "@/features/services/components/services-heading"
 import { SERVICES } from "@/features/services/data/services"
 
@@ -13,13 +12,16 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <Section className="space-y-10">
-      <ServicesHeading
-        as="h1"
-        title="Reliable Support for Care & Daily Household Support"
-        className="lg:max-w-[70%]"
-      />
-      <ServiceGrid services={SERVICES} />
-    </Section>
+    <ServicesCatalog
+      services={SERVICES}
+      heading={
+        <ServicesHeading
+          as="h1"
+          title="Reliable Support for Care & Daily Household Support"
+          className="max-w-206.5"
+          titleClassName="lg:text-[52px] lg:tracking-[0.546px]"
+        />
+      }
+    />
   )
 }

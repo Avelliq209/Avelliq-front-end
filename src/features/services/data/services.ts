@@ -1,9 +1,9 @@
 import childcareImage from "@/assets/images/services/cards/childcare.jpg"
+import conciergeImage from "@/assets/images/services/cards/concierge.jpg"
 import houseSittersImage from "@/assets/images/services/cards/house-sitters.jpg"
 import housekeepingImage from "@/assets/images/services/cards/housekeeping.jpg"
-import conciergeImage from "@/assets/images/services/gallery/concierge.jpg"
-import petCareImage from "@/assets/images/services/gallery/pet-care.jpg"
-import seniorCareImage from "@/assets/images/services/gallery/senior-care.jpg"
+import petCareImage from "@/assets/images/services/cards/pet-care.jpg"
+import seniorCareImage from "@/assets/images/services/cards/senior-care.jpg"
 
 import type { ServiceCategory } from "../types"
 
@@ -54,7 +54,7 @@ export const SERVICES: ServiceCategory[] = [
     ],
     ctaLabel: "Explore Senior Care",
     image: seniorCareImage,
-    imageAlt: "A caregiver smiling with an elderly woman",
+    imageAlt: "A caregiver with a tablet talking with an elderly woman at home",
   },
   {
     slug: "concierge",
@@ -63,7 +63,8 @@ export const SERVICES: ServiceCategory[] = [
     offerings: ["Personal concierge", "Lifestyle assistant", "Errand services"],
     ctaLabel: "Explore Concierge",
     image: conciergeImage,
-    imageAlt: "A personal concierge at work",
+    imageAlt: "A personal concierge on a phone call at her desk",
+    imagePosition: "center 21%",
   },
   {
     slug: "pet-care",
@@ -72,6 +73,7 @@ export const SERVICES: ServiceCategory[] = [
     offerings: ["Pet sitters", "Pet walkers", "At-home check-ins"],
     ctaLabel: "Explore Pet Care",
     image: petCareImage,
-    imageAlt: "A pet sitter with a dog",
+    imageAlt: "A pet sitter playing with a beagle",
+    imagePosition: "center 16%",
   },
 ]

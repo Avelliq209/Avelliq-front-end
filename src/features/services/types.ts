@@ -9,6 +9,7 @@ export interface ServiceCategory {
   ctaLabel: string
   image: StaticImageData
   imageAlt: string
+  imagePosition?: string
 }
 
 export interface ServiceFeature {
