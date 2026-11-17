@@ -37,12 +37,13 @@ export const siteConfig = {
 export const ROUTES = {
   home: "/",
   services: "/services",
+  trustSafety: "/trust-safety",
 } as const
 
 export const MAIN_NAV: NavItem[] = [
   { title: "Home", href: ROUTES.home },
   { title: "Services", href: ROUTES.services },
-  { title: "Trust & Safety", href: "#" },
+  { title: "Trust & Safety", href: ROUTES.trustSafety },
   { title: "Resources", href: "#", hasMenu: true },
   { title: "Contact Us", href: "#" },
   { title: "FAQs", href: "#" },

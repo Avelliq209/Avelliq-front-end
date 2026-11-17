@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+import { HeroMotion } from "@/components/motion/hero-motion"
 import { Magnetic } from "@/components/motion/magnetic"
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { EyebrowBadge } from "@/components/shared/eyebrow-badge"
@@ -9,7 +10,6 @@ import { Section } from "@/components/shared/section"
 
 import { HERO_CATEGORIES } from "../data/content"
 import { HeroCarousel } from "./hero-carousel"
-import { HeroMotion } from "./hero-motion"
 
 export function HeroSection() {
   return (

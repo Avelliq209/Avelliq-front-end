@@ -12,7 +12,8 @@ Read `.claude/rules/rules.md` before starting any task. Those rules are mandator
 | Home page, new Figma design | Done (`e5224a9`) |
 | Home page animations (Awwwards style) | Done (`2edf050`) |
 | Services page, new Figma design | Done (hero with live search, six-card grid) |
-| Remaining pages (Trust & Safety, Resources, Contact, FAQs) | Not started |
+| Trust & Safety page, new Figma design | Done (`/trust-safety`) |
+| Remaining pages (Resources, Contact, FAQs) | Not started |
 | Real CTAs, forms, auth | Not started (buttons show a "Coming soon" alert) |
 
 ## Stack
@@ -34,14 +35,16 @@ src/
       layout.tsx             SmoothScroll > IntroOverlay, AnnouncementBar, SiteHeader, main, CtaBanner, SiteFooter
       page.tsx               home page (composes feature sections)
       services/page.tsx      services page (ServicesCatalog: hero, live search, card grid)
+      trust-safety/page.tsx  trust & safety page (hero, framework, screening, safety features, stats, guidelines, support)
   components/
     ui/                      shadcn primitives only (button has custom variants and sizes)
     layout/                  announcement-bar, site-header, header-actions, main-nav, mobile-nav (Sheet), logo, site-footer, newsletter-form, cta-banner
-    shared/                  Section, SectionTitle, SectionDescription, EyebrowBadge, PhotoCard, CarouselDots, CheckListItem, IconTile, StarRating, CirclePattern, ComingSoonButton
-    motion/                  SmoothScroll, IntroOverlay, Reveal, RevealText, ImageReveal, Magnetic, CountUp
+    shared/                  Section, SectionHeading (eyebrow or label, title, description, align), HeroTexture, SectionTitle, SectionDescription, EyebrowBadge, PhotoCard, CarouselDots, CheckListItem, IconTile, StarRating, CirclePattern, ComingSoonButton
+    motion/                  HeroMotion (intro-synced hero entrance), SmoothScroll, IntroOverlay, Reveal, RevealText, ImageReveal, Magnetic, CountUp
   features/
     home/                    components (one file per section plus hero-motion, how-it-works-motion, match-profile-card), data/content.ts
     services/                service-card, service-grid, services-heading, services-catalog, service-search, services-empty-state, service-gallery, service-detail (dialog), lib/filter-services, data, types
+    trust-safety/            hero, framework, screening, safety-features (families and professionals), stats, guidelines, support, feature-card, data, types
     testimonials/            section, carousel, card, data, types
   config/site.ts             site config, ROUTES, MAIN_NAV, FOOTER_NAV, LEGAL_NAV, SOCIAL_LINKS, ANNOUNCEMENT
   hooks/                     use-autoplay, use-carousel-index, use-scroll-lock
@@ -58,6 +61,7 @@ src/
   - Home page frame: node `14148:1346`
   - Hero images: node `14152:3648`
   - Services page frame: node `13620:85`
+  - Trust & Safety page frame: node `13738:3382`
 - Use the Figma MCP (`get_design_context`) and follow the `figma-design-to-code` skill. Download assets locally, compress large photos with `sips` (resize, JPEG quality 80).
 - Theme tokens live in `src/app/globals.css`:
   - shadcn tokens: `background` #F5F2E8, `foreground` #111827, `primary` #4C5A3D, `secondary`/`muted` #F5EFE6, `muted-foreground` #5F6B67, `border` #D2CEC3
@@ -97,13 +101,14 @@ Carousels:
 - Services page search filters cards client side by title, description and offerings; the Figma search field has no spec beyond its look
 - Figma typos not copied: House Sitters CTA reads "Explore House-keeping" and Pet Care reuses the Concierge description
 - Service card CTAs link to their own anchor; they should open the detail dialogs once those are redesigned
-- Generic icons (chevrons, arrows, check, user) use lucide; brand icons are Figma SVGs
+- Generic icons (chevrons, arrows, check, user) use lucide; brand icons are Figma SVGs. Trust & Safety Feather-style icons map to lucide equivalents; the hugeicons customer-support icon is a local SVG
+- Trust & Safety CTAs (File Safety Report, Speak to Trust Agent) show the Coming soon alert until support flows exist
 - Service detail dialog content uses the new tokens but has not been redesigned against its Figma frames
 
 ## Next Steps
 
 1. Redesign the service detail dialogs against their Figma frames (layers named "House-Keeping Modal", "Pet-Care Modal" and similar) and open them from the services page card CTAs
-2. Build the remaining pages (Trust & Safety, Resources, Contact, FAQs)
+2. Build the remaining pages (Resources, Contact, FAQs)
 3. Replace "Coming soon" alerts with real routes or flows as they become available
 
 ## Working Agreements
