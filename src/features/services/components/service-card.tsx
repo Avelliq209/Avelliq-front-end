@@ -8,10 +8,20 @@ import { buttonVariants } from "@/components/ui/button"
 import { ROUTES } from "@/config/site"
 import { cn } from "@/lib/utils"
 
+import { SERVICE_INSIGHTS_BY_SLUG } from "../data/service-insights"
 import type { ServiceCategory } from "../types"
+import { ServiceInsightDialog } from "./service-insight-dialog"
 
 export function ServiceCard({ service }: { service: ServiceCategory }) {
   const { slug, title, description, offerings, ctaLabel, image, imageAlt, imagePosition } = service
+  const insight = SERVICE_INSIGHTS_BY_SLUG.get(slug)
+  const ctaClassName = cn(buttonVariants({ variant: "outline-primary", size: "pill-sm" }), "w-full")
+  const ctaContent = (
+    <>
+      {ctaLabel}
+      <ArrowRight aria-hidden="true" className="size-3" />
+    </>
+  )
 
   return (
     <article
@@ -42,13 +52,13 @@ export function ServiceCard({ service }: { service: ServiceCategory }) {
         </ul>
       </div>
 
-      <Link
-        href={`${ROUTES.services}#${slug}`}
-        className={cn(buttonVariants({ variant: "outline-primary", size: "pill-sm" }), "w-full")}
-      >
-        {ctaLabel}
-        <ArrowRight aria-hidden="true" className="size-3" />
-      </Link>
+      {insight ? (
+        <ServiceInsightDialog insight={insight} trigger={ctaContent} triggerClassName={ctaClassName} />
+      ) : (
+        <Link href={`${ROUTES.services}#${slug}`} className={ctaClassName}>
+          {ctaContent}
+        </Link>
+      )}
     </article>
   )
 }

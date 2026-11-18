@@ -27,18 +27,27 @@ interface EyebrowBadgeProps extends VariantProps<typeof eyebrowBadgeVariants> {
   children: ReactNode
   className?: string
   animate?: boolean
+  withIcon?: boolean
 }
 
-export function EyebrowBadge({ children, tone, className, animate = true }: EyebrowBadgeProps) {
+export function EyebrowBadge({
+  children,
+  tone,
+  className,
+  animate = true,
+  withIcon = true,
+}: EyebrowBadgeProps) {
   const badge = (
     <Badge className={cn(eyebrowBadgeVariants({ tone }), className)}>
-      <Image
-        src={tone === "dark" ? shieldCheckLightIcon : shieldCheckIcon}
-        alt=""
-        width={18}
-        height={18}
-        className="size-4.5! shrink-0"
-      />
+      {withIcon && (
+        <Image
+          src={tone === "dark" ? shieldCheckLightIcon : shieldCheckIcon}
+          alt=""
+          width={18}
+          height={18}
+          className="size-4.5! shrink-0"
+        />
+      )}
       {children}
     </Badge>
   )

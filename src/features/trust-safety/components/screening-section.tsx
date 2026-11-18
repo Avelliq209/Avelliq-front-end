@@ -6,7 +6,7 @@ import { SCREENING_STEPS } from "../data/content"
 
 export function ScreeningSection() {
   return (
-    <Section className="flex flex-col gap-10 lg:gap-14">
+    <Section id="screening" className="flex scroll-mt-28 flex-col gap-10 lg:gap-14">
       <SectionHeading
         eyebrow="Our Screening Standards"
         title="How We Screen Care Professionals"

@@ -1,6 +1,6 @@
 # Product Status
 
-Last updated: 2026-11-17. Branch: `dev`. Services page work is uncommitted at time of writing.
+Last updated: 2026-11-18. Branch: `dev`. Services page work is uncommitted at time of writing.
 
 Read `.claude/rules/rules.md` before starting any task. Those rules are mandatory.
 
@@ -11,7 +11,7 @@ Read `.claude/rules/rules.md` before starting any task. Those rules are mandator
 | Architecture restructure | Done (`d7369b9`) |
 | Home page, new Figma design | Done (`e5224a9`) |
 | Home page animations (Awwwards style) | Done (`2edf050`) |
-| Services page, new Figma design | Done (hero with live search, six-card grid) |
+| Services page, new Figma design | Done (hero with live search, six-card grid, service CTA modals) |
 | Trust & Safety page, new Figma design | Done (`/trust-safety`) |
 | Contact Us page, new Figma design | Done (`/contact`, validated form, FAQ preview) |
 | FAQs page, new Figma design | Done (`/faqs`, hero illustration, category tabs, four FAQ categories) |
@@ -49,7 +49,7 @@ src/
     motion/                  HeroMotion (intro-synced hero entrance), SmoothScroll, IntroOverlay, Reveal, RevealText, ImageReveal, Magnetic, CountUp
   features/
     home/                    components (one file per section plus hero-motion, how-it-works-motion, match-profile-card), data/content.ts
-    services/                service-card, service-grid, services-heading, services-catalog, service-search, services-empty-state, service-gallery, service-detail (dialog), lib/filter-services, data, types
+    services/                service-card, service-grid, services-heading, services-catalog, service-search, services-empty-state, service-gallery, service-detail (gallery dialog), service-insight + service-insight-dialog (card CTA modals, data/service-insights.ts), lib/filter-services, data, types
     trust-safety/            hero, framework, screening, safety-features (families and professionals), stats, guidelines, support, feature-card, data, types
     contact/                 hero, highlights, form section, contact-form (client), methods, faq preview, schema (zod), actions (server action), data, types
     faq/                     FaqAccordion (preview and list variants), hero, category nav and section, FAQ_CATEGORIES data (FAQS is the contact preview subset)
@@ -69,6 +69,7 @@ src/
   - Home page frame: node `14148:1346`
   - Hero images: node `14152:3648`
   - Services page frame: node `13620:85`
+  - Service CTA modals: `14458:5084` (childcare), `13943:5890` (housekeeping), `13943:5967` (house sitters), `13943:6044` (senior care), `13944:5889` (concierge), `13944:5975` (pet care)
   - Trust & Safety page frame: node `13738:3382`
   - Contact Us page frame: node `13819:2849`
   - FAQs page frame: node `13745:4944`
@@ -110,7 +111,8 @@ Carousels:
 - Match card shows two stars next to "4.9", matching Figma
 - Services page search filters cards client side by title, description and offerings; the Figma search field has no spec beyond its look
 - Figma typos not copied: House Sitters CTA reads "Explore House-keeping" and Pet Care reuses the Concierge description
-- Service card CTAs link to their own anchor; they should open the detail dialogs once those are redesigned
+- Service card "Explore" CTAs (services page and home preview) open the service CTA modals. Figma copy had em-dashes, rewritten with commas and colons. The statistics and social proof numbers come straight from Figma and are unverified marketing claims
+- Modal "Find a ... Professional" buttons show the Coming soon alert; "Learn more about our screening process" links to `/trust-safety#screening`
 - Generic icons (chevrons, arrows, check, user) use lucide; brand icons are Figma SVGs. Trust & Safety Feather-style icons map to lucide equivalents; the hugeicons customer-support icon is a local SVG
 - Trust & Safety CTAs (File Safety Report, Speak to Trust Agent) show the Coming soon alert until support flows exist
 - Contact form validates on the client and again in the server action, then shows a success state, but nothing is delivered yet
@@ -119,11 +121,11 @@ Carousels:
 - FAQs page: Figma only had the answer to "What is Avelliq?"; the other 15 answers are placeholder copy to review. Figma's "Nestora" mentions were changed to Avelliq
 - FAQ hero illustration (`assets/images/faq/faq-illustration.svg`) was merged from the Figma layer SVGs because the file has no export access for this account
 - Form inputs use the `stroke` border instead of Figma's near-invisible `sand` border for contrast
-- Service detail dialog content uses the new tokens but has not been redesigned against its Figma frames
+- The home gallery's service detail dialog (service-detail.tsx) has not been redesigned against Figma
 
 ## Next Steps
 
-1. Redesign the service detail dialogs against their Figma frames (layers named "House-Keeping Modal", "Pet-Care Modal" and similar) and open them from the services page card CTAs
+1. Decide whether the home gallery dialog (service-detail.tsx) should be replaced by the new service CTA modal or redesigned separately
 2. Build the remaining page (Resources)
 3. Wire `sendContactMessage` (src/features/contact/actions.ts) to a real delivery channel (email service or API); it only validates today
 4. Replace "Coming soon" alerts with real routes or flows as they become available

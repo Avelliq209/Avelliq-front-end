@@ -24,6 +24,27 @@ export interface ServiceAudience {
   points: Omit<ServiceFeature, "icon">[]
 }
 
+export interface ServiceFact {
+  value: string
+  label: string
+}
+
+export interface ServiceInsight {
+  slug: string
+  badge: string
+  stat: string
+  statement: string
+  tagline: string
+  challengeTitle: string
+  facts: ServiceFact[]
+  benefitsTitle: string
+  benefits: ServiceFeature[]
+  proofPoints: [customers: string, rating: string, loyalty: string]
+  closingLine: string
+  ctaLabel: string
+  screeningLinkLabel: string
+}
+
 export interface ServiceDetail {
   slug: string
   label: string
