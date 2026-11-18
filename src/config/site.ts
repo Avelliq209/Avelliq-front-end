@@ -41,6 +41,8 @@ export const ROUTES = {
   trustSafety: "/trust-safety",
   contact: "/contact",
   faqs: "/faqs",
+  signIn: "/sign-in",
+  signUp: "/sign-up",
 } as const
 
 export const MAIN_NAV: NavItem[] = [

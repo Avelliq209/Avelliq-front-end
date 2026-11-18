@@ -1,9 +1,10 @@
 import { z } from "zod"
 
+import { PHONE_PATTERN } from "@/lib/patterns"
+
 import { CONTACT_TOPICS } from "./data/content"
 
 const TOPIC_VALUES = new Set<string>(CONTACT_TOPICS.map((topic) => topic.value))
-const PHONE_PATTERN = /^\+?[\d\s().-]{7,20}$/
 
 export const contactFormSchema = z.object({
   fullName: z.string().trim().min(2, "Please enter your full name.").max(100),

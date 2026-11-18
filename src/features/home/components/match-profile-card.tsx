@@ -44,7 +44,7 @@ export function MatchProfileCard() {
             <div className="flex items-center gap-1 text-xs leading-[1.3]">
               <StarRating rating={2} starClassName="size-4" decorative />
               <span className="font-medium text-tan">{rating}</span>
-              <span className="text-[#8A8894]">({reviewCount} reviews)</span>
+              <span className="text-ink-faint">({reviewCount} reviews)</span>
             </div>
           </div>
 

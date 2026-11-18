@@ -1,7 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { ArrowRight, CircleCheck, LoaderCircle } from "lucide-react"
+import { ArrowRight, CircleCheck } from "lucide-react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import type { z } from "zod"
@@ -9,6 +9,7 @@ import type { z } from "zod"
 import { CheckboxField } from "@/components/form/checkbox-field"
 import { InputField } from "@/components/form/input-field"
 import { SelectField } from "@/components/form/select-field"
+import { SubmitButton } from "@/components/form/submit-button"
 import { TextareaField } from "@/components/form/textarea-field"
 import { Button } from "@/components/ui/button"
 
@@ -122,27 +123,18 @@ export function ContactForm() {
         </p>
       )}
 
-      <Button
-        type="submit"
+      <SubmitButton
         size="pill-sm"
-        disabled={formState.isSubmitting}
+        isLoading={formState.isSubmitting}
+        loadingLabel="Sending..."
         className="w-full sm:w-fit"
       >
-        {formState.isSubmitting ? (
-          <>
-            <LoaderCircle aria-hidden="true" className="size-3.5 animate-spin" />
-            Sending...
-          </>
-        ) : (
-          <>
-            Send Message
-            <ArrowRight
-              aria-hidden="true"
-              className="size-3 transition-transform group-hover/button:translate-x-0.5"
-            />
-          </>
-        )}
-      </Button>
+        Send Message
+        <ArrowRight
+          aria-hidden="true"
+          className="size-3 transition-transform group-hover/button:translate-x-0.5"
+        />
+      </SubmitButton>
     </form>
   )
 }

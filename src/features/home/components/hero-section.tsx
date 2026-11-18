@@ -3,6 +3,7 @@ import Link from "next/link"
 import { HeroMotion } from "@/components/motion/hero-motion"
 import { Magnetic } from "@/components/motion/magnetic"
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
+import { JoinProfessionalButton } from "@/components/shared/join-professional-button"
 import { EyebrowBadge } from "@/components/shared/eyebrow-badge"
 import { HeroTexture } from "@/components/shared/hero-texture"
 import { PhotoCard } from "@/components/shared/photo-card"
@@ -41,9 +42,7 @@ export function HeroSection() {
                 <ComingSoonButton size="pill-lg">Find Care</ComingSoonButton>
               </Magnetic>
               <Magnetic>
-                <ComingSoonButton variant="outline" size="pill-lg">
-                  Join as a Professional
-                </ComingSoonButton>
+                <JoinProfessionalButton />
               </Magnetic>
             </div>
           </div>

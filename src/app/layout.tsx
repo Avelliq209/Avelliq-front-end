@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Inter, Montserrat, Playfair_Display } from "next/font/google"
 
+import { Toaster } from "@/components/ui/sonner"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
         {children}
+        <Toaster position="top-center" richColors closeButton />
       </body>
     </html>
   )

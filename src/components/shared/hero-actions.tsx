@@ -1,5 +1,6 @@
 import { Magnetic } from "@/components/motion/magnetic"
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
+import { JoinProfessionalButton } from "@/components/shared/join-professional-button"
 
 export function HeroActions() {
   return (
@@ -10,9 +11,7 @@ export function HeroActions() {
         </ComingSoonButton>
       </Magnetic>
       <Magnetic>
-        <ComingSoonButton variant="outline" size="pill-lg">
-          Join as a Professional
-        </ComingSoonButton>
+        <JoinProfessionalButton />
       </Magnetic>
     </div>
   )

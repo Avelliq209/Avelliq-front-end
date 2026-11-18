@@ -2,6 +2,7 @@ import { CircleX } from "lucide-react"
 import Image from "next/image"
 
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
+import { JoinProfessionalButton } from "@/components/shared/join-professional-button"
 import { IconTile } from "@/components/shared/icon-tile"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -117,9 +118,7 @@ export function ServiceDetail({ detail }: { detail: ServiceDetailData }) {
           </div>
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <ComingSoonButton variant="outline-primary" size="pill-sm" className="font-semibold">
-              Join as a Professional
-            </ComingSoonButton>
+            <JoinProfessionalButton variant="outline-primary" size="pill-sm" className="font-semibold" />
             <ComingSoonButton size="pill-sm" className="font-semibold">
               {detail.ctaLabel}
             </ComingSoonButton>

@@ -2,7 +2,7 @@ import Image from "next/image"
 
 import { ImageReveal } from "@/components/motion/image-reveal"
 import { Reveal } from "@/components/motion/reveal"
-import { ComingSoonButton } from "@/components/shared/coming-soon-button"
+import { JoinProfessionalButton } from "@/components/shared/join-professional-button"
 import { EyebrowBadge } from "@/components/shared/eyebrow-badge"
 import { Section } from "@/components/shared/section"
 import { SectionDescription } from "@/components/shared/section-description"
@@ -25,9 +25,7 @@ export function ProfessionalsSection() {
             </SectionDescription>
           </div>
         </div>
-        <ComingSoonButton size="pill-lg" className="shrink-0">
-          Join as a Professional
-        </ComingSoonButton>
+        <JoinProfessionalButton variant="default" className="shrink-0" />
       </div>
 
       <Reveal as="ul" stagger={0.15} className="grid grid-cols-1 gap-5 lg:grid-cols-3">

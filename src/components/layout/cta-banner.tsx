@@ -4,6 +4,7 @@ import ctaThumbsUp from "@/assets/images/cta-thumbs-up.png"
 import { Magnetic } from "@/components/motion/magnetic"
 import { Reveal } from "@/components/motion/reveal"
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
+import { JoinProfessionalButton } from "@/components/shared/join-professional-button"
 import { Section } from "@/components/shared/section"
 import { SectionTitle } from "@/components/shared/section-title"
 
@@ -27,9 +28,7 @@ export function CtaBanner() {
               </ComingSoonButton>
             </Magnetic>
             <Magnetic>
-              <ComingSoonButton variant="white" size="pill-sm" className="font-inter">
-                Join as a Professional
-              </ComingSoonButton>
+              <JoinProfessionalButton variant="white" size="pill-sm" className="font-inter" />
             </Magnetic>
           </div>
         </div>

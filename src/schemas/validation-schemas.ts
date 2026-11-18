@@ -1,0 +1,143 @@
+import * as yup from "yup"
+
+import {
+  AVAILABILITY_OPTIONS,
+  EXPERIENCE_OPTIONS,
+  optionValues,
+  SERVICE_CATEGORY_OPTIONS,
+  US_STATE_OPTIONS,
+} from "@/features/auth/data/options"
+import { PHONE_PATTERN, SSN_LAST_FOUR_PATTERN, ZIP_CODE_PATTERN } from "@/lib/patterns"
+
+const MINIMUM_AGE = 18
+const MIN_PASSWORD_LENGTH = 8
+
+const requiredText = (message: string) => yup.string().trim().required(message)
+
+const emailAddress = yup
+  .string()
+  .trim()
+  .email("Enter a valid email address.")
+  .required("Email address is required.")
+
+const newPassword = yup
+  .string()
+  .required("Password is required.")
+  .min(MIN_PASSWORD_LENGTH, `Use at least ${MIN_PASSWORD_LENGTH} characters.`)
+  .matches(/[A-Za-z]/, "Include at least one letter.")
+  .matches(/\d/, "Include at least one number.")
+
+const confirmPassword = yup
+  .string()
+  .required("Please confirm your password.")
+  .oneOf([yup.ref("password")], "Passwords do not match.")
+
+const phoneNumber = requiredText("Phone number is required.").matches(
+  PHONE_PATTERN,
+  "Enter a valid phone number."
+)
+
+const oneOfOptions = (values: string[], message: string) =>
+  yup.string().required(message).oneOf(values, message)
+
+const acceptance = (message: string) => yup.boolean().required(message).oneOf([true], message)
+
+function isAtLeastAge(value: string | undefined, age: number) {
+  if (!value) return false
+  const birthDate = new Date(`${value}T00:00:00`)
+  if (Number.isNaN(birthDate.getTime())) return false
+  const cutoff = new Date()
+  cutoff.setFullYear(cutoff.getFullYear() - age)
+  return birthDate <= cutoff
+}
+
+export const loginValidationSchema = yup.object({
+  emailAddress,
+  password: yup.string().required("Password is required."),
+  rememberMe: yup.boolean().default(false),
+})
+
+export const clientSignUpValidationSchema = yup.object({
+  fullName: requiredText("Full name is required.").min(2, "Please enter your full name."),
+  emailAddress,
+  phoneNumber,
+  city: requiredText("City is required."),
+  homeAddress: requiredText("Home address is required."),
+  password: newPassword,
+  confirmPassword,
+  agreeToTerms: acceptance("Please accept the Terms of Service and Privacy Policy."),
+})
+
+export const professionalSignUpValidationSchema = yup.object({
+  firstName: requiredText("First name is required."),
+  lastName: requiredText("Last name is required."),
+  emailAddress,
+  phoneNumber,
+  dateOfBirth: yup
+    .string()
+    .required("Date of birth is required.")
+    .test("minimum-age", `You must be at least ${MINIMUM_AGE} years old.`, (value) =>
+      isAtLeastAge(value, MINIMUM_AGE)
+    ),
+  city: requiredText("City is required."),
+  state: oneOfOptions(optionValues(US_STATE_OPTIONS), "Select your state."),
+  homeAddress: requiredText("Home address is required."),
+  zipCode: requiredText("Zip code is required.").matches(ZIP_CODE_PATTERN, "Enter a valid zip code."),
+  serviceCategory: oneOfOptions(
+    optionValues(SERVICE_CATEGORY_OPTIONS),
+    "Select a service category."
+  ),
+  yearsOfExperience: oneOfOptions(optionValues(EXPERIENCE_OPTIONS), "Select your experience."),
+  availability: oneOfOptions(optionValues(AVAILABILITY_OPTIONS), "Select your availability."),
+  certifications: yup.string().trim().max(300, "Keep this under 300 characters.").default(""),
+  ssnLastFour: requiredText("Last 4 digits of your SSN are required.").matches(
+    SSN_LAST_FOUR_PATTERN,
+    "Enter exactly 4 digits."
+  ),
+  password: newPassword,
+  confirmPassword,
+  agreeToTerms: acceptance(
+    "Please accept the terms and consent to a background check to continue."
+  ),
+})
+
+export type LoginFormValues = yup.InferType<typeof loginValidationSchema>
+export type ClientSignUpFormValues = yup.InferType<typeof clientSignUpValidationSchema>
+export type ProfessionalSignUpFormValues = yup.InferType<typeof professionalSignUpValidationSchema>
+
+export const LOGIN_INITIAL_VALUES: LoginFormValues = {
+  emailAddress: "",
+  password: "",
+  rememberMe: false,
+}
+
+export const CLIENT_SIGN_UP_INITIAL_VALUES: ClientSignUpFormValues = {
+  fullName: "",
+  emailAddress: "",
+  phoneNumber: "",
+  city: "",
+  homeAddress: "",
+  password: "",
+  confirmPassword: "",
+  agreeToTerms: false,
+}
+
+export const PROFESSIONAL_SIGN_UP_INITIAL_VALUES: ProfessionalSignUpFormValues = {
+  firstName: "",
+  lastName: "",
+  emailAddress: "",
+  phoneNumber: "",
+  dateOfBirth: "",
+  city: "",
+  state: "",
+  homeAddress: "",
+  zipCode: "",
+  serviceCategory: "",
+  yearsOfExperience: "",
+  availability: "",
+  certifications: "",
+  ssnLastFour: "",
+  password: "",
+  confirmPassword: "",
+  agreeToTerms: false,
+}
