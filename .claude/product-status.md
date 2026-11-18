@@ -117,8 +117,8 @@ Carousels:
 - Trust & Safety CTAs (File Safety Report, Speak to Trust Agent) show the Coming soon alert until support flows exist
 - Contact form validates on the client and again in the server action, then shows a success state, but nothing is delivered yet
 - Contact page uses `siteConfig.contact` for email, phone and hours instead of the mismatched Figma values (Avelliq@gmail.com, support@avelliq.com, +1 (800) 555-CARE)
-- Contact topics and the answers to the second and third FAQ are placeholder copy written in code; Figma had none
-- FAQs page: Figma only had the answer to "What is Avelliq?"; the other 15 answers are placeholder copy to review. Figma's "Nestora" mentions were changed to Avelliq
+- Contact topics are placeholder copy written in code; Figma had none. The contact FAQ preview reuses the approved FAQ copy
+- FAQs page answers use the approved client copy (updated 2026-11-18). Figma's "Nestora" mentions were changed to Avelliq
 - FAQ hero illustration (`assets/images/faq/faq-illustration.svg`) was merged from the Figma layer SVGs because the file has no export access for this account
 - Form inputs use the `stroke` border instead of Figma's near-invisible `sand` border for contrast
 - The home gallery's service detail dialog (service-detail.tsx) has not been redesigned against Figma

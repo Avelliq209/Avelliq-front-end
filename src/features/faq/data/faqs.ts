@@ -11,17 +11,17 @@ const GETTING_STARTED_FAQS: Faq[] = [
   {
     question: "How do I find the right professional?",
     answer:
-      "Search by service and location, then compare verified profiles, experience, availability, and reviews. You can message professionals through Avelliq before you book so you can find the right fit.",
+      "Start by choosing the service you need and entering your location. You can then compare profiles, experience, availability, credentials, and verification information before deciding who may be a good fit.",
   },
   {
     question: "Which areas does Avelliq serve?",
     answer:
-      "Availability depends on the professionals active near you. Enter your location when you search to see who can help in your area, or contact our team if you cannot find coverage.",
+      "Avelliq is being built for families and professionals across the United States. Availability may vary by service and location as the marketplace grows.",
   },
   {
     question: "Can I use Avelliq for more than one type of care?",
     answer:
-      "Yes. One account lets you search across every service, so you can find a nanny, a housekeeper, and a pet sitter without signing up more than once.",
+      "Yes. Avelliq brings several kinds of care, household and personal support into one place, so you can look for different professionals as your household's needs change.",
   },
 ]
 
@@ -44,22 +44,22 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "Are professionals background checked?",
         answer:
-          "Professionals complete identity verification and a background screening before their profile can be booked. Completed checks are shown on each profile so you can see what has been verified.",
+          "Professionals complete identity verification and role-appropriate background screening. The checks shown on a profile help you understand what has been completed before you connect.",
       },
       {
         question: "Does a background check guarantee someone is the right fit?",
         answer:
-          "No. A background check is one helpful signal, not a guarantee. We encourage you to read reviews, check references, and interview professionals before you hire.",
+          "No screening can replace your own judgment. We encourage families to review profiles carefully, speak with professionals, check relevant references and credentials, and discuss expectations before arranging care.",
       },
       {
         question: "How are credentials shown?",
         answer:
-          "Verified credentials, such as certifications and completed checks, appear as badges on a professional's profile, along with the date they were confirmed.",
+          "Relevant experience, skills, and submitted certifications are presented clearly on professional profiles, together with available verification information.",
       },
       {
         question: "What should I do if I have a safety concern?",
         answer:
-          "If anyone is in immediate danger, contact local emergency services first. Then report the concern to our support team through the Contact page so we can review it promptly.",
+          "Stop the interaction if you feel unsafe and contact local emergency services when there is immediate danger. You can also contact Avelliq support so the concern can be reviewed.",
       },
     ],
   },
@@ -73,22 +73,22 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "Does it cost anything to browse profiles?",
         answer:
-          "No. Creating an account and browsing professional profiles is free. You only pay when you book a service.",
+          "Browsing available professional profiles is free. Any applicable connection, booking, or service costs will be shown clearly before you make a commitment.",
       },
       {
         question: "Who sets the service rate?",
         answer:
-          "Each professional sets their own rate, which is shown on their profile before you get in touch, so you can compare options up front.",
+          "Independent professionals present their rates and service details. Families can review these details and agree on the scope, timing, and total cost before work begins.",
       },
       {
         question: "Can I interview someone before hiring them?",
         answer:
-          "Yes. You can message professionals and arrange an interview or meet-and-greet before you confirm a booking.",
+          "Yes. A conversation is an important part of choosing care or support. Use it to discuss experience, routines, responsibilities, timing, accessibility needs, and anything else that matters to your household.",
       },
       {
         question: "Are professionals Avelliq employees?",
         answer:
-          "No. Professionals on Avelliq are independent and run their own services. Avelliq provides the platform that helps you find, compare, and connect with them.",
+          "No. Professionals use Avelliq as independent service providers. Individual clients, families, and professionals are responsible for agreeing on the working arrangement that fits their needs and follows applicable laws.",
       },
     ],
   },
@@ -102,22 +102,22 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
       {
         question: "Who can join as a professional?",
         answer:
-          "Anyone who offers childcare, senior care, housekeeping, house sitting, concierge, or pet care services and meets our verification requirements can apply to join.",
+          "Experienced childcare, housekeeping, house-sitting, senior-care, concierge, and pet-care professionals can apply. Requirements may vary by role and location.",
       },
       {
         question: "What do I need to create a profile?",
         answer:
-          "You will need a valid ID, details about your experience and services, and your consent to a background screening. Adding a clear photo and references helps families get to know you.",
+          "You'll provide information about your identity, experience, services, availability, and location. Some roles may also require relevant licenses, certifications, or additional screening.",
       },
       {
         question: "Can I choose when and where I work?",
         answer:
-          "Yes. You set your own availability, service area, and rates, and you decide which requests to accept.",
+          "Yes. As an independent professional, you can present your availability, preferred service area, and the kinds of opportunities you want to consider.",
       },
       {
         question: "How can I make my profile stand out?",
         answer:
-          "Complete every section, add certifications, respond to messages quickly, and ask past clients for reviews. Detailed, up-to-date profiles earn more trust.",
+          "Keep your experience current, describe your services clearly, add relevant credentials, respond promptly, and set expectations honestly. A complete, thoughtful profile helps clients make confident choices.",
       },
     ],
   },

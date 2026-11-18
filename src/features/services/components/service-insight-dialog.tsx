@@ -5,21 +5,19 @@ import type { ReactNode } from "react"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { useScrollLock } from "@/hooks/use-scroll-lock"
 
-import type { ServiceInsight as ServiceInsightData } from "../types"
+import { SERVICE_INSIGHTS_BY_SLUG } from "../data/service-insights"
 import { ServiceInsight } from "./service-insight"
 
 interface ServiceInsightDialogProps {
-  insight: ServiceInsightData
+  slug: string
   trigger: ReactNode
   triggerClassName?: string
 }
 
-export function ServiceInsightDialog({
-  insight,
-  trigger,
-  triggerClassName,
-}: ServiceInsightDialogProps) {
+export function ServiceInsightDialog({ slug, trigger, triggerClassName }: ServiceInsightDialogProps) {
   const setScrollLocked = useScrollLock()
+  const insight = SERVICE_INSIGHTS_BY_SLUG.get(slug)
+  if (!insight) return null
 
   return (
     <Dialog onOpenChange={setScrollLocked}>

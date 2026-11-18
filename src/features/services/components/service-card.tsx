@@ -14,7 +14,7 @@ import { ServiceInsightDialog } from "./service-insight-dialog"
 
 export function ServiceCard({ service }: { service: ServiceCategory }) {
   const { slug, title, description, offerings, ctaLabel, image, imageAlt, imagePosition } = service
-  const insight = SERVICE_INSIGHTS_BY_SLUG.get(slug)
+  const hasInsight = SERVICE_INSIGHTS_BY_SLUG.has(slug)
   const ctaClassName = cn(buttonVariants({ variant: "outline-primary", size: "pill-sm" }), "w-full")
   const ctaContent = (
     <>
@@ -52,8 +52,8 @@ export function ServiceCard({ service }: { service: ServiceCategory }) {
         </ul>
       </div>
 
-      {insight ? (
-        <ServiceInsightDialog insight={insight} trigger={ctaContent} triggerClassName={ctaClassName} />
+      {hasInsight ? (
+        <ServiceInsightDialog slug={slug} trigger={ctaContent} triggerClassName={ctaClassName} />
       ) : (
         <Link href={`${ROUTES.services}#${slug}`} className={ctaClassName}>
           {ctaContent}
