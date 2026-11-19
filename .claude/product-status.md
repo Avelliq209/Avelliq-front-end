@@ -16,7 +16,8 @@ Read `.claude/rules/rules.md` before starting any task. Those rules are mandator
 | Contact Us page, new Figma design | Done (`/contact`, validated form, FAQ preview) |
 | FAQs page, new Figma design | Done (`/faqs`, hero illustration, category tabs, four FAQ categories) |
 | Remaining pages (Resources) | Not started |
-| Real CTAs, forms, auth | Not started (buttons show a "Coming soon" alert) |
+| Auth screens | Done (`/sign-in`, `/sign-up`, client and professional, Formik + Yup, simulated requests, no backend) |
+| Real CTAs, backend | Partial (Sign In and Join as a Professional link to auth; other buttons still show "Coming soon") |
 
 ## Stack
 
@@ -112,7 +113,7 @@ Carousels:
 - Services page search filters cards client side by title, description and offerings; the Figma search field has no spec beyond its look
 - Figma typos not copied: House Sitters CTA reads "Explore House-keeping" and Pet Care reuses the Concierge description
 - Service card "Explore" CTAs (services page and home preview) open the service CTA modals. Figma copy had em-dashes, rewritten with commas and colons. The statistics and social proof numbers come straight from Figma and are unverified marketing claims
-- Modal "Find a ... Professional" buttons show the Coming soon alert; "Learn more about our screening process" links to `/trust-safety#screening`
+- Modal "Find a ... Professional" buttons open the "Tell us what you need" care request form (node `13972:2015`) in the same dialog. The same form is used for every service, with the service preselected. "Continue to Sign Up" saves the answers to sessionStorage (`avelliq:care-request`) and goes to `/sign-up`; nothing reads them yet. "Learn more about our screening process" links to `/trust-safety#screening`
 - Generic icons (chevrons, arrows, check, user) use lucide; brand icons are Figma SVGs. Trust & Safety Feather-style icons map to lucide equivalents; the hugeicons customer-support icon is a local SVG
 - Trust & Safety CTAs (File Safety Report, Speak to Trust Agent) show the Coming soon alert until support flows exist
 - Contact form validates on the client and again in the server action, then shows a success state, but nothing is delivered yet

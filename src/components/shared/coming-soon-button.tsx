@@ -1,9 +1,10 @@
 "use client"
 
-import { ArrowRight } from "lucide-react"
 import type { ComponentProps } from "react"
 
 import { Button } from "@/components/ui/button"
+
+import { ButtonArrow } from "./button-arrow"
 
 type ComingSoonButtonProps = Omit<ComponentProps<typeof Button>, "onClick"> & {
   withArrow?: boolean
@@ -17,9 +18,7 @@ export function ComingSoonButton({ withArrow = false, children, ...props }: Comi
   return (
     <Button onClick={notifyComingSoon} {...props}>
       {children}
-      {withArrow && (
-        <ArrowRight className="size-3 transition-transform group-hover/button:translate-x-0.5" />
-      )}
+      {withArrow && <ButtonArrow />}
     </Button>
   )
 }

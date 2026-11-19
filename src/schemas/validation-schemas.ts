@@ -1,12 +1,13 @@
 import * as yup from "yup"
 
+import { AVAILABILITY_OPTIONS, EXPERIENCE_OPTIONS, US_STATE_OPTIONS } from "@/features/auth/data/options"
 import {
-  AVAILABILITY_OPTIONS,
-  EXPERIENCE_OPTIONS,
-  optionValues,
-  SERVICE_CATEGORY_OPTIONS,
-  US_STATE_OPTIONS,
-} from "@/features/auth/data/options"
+  HOURS_PER_SESSION_OPTIONS,
+  NUMBER_OF_CHILDREN_OPTIONS,
+  TIME_OF_DAY_OPTIONS,
+} from "@/features/care-request/data/options"
+import { SERVICE_OPTIONS } from "@/features/services/data/service-options"
+import { optionValues } from "@/lib/options"
 import { PHONE_PATTERN, SSN_LAST_FOUR_PATTERN, ZIP_CODE_PATTERN } from "@/lib/patterns"
 
 const MINIMUM_AGE = 18
@@ -84,7 +85,7 @@ export const professionalSignUpValidationSchema = yup.object({
   homeAddress: requiredText("Home address is required."),
   zipCode: requiredText("Zip code is required.").matches(ZIP_CODE_PATTERN, "Enter a valid zip code."),
   serviceCategory: oneOfOptions(
-    optionValues(SERVICE_CATEGORY_OPTIONS),
+    optionValues(SERVICE_OPTIONS),
     "Select a service category."
   ),
   yearsOfExperience: oneOfOptions(optionValues(EXPERIENCE_OPTIONS), "Select your experience."),
@@ -101,9 +102,54 @@ export const professionalSignUpValidationSchema = yup.object({
   ),
 })
 
+function isTodayOrLater(value: string | undefined) {
+  if (!value) return false
+  const date = new Date(`${value}T00:00:00`)
+  if (Number.isNaN(date.getTime())) return false
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  return date >= today
+}
+
+export const careRequestValidationSchema = yup.object({
+  serviceType: oneOfOptions(optionValues(SERVICE_OPTIONS), "Select a service type."),
+  hoursPerSession: oneOfOptions(
+    optionValues(HOURS_PER_SESSION_OPTIONS),
+    "Select how many hours you need."
+  ),
+  numberOfChildren: oneOfOptions(
+    optionValues(NUMBER_OF_CHILDREN_OPTIONS),
+    "Select how many children."
+  ),
+  childrenAges: yup.string().trim().max(100, "Keep this under 100 characters.").default(""),
+  location: requiredText("Location is required."),
+  startDate: yup
+    .string()
+    .required("Preferred start date is required.")
+    .test("not-in-past", "Choose today or a future date.", isTodayOrLater),
+  timeOfDay: yup
+    .array(yup.string().required().oneOf(optionValues(TIME_OF_DAY_OPTIONS)))
+    .min(1, "Select at least one time of day.")
+    .required(),
+  specialRequirements: yup.string().trim().max(1000, "Keep this under 1000 characters.").default(""),
+})
+
 export type LoginFormValues = yup.InferType<typeof loginValidationSchema>
 export type ClientSignUpFormValues = yup.InferType<typeof clientSignUpValidationSchema>
 export type ProfessionalSignUpFormValues = yup.InferType<typeof professionalSignUpValidationSchema>
+
+export type CareRequestFormValues = yup.InferType<typeof careRequestValidationSchema>
+
+export const createCareRequestInitialValues = (serviceType = ""): CareRequestFormValues => ({
+  serviceType,
+  hoursPerSession: "",
+  numberOfChildren: "",
+  childrenAges: "",
+  location: "",
+  startDate: "",
+  timeOfDay: [],
+  specialRequirements: "",
+})
 
 export const LOGIN_INITIAL_VALUES: LoginFormValues = {
   emailAddress: "",

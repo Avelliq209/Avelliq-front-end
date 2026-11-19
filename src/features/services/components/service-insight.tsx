@@ -2,7 +2,7 @@ import { CircleCheck, CircleX, RefreshCw, Star, type LucideIcon } from "lucide-r
 import Link from "next/link"
 import { Fragment } from "react"
 
-import { ComingSoonButton } from "@/components/shared/coming-soon-button"
+import { ButtonArrow } from "@/components/shared/button-arrow"
 import { EyebrowBadge } from "@/components/shared/eyebrow-badge"
 import { Button } from "@/components/ui/button"
 import { DialogClose, DialogDescription, DialogTitle } from "@/components/ui/dialog"
@@ -27,7 +27,12 @@ function SectionHeading({ children }: { children: string }) {
   )
 }
 
-export function ServiceInsight({ insight }: { insight: ServiceInsightData }) {
+interface ServiceInsightProps {
+  insight: ServiceInsightData
+  onContinue: () => void
+}
+
+export function ServiceInsight({ insight, onContinue }: ServiceInsightProps) {
   return (
     <div
       data-lenis-prevent
@@ -129,9 +134,14 @@ export function ServiceInsight({ insight }: { insight: ServiceInsightData }) {
           {insight.closingLine}
         </p>
         <div className="flex flex-col items-center gap-4">
-          <ComingSoonButton size="pill" withArrow className="h-auto min-h-12 text-base font-normal whitespace-normal">
+          <Button
+            size="pill"
+            onClick={onContinue}
+            className="h-auto min-h-12 text-base font-normal whitespace-normal"
+          >
             {insight.ctaLabel}
-          </ComingSoonButton>
+            <ButtonArrow />
+          </Button>
           <DialogClose
             nativeButton={false}
             render={

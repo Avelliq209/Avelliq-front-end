@@ -10,6 +10,7 @@ import { FormikPasswordField } from "@/components/form/formik/formik-password-fi
 import { FormikSelectField } from "@/components/form/formik/formik-select-field"
 import { SubmitButton } from "@/components/form/submit-button"
 import { FieldLegend, FieldSet } from "@/components/ui/field"
+import { SERVICE_OPTIONS } from "@/features/services/data/service-options"
 import {
   PROFESSIONAL_SIGN_UP_INITIAL_VALUES,
   professionalSignUpValidationSchema,
@@ -19,7 +20,6 @@ import { simulateAuthRequest } from "../api"
 import {
   AVAILABILITY_OPTIONS,
   EXPERIENCE_OPTIONS,
-  SERVICE_CATEGORY_OPTIONS,
   US_STATE_OPTIONS,
 } from "../data/options"
 import { useAuthForm } from "../hooks/use-auth-form"
@@ -98,7 +98,7 @@ export function ProfessionalSignUpForm() {
             name="serviceCategory"
             label="Service Category"
             placeholder="Select a service"
-            options={SERVICE_CATEGORY_OPTIONS}
+            options={SERVICE_OPTIONS}
           />
           <FieldRow>
             <FormikSelectField

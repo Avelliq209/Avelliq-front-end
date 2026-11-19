@@ -1,10 +1,4 @@
 import type { SelectOption } from "@/components/form/select-input"
-import { SERVICES } from "@/features/services/data/services"
-
-export const SERVICE_CATEGORY_OPTIONS: SelectOption[] = SERVICES.map(({ slug, title }) => ({
-  value: slug,
-  label: title,
-}))
 
 export const EXPERIENCE_OPTIONS: SelectOption[] = [
   { value: "under-1", label: "Less than 1 year" },
@@ -40,5 +34,3 @@ export const US_STATE_OPTIONS: SelectOption[] = US_STATES.map(([code, name]) => 
   value: code,
   label: name,
 }))
-
-export const optionValues = (options: readonly SelectOption[]) => options.map(({ value }) => value)
