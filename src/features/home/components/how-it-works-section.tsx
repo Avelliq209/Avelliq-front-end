@@ -14,7 +14,6 @@ export function HowItWorksSection() {
     <Section id="how-it-works" className="scroll-mt-24 bg-primary">
       <HowItWorksMotion className="flex flex-col items-center justify-between gap-10 xl:flex-row">
         <div
-          data-step-media
           className="relative aspect-517/602 w-full max-w-129.25 shrink-0 overflow-hidden rounded-[16px]"
         >
           <Image

@@ -12,11 +12,12 @@ interface RevealProps {
   y?: number
   delay?: number
   stagger?: number
+  targets?: string
   id?: string
   "aria-label"?: string
 }
 
-export function Reveal({ as: Component = "div", children, y = 48, delay = 0, stagger, ...props }: RevealProps) {
+export function Reveal({ as: Component = "div", children, y = 48, delay = 0, stagger, targets, ...props }: RevealProps) {
   const ref = useRef<HTMLElement>(null)
 
   useGSAP(
@@ -25,7 +26,8 @@ export function Reveal({ as: Component = "div", children, y = 48, delay = 0, sta
       if (!element) return
 
       gsap.matchMedia().add(MOTION_OK, () => {
-        gsap.from(stagger ? element.children : element, {
+        const animated = targets ? element.querySelectorAll(targets) : stagger ? element.children : element
+        gsap.from(animated, {
           y,
           autoAlpha: 0,
           duration: 1,
