@@ -36,13 +36,17 @@ export function SignInForm() {
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <FormikCheckboxField name="rememberMe" label="Remember me" className="w-auto" />
+        <FormikCheckboxField
+          name="rememberMe"
+          label={<span className="text-sm text-muted-foreground">Remember me</span>}
+          className="w-auto"
+        />
         <ComingSoonButton variant="link" className="h-auto p-0 text-sm font-semibold">
           Forgot Password?
         </ComingSoonButton>
       </div>
 
-      <SubmitButton size="pill" isLoading={formik.isSubmitting} loadingLabel="Signing in..." className="w-full">
+      <SubmitButton size="pill-lg" isLoading={formik.isSubmitting} loadingLabel="Signing in..." className="w-full">
         Sign In
       </SubmitButton>
     </FormikForm>

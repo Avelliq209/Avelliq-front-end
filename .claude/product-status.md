@@ -1,6 +1,6 @@
 # Product Status
 
-Last updated: 2026-11-18. Branch: `dev`. Services page work is uncommitted at time of writing.
+Last updated: 2026-11-24. Branch: `dev`.
 
 Read `.claude/rules/rules.md` before starting any task. Those rules are mandatory.
 
@@ -16,7 +16,7 @@ Read `.claude/rules/rules.md` before starting any task. Those rules are mandator
 | Contact Us page, new Figma design | Done (`/contact`, validated form, FAQ preview) |
 | FAQs page, new Figma design | Done (`/faqs`, hero illustration, category tabs, four FAQ categories) |
 | Remaining pages (Resources) | Not started |
-| Auth screens | Done (`/sign-in`, `/sign-up`, client and professional, Formik + Yup, simulated requests, no backend) |
+| Auth screens | Done (`/sign-in`, `/sign-up`; professional sign up is an account step plus three stages; Formik + Yup, simulated requests, no backend) |
 | Real CTAs, backend | Partial (Sign In and Join as a Professional link to auth; other buttons still show "Coming soon") |
 
 ## Stack
@@ -74,6 +74,8 @@ src/
   - Trust & Safety page frame: node `13738:3382`
   - Contact Us page frame: node `13819:2849`
   - FAQs page frame: node `13745:4944`
+  - Sign up and sign in section: node `13980:2110`
+  - User Dashboard section: node `14483:1068`
 - Use the Figma MCP (`get_design_context`) and follow the `figma-design-to-code` skill. Download assets locally, compress large photos with `sips` (resize, JPEG quality 80).
 - Theme tokens live in `src/app/globals.css`:
   - shadcn tokens: `background` #F5F2E8, `foreground` #111827, `primary` #4C5A3D, `secondary`/`muted` #F5EFE6, `muted-foreground` #5F6B67, `border` #D2CEC3
@@ -121,6 +123,8 @@ Carousels:
 - Contact topics are placeholder copy written in code; Figma had none. The contact FAQ preview reuses the approved FAQ copy
 - FAQs page answers use the approved client copy (updated 2026-11-18). Figma's "Nestora" mentions were changed to Avelliq
 - FAQ hero illustration (`assets/images/faq/faq-illustration.svg`) was merged from the Figma layer SVGs because the file has no export access for this account
+- Professional sign up (`useProfessionalSignUp`) keeps all values in one Formik instance and swaps the Yup schema per step. "Verify Email & Continue" is simulated: no email is sent. Values are held in memory only because they include SSN digits, so a refresh restarts the flow
+- Figma has no designs for email verification, Forgot Password or Care Agency sign up. Forgot Password and Google show the Coming soon alert, and the Care Agency tab is disabled
 - Form inputs use the `stroke` border instead of Figma's near-invisible `sand` border for contrast
 - The home gallery's service detail dialog (service-detail.tsx) has not been redesigned against Figma
 
