@@ -125,6 +125,7 @@ Carousels:
 - FAQ hero illustration (`assets/images/faq/faq-illustration.svg`) was merged from the Figma layer SVGs because the file has no export access for this account
 - Professional sign up (`useProfessionalSignUp`) keeps all values in one Formik instance and swaps the Yup schema per step. "Verify Email & Continue" is simulated: no email is sent. Values are held in memory only because they include SSN digits, so a refresh restarts the flow
 - Figma has no designs for email verification, Forgot Password or Care Agency sign up. Forgot Password and Google show the Coming soon alert, and the Care Agency tab is disabled
+- Hero category photos: Figma's Lifestyle assistant and Pet Care bitmaps are pre-stretched (2:3 and 3:2) and squeezed back by a fill-mode fill, so the local files are resampled to the 244:215 card ratio. Re-exporting the raw bitmaps brings the distortion back
 - Form inputs use the `stroke` border instead of Figma's near-invisible `sand` border for contrast
 - The home gallery's service detail dialog (service-detail.tsx) has not been redesigned against Figma
 
