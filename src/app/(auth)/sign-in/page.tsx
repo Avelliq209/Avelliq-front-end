@@ -16,7 +16,7 @@ export default async function SignInPage({ searchParams }: PageProps<"/sign-in">
   return (
     <AuthScreen mode="sign-in" role={role}>
       <AuthEntry mode="sign-in" role={role}>
-        <SignInForm />
+        <SignInForm role={role} />
       </AuthEntry>
     </AuthScreen>
   )

@@ -73,6 +73,11 @@ export const AUTH_ROUTES: Record<AuthMode, string> = {
   "sign-up": ROUTES.signUp,
 }
 
+export const SIGN_IN_REDIRECTS: Record<AuthRole, string> = {
+  client: ROUTES.dashboard,
+  professional: ROUTES.home,
+}
+
 export const PROFESSIONAL_SIGN_UP_STAGES: { stage: ProfessionalSignUpStage; label: string }[] = [
   { stage: "personal", label: "Personal" },
   { stage: "professional", label: "Professional" },
