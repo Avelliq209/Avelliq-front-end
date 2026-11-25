@@ -3,14 +3,13 @@
 import { Calendar as CalendarIcon } from "lucide-react"
 import { useState } from "react"
 
+import { PILL_FIELD_CLASS } from "@/components/form/pill-field"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { useNow } from "@/hooks/use-now"
 import { formatMonthDayYear } from "@/lib/date"
 import { cn } from "@/lib/utils"
-
-import { SEARCH_FIELD_CLASS } from "./search-field"
 
 const ANY_DATE = "Any date"
 
@@ -36,7 +35,7 @@ export function CareDatePicker({ value, onChange }: CareDatePickerProps) {
           <Button
             variant="white"
             aria-label={`Date: ${label}`}
-            className={cn(SEARCH_FIELD_CLASS, "justify-start")}
+            className={cn(PILL_FIELD_CLASS, "justify-start")}
           />
         }
       >

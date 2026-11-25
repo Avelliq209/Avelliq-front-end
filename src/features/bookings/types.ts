@@ -1,6 +1,6 @@
 import type { Professional } from "@/features/professionals/types"
 
-export type BookingStatus = "confirmed" | "pending"
+export type BookingStatus = "confirmed" | "pending" | "completed" | "cancelled"
 
 export interface BookingPrice {
   hours: number
@@ -29,9 +29,9 @@ export interface Booking {
   status: BookingStatus
   start: Date
   end: Date
-  care?: BookingCare
-  price?: BookingPrice
-  paymentLabel?: string
+  care: BookingCare
+  price: BookingPrice
+  paymentLabel: string
 }
 
 export interface PaymentCard {

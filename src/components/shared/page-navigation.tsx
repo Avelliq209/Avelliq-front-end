@@ -9,16 +9,15 @@ import {
   PaginationEllipsis,
   PaginationItem,
 } from "@/components/ui/pagination"
+import { getPageItems } from "@/lib/pagination"
 
-import { getPageItems } from "../lib/pagination"
-
-interface ResultsPaginationProps {
+interface PageNavigationProps {
   page: number
   pageCount: number
   onPageChange: (page: number) => void
 }
 
-export function ResultsPagination({ page, pageCount, onPageChange }: ResultsPaginationProps) {
+export function PageNavigation({ page, pageCount, onPageChange }: PageNavigationProps) {
   return (
     <Pagination aria-label="Results pages" className="mx-0 w-auto">
       <PaginationContent>

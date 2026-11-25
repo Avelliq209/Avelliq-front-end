@@ -16,7 +16,7 @@ Read `.claude/rules/rules.md` before starting any task. Those rules are mandator
 | Contact Us page, new Figma design | Done (`/contact`, validated form, FAQ preview) |
 | FAQs page, new Figma design | Done (`/faqs`, hero illustration, category tabs, four FAQ categories) |
 | Remaining pages (Resources) | Not started |
-| User Dashboard | In progress (mock data, no auth guard): overview (`/dashboard`), Find Care with profile panel (`/dashboard/find-care`) and booking flow (`/dashboard/find-care/[professionalId]/book`) done; My bookings, Booking details and Messages not started |
+| User Dashboard | In progress (mock data, no auth guard): overview (`/dashboard`), Find Care with profile panel (`/dashboard/find-care`) and booking flow (`/dashboard/find-care/[professionalId]/book`), My bookings (`/dashboard/bookings`) and Booking details (`/dashboard/bookings/[bookingId]`) done; Messages, Payment and Settings not started |
 | Auth screens | Done (`/sign-in`, `/sign-up`; professional sign up is an account step plus three stages; Formik + Yup, simulated requests, no backend) |
 | Real CTAs, backend | Partial (Sign In and Join as a Professional link to auth; other buttons still show "Coming soon") |
 
@@ -45,9 +45,9 @@ src/
       faqs/page.tsx          FAQs page (hero, category tab strip, one section per FAQ category)
   components/
     ui/                      shadcn primitives only (button has custom variants and sizes)
-    form/                    TextInput, SelectInput (styled, usable without a form) and react-hook-form bound InputField, SelectField, TextareaField, CheckboxField built on a shared FormField (label, optional marker, description, error, aria wiring)
+    form/                    TextInput, SelectInput, PillSearchInput, PillSelect (styled, usable without a form) and react-hook-form bound InputField, SelectField, TextareaField, CheckboxField built on a shared FormField (label, optional marker, description, error, aria wiring)
     layout/                  announcement-bar, site-header, header-actions, main-nav, mobile-nav (Sheet), logo, site-footer, newsletter-form, cta-banner
-    shared/                  Section, SectionHeading (eyebrow or label, title, description, align), HeroTexture, SectionTitle, SectionDescription, EyebrowBadge, PhotoCard, CarouselDots, CheckListItem, IconTile, StarRating, CirclePattern, ComingSoonButton
+    shared/                  Section, SectionHeading (eyebrow or label, title, description, align), HeroTexture, SectionTitle, SectionDescription, EyebrowBadge, UnderlineTabs, PageNavigation, ListFooter, EmptyResults, PhotoCard, CarouselDots, CheckListItem, IconTile, StarRating, CirclePattern, ComingSoonButton
     motion/                  HeroMotion (intro-synced hero entrance), SmoothScroll, IntroOverlay, Reveal, RevealText, ImageReveal, Magnetic, CountUp
   features/
     home/                    components (one file per section plus hero-motion, how-it-works-motion, match-profile-card), data/content.ts
@@ -58,8 +58,8 @@ src/
     dashboard/               shell (sidebar, header), DashboardPage and DashboardPageHeader (use on every dashboard screen), overview cards
     professionals/           shared professional model, PROFESSIONALS mock list, getProfessional, ProfessionalCard, ProfessionalPortrait, ProfileSheet
     find-care/               FindCare page (tabs, search form, filters form and mobile sheet, sort, pagination), search lib, useCareSearch
-    bookings/                Booking model, mock bookings, in-memory booking store, pricing, useBookings (mock plus created), status badge, saved cards
-    booking-flow/            four-step wizard (schedule, care, payment, review) plus confirmation, useBookingFlow, schedule and summary helpers, BookingSummary
+    bookings/                Booking model, mock bookings, in-memory booking store, pricing, useBookings (mock plus created, resolves statuses), My bookings page and list, Booking details, BookingSummary, WeekCardShell, saved cards
+    booking-flow/            four-step wizard (schedule, care, payment, review) plus confirmation, useBookingFlow, schedule and summary helpers
     testimonials/            section, carousel, card, data, types
   config/site.ts             site config, ROUTES, MAIN_NAV, FOOTER_NAV, LEGAL_NAV, SOCIAL_LINKS, ANNOUNCEMENT
   hooks/                     use-autoplay, use-carousel-index, use-scroll-lock
@@ -142,15 +142,18 @@ Carousels:
 - Booking payment uses the saved card only (read-only fields). The security code is checked for format, held in memory and cleared on confirm. Use a payment provider's hosted fields before taking real cards. Figma has no add-card design
 - Booking Figma copy that was sample data (Alex Morgan, Jamie, 123 Example Street) is shown as placeholders or replaced with the signed-in user. After confirmation the summary note reads "Paid with ..." instead of "You'll review everything before paying"
 - Booking times run 6:00 AM to 10:00 PM in 30 minute slots, one hour minimum, from tomorrow, on the professional's available weekdays. The $10 service fee is from Figma. Times are wall-clock and labelled Eastern Time
-- `/dashboard/find-care?professional=<id>` opens that profile panel. "View booking details" shows Coming soon until that page exists
-- "Booking Details" was removed from the sidebar (missing in the newer Figma frames); it will open from My bookings
+- `/dashboard/find-care?professional=<id>` opens that profile panel
+- My bookings: 17 mock bookings as in Figma, with dates relative to today, so counts shift as today's booking ends. Confirmed bookings become Completed once over; unanswered requests become Cancelled. References are AV-YYMMDD, with a suffix for a second booking on the same day
+- My bookings Figma fixes: sidebar highlights My bookings (not Message), "19:00 AM" is 9:00 AM, duplicate rows are unique, upcoming rows really come first, and Reschedule is white because maroon on green is unreadable. Reschedule and Message show Coming soon
+- Cancelled bookings still read "Paid", as in Figma; refund wording needs a product decision
+- "Booking Details" was removed from the sidebar (missing in the newer Figma frames); it opens from My bookings, the dashboard and the confirmation
 - shadcn tabs, slider, popover, calendar and pagination were added from the official GitHub source because ui.shadcn.com was unreachable; Slider has an extra `getThumbLabel` prop and SheetContent an `overlayClassName` prop
 - Form inputs use the `stroke` border instead of Figma's near-invisible `sand` border for contrast
 - The home gallery's service detail dialog (service-detail.tsx) has not been redesigned against Figma
 
 ## Next Steps
 
-1. Dashboard: My bookings with Booking details next, then Messages
+1. Dashboard: Messages next
 2. Decide whether the home gallery dialog (service-detail.tsx) should be replaced by the new service CTA modal or redesigned separately
 3. Build the remaining page (Resources)
 4. Wire `sendContactMessage` (src/features/contact/actions.ts) to a real delivery channel (email service or API); it only validates today

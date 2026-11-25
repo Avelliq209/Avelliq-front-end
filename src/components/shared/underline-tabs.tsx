@@ -3,15 +3,19 @@
 import { useEffect, useRef } from "react"
 
 import { TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { CARE_CATEGORIES } from "@/features/professionals/data/categories"
-import type { CareCategorySlug } from "@/features/professionals/types"
 
-export function CareCategoryTabs({ selected }: { selected: CareCategorySlug }) {
+interface UnderlineTabsProps {
+  items: readonly { value: string; label: string }[]
+  selected: string
+  "aria-label": string
+}
+
+export function UnderlineTabs({ items, selected, "aria-label": ariaLabel }: UnderlineTabsProps) {
   const scrollerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const scroller = scrollerRef.current
-    const tab = scroller?.querySelector<HTMLElement>(`[data-category="${selected}"]`)
+    const tab = scroller?.querySelector<HTMLElement>(`[data-tab="${selected}"]`)
     if (!scroller || !tab) return
 
     const centeredLeft = tab.offsetLeft - (scroller.clientWidth - tab.offsetWidth) / 2
@@ -25,14 +29,14 @@ export function CareCategoryTabs({ selected }: { selected: CareCategorySlug }) {
     >
       <TabsList
         variant="line"
-        aria-label="Care categories"
+        aria-label={ariaLabel}
         className="static gap-4 p-0 group-data-horizontal/tabs:h-11"
       >
-        {CARE_CATEGORIES.map(({ slug, label }) => (
+        {items.map(({ value, label }) => (
           <TabsTrigger
-            key={slug}
-            value={slug}
-            data-category={slug}
+            key={value}
+            value={value}
+            data-tab={value}
             className="h-full flex-none rounded-none border-0 border-b border-stroke/50 px-4 text-lg leading-[1.2] font-normal text-muted-foreground after:bg-support group-data-horizontal/tabs:after:bottom-0 data-active:font-semibold data-active:text-primary"
           >
             {label}

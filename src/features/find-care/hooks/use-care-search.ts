@@ -5,6 +5,7 @@ import { useMemo, useState } from "react"
 import { DEFAULT_CARE_CATEGORY } from "@/features/professionals/data/categories"
 import { PROFESSIONALS } from "@/features/professionals/data/professionals"
 import type { CareCategorySlug } from "@/features/professionals/types"
+import { paginate } from "@/lib/pagination"
 
 import { DEFAULT_CRITERIA, DEFAULT_FILTERS, PAGE_SIZE } from "../data/options"
 import { searchProfessionals } from "../lib/search-professionals"
@@ -21,9 +22,7 @@ export function useCareSearch(initialCategory: CareCategorySlug = DEFAULT_CARE_C
   const [search, setSearch] = useState<CareSearch>({ ...INITIAL_SEARCH, category: initialCategory })
   const { category, criteria, filters, sort, page } = search
 
-  const results = useMemo(() => searchProfessionals(PROFESSIONALS, search), [search])
-  const pageCount = Math.max(1, Math.ceil(results.length / PAGE_SIZE))
-  const firstIndex = (page - 1) * PAGE_SIZE
+  const matches = useMemo(() => searchProfessionals(PROFESSIONALS, search), [search])
 
   const update = (changes: Partial<CareSearch>) =>
     setSearch((current) => ({ ...current, page: 1, ...changes }))
@@ -33,11 +32,7 @@ export function useCareSearch(initialCategory: CareCategorySlug = DEFAULT_CARE_C
     criteria,
     filters,
     sort,
-    page,
-    pageCount,
-    firstIndex,
-    total: results.length,
-    visible: results.slice(firstIndex, firstIndex + PAGE_SIZE),
+    results: paginate(matches, page, PAGE_SIZE),
     setCategory: (slug: CareCategorySlug) =>
       update({ category: slug, filters: { ...filters, careTypes: [] } }),
     setCriteria: (next: CareCriteria) => update({ criteria: next }),

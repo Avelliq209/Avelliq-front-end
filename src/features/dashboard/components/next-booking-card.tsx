@@ -1,12 +1,14 @@
 "use client"
 
 import { Calendar, MapPin } from "lucide-react"
+import Link from "next/link"
 
-import { ComingSoonButton } from "@/components/shared/coming-soon-button"
+import { buttonVariants } from "@/components/ui/button"
 import { CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 import { BookingStatusBadge } from "@/features/bookings/components/booking-status-badge"
 import { useBookings } from "@/features/bookings/hooks/use-bookings"
+import { bookingDetailsHref } from "@/features/bookings/lib/routes"
 import type { Booking } from "@/features/bookings/types"
 import { ProfessionalPortrait } from "@/features/professionals/components/professional-portrait"
 import {
@@ -16,6 +18,7 @@ import {
   formatTimeRange,
   getHoursBetween,
 } from "@/lib/date"
+import { cn } from "@/lib/utils"
 
 import { DashboardCard } from "./dashboard-card"
 
@@ -56,9 +59,12 @@ function BookingSummary({ booking, now }: { booking: Booking; now: Date }) {
             </p>
           </div>
         </div>
-        <ComingSoonButton className="h-10 rounded-full px-6 font-normal">
+        <Link
+          href={bookingDetailsHref(booking.id)}
+          className={cn(buttonVariants(), "h-10 rounded-full px-6 font-normal")}
+        >
           View booking
-        </ComingSoonButton>
+        </Link>
       </div>
     </>
   )

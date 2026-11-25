@@ -4,14 +4,15 @@ import { useFormikContext } from "formik"
 
 import { Button } from "@/components/ui/button"
 import { getSavedCard } from "@/features/bookings/data/payment-cards"
+import { formatCareAddress } from "@/features/bookings/lib/summary"
+import { TIME_ZONE } from "@/features/bookings/lib/time-zone"
 import { getCategoryLabel } from "@/features/professionals/data/categories"
 import type { Professional } from "@/features/professionals/types"
 import { formatCompactCurrency, formatCurrency } from "@/lib/currency"
 import { formatHours, formatLongDate, formatTimeRange } from "@/lib/date"
 import type { BookingFormValues } from "@/schemas/validation-schemas"
 
-import { TIME_ZONE_LABEL } from "../lib/schedule"
-import { formatCareAddress, summarizeBooking } from "../lib/summary"
+import { summarizeBooking } from "../lib/summary"
 import type { BookingStep } from "../types"
 import { BookingPanel } from "./booking-panel"
 
@@ -33,7 +34,7 @@ export function ReviewStep({ professional, onEdit, disabled }: ReviewStepProps) 
       title: "Schedule",
       lines: [
         `${formatLongDate(start)} · ${formatTimeRange(start, end)}`,
-        `One-time booking · ${duration} · ${TIME_ZONE_LABEL}`,
+        `One-time booking · ${duration} · ${TIME_ZONE.label}`,
       ],
     },
     {

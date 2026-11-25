@@ -5,6 +5,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 
 import { getSavedCard, SAVED_CARDS } from "@/features/bookings/data/payment-cards"
+import { useBookings } from "@/features/bookings/hooks/use-bookings"
 import { addBooking } from "@/features/bookings/lib/booking-store"
 import type { Booking } from "@/features/bookings/types"
 import { CURRENT_USER } from "@/features/dashboard/data/mock"
@@ -39,20 +40,28 @@ const createInitialValues = (professional: Professional, today: Date): BookingFo
   billingAddress: "",
 })
 
-function createBooking(values: BookingFormValues, professional: Professional) {
+function createBooking(
+  values: BookingFormValues,
+  professional: Professional,
+  existing: Booking[]
+) {
   const { recipient, address, city, zipCode, contactName, contactPhone, notes } = values
 
-  return addBooking({
-    ...summarizeBooking(values, professional),
-    service: getCategoryLabel(professional.category),
-    serviceDetail: professional.role,
-    status: "confirmed",
-    care: { recipient, address, city, zipCode, contactName, contactPhone, notes },
-    paymentLabel: getSavedCard(values.cardId).label,
-  })
+  return addBooking(
+    {
+      ...summarizeBooking(values, professional),
+      service: getCategoryLabel(professional.category),
+      serviceDetail: professional.role,
+      status: "confirmed",
+      care: { recipient, address, city, zipCode, contactName, contactPhone, notes },
+      paymentLabel: getSavedCard(values.cardId).label,
+    },
+    existing
+  )
 }
 
 export function useBookingFlow(professional: Professional, today: Date) {
+  const data = useBookings()
   const [step, setStep] = useState<BookingStep>("schedule")
   const [booking, setBooking] = useState<Booking | null>(null)
   const [initialValues] = useState(() => createInitialValues(professional, today))
@@ -69,7 +78,7 @@ export function useBookingFlow(professional: Professional, today: Date) {
 
       try {
         await simulateRequest()
-        setBooking(createBooking(values, professional))
+        setBooking(createBooking(values, professional, data?.bookings ?? []))
         resetForm()
       } catch (error) {
         console.error(ERROR_MESSAGE, error)

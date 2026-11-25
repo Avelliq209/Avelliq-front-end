@@ -14,3 +14,25 @@ export function getPageItems(page: number, pageCount: number): PageItem[] {
   }
   return [1, "ellipsis-start", ...pageRange(page - 1, page + 1), "ellipsis-end", pageCount]
 }
+
+export interface PageSlice<T> {
+  items: T[]
+  firstIndex: number
+  total: number
+  page: number
+  pageCount: number
+}
+
+export function paginate<T>(items: T[], requestedPage: number, pageSize: number): PageSlice<T> {
+  const pageCount = Math.max(1, Math.ceil(items.length / pageSize))
+  const page = Math.min(requestedPage, pageCount)
+  const firstIndex = (page - 1) * pageSize
+
+  return {
+    items: items.slice(firstIndex, firstIndex + pageSize),
+    firstIndex,
+    total: items.length,
+    page,
+    pageCount,
+  }
+}

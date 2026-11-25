@@ -5,6 +5,7 @@ import { useFormikContext } from "formik"
 import { FieldShell } from "@/components/form/field-shell"
 import { FormikSelectField } from "@/components/form/formik/formik-select-field"
 import { SelectInput } from "@/components/form/select-input"
+import { TIME_ZONE } from "@/features/bookings/lib/time-zone"
 import type { Professional } from "@/features/professionals/types"
 import { formatCompactCurrency } from "@/lib/currency"
 import { formatHours, formatTimeRange, formatWeekdayMonthDay } from "@/lib/date"
@@ -14,7 +15,6 @@ import {
   getEndTimeOptions,
   shiftEndTime,
   START_TIME_OPTIONS,
-  TIME_ZONE_LABEL,
 } from "../lib/schedule"
 import { summarizeBooking } from "../lib/summary"
 import { BookingPanel } from "./booking-panel"
@@ -64,7 +64,7 @@ export function ScheduleStep({ professional, today }: ScheduleStepProps) {
             label="End time"
             options={getEndTimeOptions(values.startTime)}
           />
-          <p className="text-sm leading-[1.3] text-muted-foreground">{TIME_ZONE_LABEL} (ET)</p>
+          <p className="text-sm leading-[1.3] text-muted-foreground">{TIME_ZONE.label} (ET)</p>
           <div className="flex flex-col gap-2 rounded-[12px] bg-background p-4">
             <p className="font-heading text-xl leading-[1.2] font-medium text-primary">
               {formatHours(price.hours)} of care

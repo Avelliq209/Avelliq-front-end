@@ -18,8 +18,8 @@ function subscribe(listener: () => void) {
 }
 
 /** Kept in memory only, so addresses and contact details never reach browser storage. */
-export function addBooking(details: Omit<Booking, "id">): Booking {
-  const booking = { ...details, id: createBookingReference(details.start, createdBookings) }
+export function addBooking(details: Omit<Booking, "id">, existing: Booking[]): Booking {
+  const booking = { ...details, id: createBookingReference(details.start, existing) }
   createdBookings = [...createdBookings, booking]
   listeners.forEach((notify) => notify())
   return booking

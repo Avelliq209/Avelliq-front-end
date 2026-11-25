@@ -3,6 +3,7 @@
 import { useEffect, useRef, type ReactNode } from "react"
 
 import { FormikForm } from "@/components/form/formik/formik-form"
+import { BookingSummary } from "@/features/bookings/components/booking-summary"
 import { DashboardCard } from "@/features/dashboard/components/dashboard-card"
 import { DashboardPageHeader } from "@/features/dashboard/components/dashboard-page-header"
 import { profileHref } from "@/features/professionals/lib/routes"
@@ -16,7 +17,6 @@ import { summarizeBooking } from "../lib/summary"
 import type { BookingStep } from "../types"
 import { BookingConfirmed } from "./booking-confirmed"
 import { BookingProgress } from "./booking-progress"
-import { BookingSummary } from "./booking-summary"
 import { CancelBookingButton } from "./cancel-booking-button"
 import { CareStep } from "./care-step"
 import { PaymentStep } from "./payment-step"
@@ -53,7 +53,7 @@ export function BookingWizard({ professional, today }: BookingWizardProps) {
     headingRef.current?.focus({ preventScroll: true })
   }, [stage])
 
-  if (booking?.price) {
+  if (booking) {
     return (
       <>
         <DashboardPageHeader headingRef={headingRef} {...CONFIRMED_CONTENT} />
@@ -62,7 +62,7 @@ export function BookingWizard({ professional, today }: BookingWizardProps) {
           <BookingConfirmed booking={booking} />
           <BookingSummary
             title="Your Booking"
-            summary={{ ...booking, price: booking.price }}
+            summary={booking}
             note={`Paid with ${booking.paymentLabel}.`}
           />
         </div>

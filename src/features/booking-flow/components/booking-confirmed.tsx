@@ -1,8 +1,10 @@
 import { CalendarDays, Check, CircleCheck, type LucideIcon } from "lucide-react"
 import Link from "next/link"
 
-import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { buttonVariants } from "@/components/ui/button"
+import { bookingDetailsHref } from "@/features/bookings/lib/routes"
+import { formatCareAddress } from "@/features/bookings/lib/summary"
+import { TIME_ZONE } from "@/features/bookings/lib/time-zone"
 import type { Booking } from "@/features/bookings/types"
 import { DashboardCard } from "@/features/dashboard/components/dashboard-card"
 import { CURRENT_USER } from "@/features/dashboard/data/mock"
@@ -10,8 +12,6 @@ import { profileHref } from "@/features/professionals/lib/routes"
 import { formatHours, formatLongDate, formatTimeRange, getHoursBetween } from "@/lib/date"
 import { cn } from "@/lib/utils"
 
-import { TIME_ZONE_LABEL } from "../lib/schedule"
-import { formatCareAddress } from "../lib/summary"
 import { STEP_BACK_CLASS, STEP_NAVIGATION_CLASS, STEP_NEXT_CLASS } from "./step-navigation"
 
 const NEXT_STEPS: { icon: LucideIcon; title: string; description: string }[] = [
@@ -52,13 +52,11 @@ export function BookingConfirmed({ booking }: { booking: Booking }) {
         </p>
         <div className="flex flex-col gap-2 @2xl/page:flex-row @2xl/page:items-center @2xl/page:gap-4">
           <p className="text-base leading-[1.4] text-ink-strong @2xl/page:shrink-0">
-            {formatTimeRange(start, end)} · {duration} · {TIME_ZONE_LABEL}
+            {formatTimeRange(start, end)} · {duration} · {TIME_ZONE.label}
           </p>
-          {care && (
-            <p className="min-w-0 text-sm leading-[1.3] wrap-break-word text-muted-foreground @2xl/page:border-l-[0.5px] @2xl/page:border-stroke @2xl/page:py-1.25 @2xl/page:pl-2.5">
-              {formatCareAddress(care)}
-            </p>
-          )}
+          <p className="min-w-0 text-sm leading-[1.3] wrap-break-word text-muted-foreground @2xl/page:border-l-[0.5px] @2xl/page:border-stroke @2xl/page:py-1.25 @2xl/page:pl-2.5">
+            {formatCareAddress(care)}
+          </p>
         </div>
       </div>
 
@@ -87,9 +85,12 @@ export function BookingConfirmed({ booking }: { booking: Booking }) {
         >
           Back to profile
         </Link>
-        <ComingSoonButton size="pill-lg" className={STEP_NEXT_CLASS}>
+        <Link
+          href={bookingDetailsHref(id)}
+          className={cn(buttonVariants({ size: "pill-lg" }), STEP_NEXT_CLASS)}
+        >
           View booking details
-        </ComingSoonButton>
+        </Link>
       </div>
     </DashboardCard>
   )

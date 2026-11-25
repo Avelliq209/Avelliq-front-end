@@ -16,7 +16,7 @@ export const DASHBOARD_MENUS = {
   main: [
     { title: "Dashboard", icon: LayoutGrid, href: ROUTES.dashboard },
     { title: "Find Care", icon: Search, href: ROUTES.findCare },
-    { title: "My bookings", icon: Calendar },
+    { title: "My bookings", icon: Calendar, href: ROUTES.bookings },
     { title: "Message", icon: MessageSquareMore },
   ],
   report: [

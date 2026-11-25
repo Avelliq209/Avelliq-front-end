@@ -6,8 +6,9 @@ export function toIsoDate(date: Date) {
 }
 
 const LOCALE = "en-US"
-const DAYS_PER_WEEK = 7
+export const DAYS_PER_WEEK = 7
 const HOUR_MS = 3_600_000
+const DAY_MS = 24 * HOUR_MS
 
 const longDateFormat = new Intl.DateTimeFormat(LOCALE, { dateStyle: "full" })
 const monthDayYearFormat = new Intl.DateTimeFormat(LOCALE, { dateStyle: "long" })
@@ -24,6 +25,7 @@ const weekdayDateFormat = new Intl.DateTimeFormat(LOCALE, {
   year: "numeric",
 })
 const weekdayFormat = new Intl.DateTimeFormat(LOCALE, { weekday: "short" })
+const monthFormat = new Intl.DateTimeFormat(LOCALE, { month: "short" })
 const weekdayInitialFormat = new Intl.DateTimeFormat(LOCALE, { weekday: "narrow" })
 const timeFormat = new Intl.DateTimeFormat(LOCALE, { timeStyle: "short" })
 
@@ -33,6 +35,8 @@ const formatCompactRange = (format: Intl.DateTimeFormat, start: Date, end: Date)
 export const formatLongDate = (date: Date) => longDateFormat.format(date)
 export const formatMonthDayYear = (date: Date) => monthDayYearFormat.format(date)
 export const formatMonthDay = (date: Date) => monthDayFormat.format(date)
+export const formatMonth = (date: Date) => monthFormat.format(date)
+export const formatWeekday = (date: Date) => weekdayFormat.format(date)
 export const formatWeekdayMonthDay = (date: Date) => weekdayMonthDayFormat.format(date)
 export const formatWeekdayDate = (date: Date) => weekdayDateFormat.format(date)
 export const formatWeekdayInitial = (date: Date) => weekdayInitialFormat.format(date)
@@ -63,6 +67,11 @@ export const formatHours = (hours: number) => `${hours} ${hours === 1 ? "hour" :
 
 export const parseLocalDateTime = (isoDate: string, time = "00:00") =>
   new Date(`${isoDate}T${time}:00`)
+
+export function getDayDifference(from: Date, to: Date) {
+  const midnights = [from, to].map((date) => new Date(date).setHours(0, 0, 0, 0))
+  return Math.round((midnights[1] - midnights[0]) / DAY_MS)
+}
 
 export function isSameDay(first: Date, second: Date) {
   return toIsoDate(first) === toIsoDate(second)

@@ -1,13 +1,9 @@
 import { describeHomeLocation } from "@/features/bookings/lib/location"
 import { getBookingPrice } from "@/features/bookings/lib/pricing"
-import type { Booking, BookingPrice } from "@/features/bookings/types"
+import type { BookingSummaryData } from "@/features/bookings/lib/summary"
 import type { Professional } from "@/features/professionals/types"
 import { getHoursBetween, parseLocalDateTime } from "@/lib/date"
 import type { BookingFormValues } from "@/schemas/validation-schemas"
-
-export type BookingSummaryData = Pick<Booking, "professional" | "location" | "start" | "end"> & {
-  price: BookingPrice
-}
 
 export function summarizeBooking(
   values: BookingFormValues,
@@ -24,8 +20,3 @@ export function summarizeBooking(
     price: getBookingPrice(getHoursBetween(start, end), professional.hourlyRate),
   }
 }
-
-type CareAddress = Pick<BookingFormValues, "address" | "city" | "zipCode">
-
-export const formatCareAddress = ({ address, city, zipCode }: CareAddress) =>
-  `${address} · ${city} ${zipCode}`

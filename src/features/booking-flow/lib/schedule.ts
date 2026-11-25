@@ -10,7 +10,6 @@ const LABEL_DATE = "2026-01-01"
 
 export const DEFAULT_START_TIME = "15:00"
 export const DEFAULT_END_TIME = "19:00"
-export const TIME_ZONE_LABEL = "Eastern Time"
 
 function toMinutes(time: string) {
   const [hours, minutes] = time.split(":").map(Number)
