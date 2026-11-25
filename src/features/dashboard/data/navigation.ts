@@ -17,7 +17,7 @@ export const DASHBOARD_MENUS = {
     { title: "Dashboard", icon: LayoutGrid, href: ROUTES.dashboard },
     { title: "Find Care", icon: Search, href: ROUTES.findCare },
     { title: "My bookings", icon: Calendar, href: ROUTES.bookings },
-    { title: "Message", icon: MessageSquareMore },
+    { title: "Message", icon: MessageSquareMore, href: ROUTES.messages },
   ],
   report: [
     { title: "Payment", icon: CreditCard },

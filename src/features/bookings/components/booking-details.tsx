@@ -17,6 +17,7 @@ import { formatTimeRange, formatWeekdayDate } from "@/lib/date"
 import { cn } from "@/lib/utils"
 
 import { useBookings } from "../hooks/use-bookings"
+import { describePayment } from "../lib/payment"
 import { formatCareAddress } from "../lib/summary"
 import { TIME_ZONE } from "../lib/time-zone"
 import type { Booking, BookingStatus } from "../types"
@@ -48,7 +49,8 @@ function BackToBookings() {
 }
 
 function BookingRecord({ booking }: { booking: Booking }) {
-  const { id, professional, start, end, care, price, paymentLabel, status } = booking
+  const { id, professional, start, end, care, price, status } = booking
+  const payment = describePayment(booking)
 
   const details = [
     {
@@ -91,7 +93,7 @@ function BookingRecord({ booking }: { booking: Booking }) {
         </span>
         <div className="flex min-w-0 flex-col gap-1.5">
           <p className="text-base leading-[1.4] text-primary">
-            Paid {formatCurrency(price.total)} · {paymentLabel}
+            {payment.receipt}
           </p>
           <p className="text-sm leading-[1.3] text-muted-foreground">
             Care {formatCurrency(price.care)} + service fee {formatCurrency(price.serviceFee)}
@@ -157,7 +159,7 @@ export function BookingDetails({ bookingId }: { bookingId: string }) {
         <BookingSummary
           title="Your Booking"
           summary={booking}
-          note={`Paid with ${booking.paymentLabel}.`}
+          note={describePayment(booking).note}
         />
       </div>
     </>

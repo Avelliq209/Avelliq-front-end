@@ -16,7 +16,7 @@ Read `.claude/rules/rules.md` before starting any task. Those rules are mandator
 | Contact Us page, new Figma design | Done (`/contact`, validated form, FAQ preview) |
 | FAQs page, new Figma design | Done (`/faqs`, hero illustration, category tabs, four FAQ categories) |
 | Remaining pages (Resources) | Not started |
-| User Dashboard | In progress (mock data, no auth guard): overview (`/dashboard`), Find Care with profile panel (`/dashboard/find-care`) and booking flow (`/dashboard/find-care/[professionalId]/book`), My bookings (`/dashboard/bookings`) and Booking details (`/dashboard/bookings/[bookingId]`) done; Messages, Payment and Settings not started |
+| User Dashboard | In progress (mock data, no auth guard): overview (`/dashboard`), Find Care with profile panel (`/dashboard/find-care`) and booking flow (`/dashboard/find-care/[professionalId]/book`), My bookings (`/dashboard/bookings`), Booking details (`/dashboard/bookings/[bookingId]`) and Messages (`/dashboard/messages/[conversationId]`) done; Payment and Settings not started (no Figma frames seen yet) |
 | Auth screens | Done (`/sign-in`, `/sign-up`; professional sign up is an account step plus three stages; Formik + Yup, simulated requests, no backend) |
 | Real CTAs, backend | Partial (Sign In and Join as a Professional link to auth; other buttons still show "Coming soon") |
 
@@ -60,6 +60,7 @@ src/
     find-care/               FindCare page (tabs, search form, filters form and mobile sheet, sort, pagination), search lib, useCareSearch
     bookings/                Booking model, mock bookings, in-memory booking store, pricing, useBookings (mock plus created, resolves statuses), My bookings page and list, Booking details, BookingSummary, WeekCardShell, saved cards
     booking-flow/            four-step wizard (schedule, care, payment, review) plus confirmation, useBookingFlow, schedule and summary helpers
+    messages/                Conversation model (one per professional), mock conversations, in-memory message store, useConversations, inbox, conversation, care context, new message dialog
     testimonials/            section, carousel, card, data, types
   config/site.ts             site config, ROUTES, MAIN_NAV, FOOTER_NAV, LEGAL_NAV, SOCIAL_LINKS, ANNOUNCEMENT
   hooks/                     use-autoplay, use-carousel-index, use-scroll-lock
@@ -137,14 +138,16 @@ Carousels:
 - Figma's dashboard greets "Sarah" while the header shows "Keylla Rose", and the week card names "Emily" for the booking shown with Dr. Eneoma Adebayo. The code uses one user (Keylla Rose) and one bookings list
 - Find Care: Figma's first card says "Sarah Mitchell" but the panel it opens is Dr. Eneoma Adebayo (same photo and stats), so the code uses Eneoma for both. The panel's second location ("Boston, NA") and "France" were dropped. The mock user is now in New York to match Find Care
 - Find Care results are mock data: six childcare professionals from Figma plus placeholders without photos (initials shown). Counts and pages are real, so they differ from Figma's 72. Care type filters come from each service's offerings. Only Eneoma has a full profile; the other panels skip sections without data. Saved professionals are kept in memory only
-- Filters and search apply on submit (Figma has Apply and Search buttons). The date filter matches a professional's available weekdays. Message, Request details and Post a Care Request show the Coming soon alert
+- Filters and search apply on submit (Figma has Apply and Search buttons). The date filter matches a professional's available weekdays. Request details and Post a Care Request show the Coming soon alert
 - Booking flow: one Formik instance with a Yup schema per step (BOOKING_SCHEMAS). Nothing is stored in the browser, so a refresh restarts the flow, and created bookings live in memory until reload. Confirm is simulated (`simulateRequest`): no payment is taken
 - Booking payment uses the saved card only (read-only fields). The security code is checked for format, held in memory and cleared on confirm. Use a payment provider's hosted fields before taking real cards. Figma has no add-card design
 - Booking Figma copy that was sample data (Alex Morgan, Jamie, 123 Example Street) is shown as placeholders or replaced with the signed-in user. After confirmation the summary note reads "Paid with ..." instead of "You'll review everything before paying"
 - Booking times run 6:00 AM to 10:00 PM in 30 minute slots, one hour minimum, from tomorrow, on the professional's available weekdays. The $10 service fee is from Figma. Times are wall-clock and labelled Eastern Time
 - `/dashboard/find-care?professional=<id>` opens that profile panel
 - My bookings: 17 mock bookings as in Figma, with dates relative to today, so counts shift as today's booking ends. Confirmed bookings become Completed once over; unanswered requests become Cancelled. References are AV-YYMMDD, with a suffix for a second booking on the same day
-- My bookings Figma fixes: sidebar highlights My bookings (not Message), "19:00 AM" is 9:00 AM, duplicate rows are unique, upcoming rows really come first, and Reschedule is white because maroon on green is unreadable. Reschedule and Message show Coming soon
+- My bookings Figma fixes: sidebar highlights My bookings (not Message), "19:00 AM" is 9:00 AM, duplicate rows are unique, upcoming rows really come first, and Reschedule is white because maroon on green is unreadable. Reschedule shows Coming soon
+- Messages: sent messages, read and archived state live in memory until reload, and nobody replies. `/dashboard/messages` previews the latest conversation on wide screens without marking it read; phones show the inbox first. The linked booking is the next one with that professional, or the latest past one. Attach, voice and shared files show Coming soon. The info button opens a menu (profile, booking, archive) because Figma does not define it
+- Payment wording comes from `describePayment`: pending bookings read "estimated, no charge yet" everywhere (Figma Messages), replacing "paid" on My bookings. Figma Messages also labels Grace's pending booking "Confirmed"; the code shows Awaiting
 - Cancelled bookings still read "Paid", as in Figma; refund wording needs a product decision
 - "Booking Details" was removed from the sidebar (missing in the newer Figma frames); it opens from My bookings, the dashboard and the confirmation
 - shadcn tabs, slider, popover, calendar and pagination were added from the official GitHub source because ui.shadcn.com was unreachable; Slider has an extra `getThumbLabel` prop and SheetContent an `overlayClassName` prop
@@ -153,7 +156,7 @@ Carousels:
 
 ## Next Steps
 
-1. Dashboard: Messages next
+1. Dashboard: Payment and Settings need designs; Reschedule, Post a Care Request and Request details need flows
 2. Decide whether the home gallery dialog (service-detail.tsx) should be replaced by the new service CTA modal or redesigned separately
 3. Build the remaining page (Resources)
 4. Wire `sendContactMessage` (src/features/contact/actions.ts) to a real delivery channel (email service or API); it only validates today

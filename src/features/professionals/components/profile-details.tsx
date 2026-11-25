@@ -3,8 +3,8 @@ import Image from "next/image"
 import Link from "next/link"
 
 import checkCircleIcon from "@/assets/icons/check-circle.svg"
-import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { buttonVariants } from "@/components/ui/button"
+import { conversationHref } from "@/features/messages/lib/routes"
 import { cn } from "@/lib/utils"
 
 import { getCategoryLabel } from "../data/categories"
@@ -86,9 +86,12 @@ export function ProfileDetails({ professional }: { professional: Professional })
               )}
             </div>
             <div className="flex shrink-0 gap-2.5">
-              <ComingSoonButton variant="outline-primary" className={CTA_CLASS}>
+              <Link
+                href={conversationHref(professional.id)}
+                className={cn(buttonVariants({ variant: "outline-primary" }), CTA_CLASS)}
+              >
                 Message {shortName}
-              </ComingSoonButton>
+              </Link>
               <Link
                 href={bookingHref(professional.id)}
                 className={cn(buttonVariants(), CTA_CLASS)}

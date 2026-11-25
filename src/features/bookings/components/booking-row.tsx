@@ -2,10 +2,10 @@ import Link from "next/link"
 
 import { buttonVariants } from "@/components/ui/button"
 import { ProfessionalPortrait } from "@/features/professionals/components/professional-portrait"
-import { formatCurrency } from "@/lib/currency"
 import { formatHours, formatTimeRange } from "@/lib/date"
 import { cn } from "@/lib/utils"
 
+import { describePayment } from "../lib/payment"
 import { bookingDetailsHref } from "../lib/routes"
 import { TIME_ZONE } from "../lib/time-zone"
 import type { Booking } from "../types"
@@ -19,7 +19,7 @@ export function BookingRow({ booking }: { booking: Booking }) {
   const { id, professional, service, serviceDetail, start, end, price, care, status } = booking
 
   return (
-    <article className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-4 rounded-[12px] bg-white p-4 text-sm leading-[1.3] @5xl/page:grid-cols-[minmax(0,1fr)_202px_110px_128px_auto] @[72rem]/page:grid-cols-[minmax(0,1fr)_230px_124px_144px_auto] @5xl/page:gap-x-0 @5xl/page:px-5 @5xl/page:py-3">
+    <article className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-4 rounded-[12px] bg-white p-4 text-sm leading-[1.3] @5xl/page:grid-cols-[minmax(0,1fr)_202px_110px_140px_auto] @[72rem]/page:grid-cols-[minmax(0,1fr)_224px_146px_138px_auto] @5xl/page:gap-x-0 @5xl/page:px-5 @5xl/page:py-3">
       <div className="col-span-2 flex items-center gap-3 @md/page:gap-5 @5xl/page:col-span-1 @5xl/page:gap-3 @[72rem]/page:gap-5">
         <BookingDateTile date={start} />
         <div className="flex min-w-0 items-center gap-3">
@@ -55,7 +55,7 @@ export function BookingRow({ booking }: { booking: Booking }) {
           DIVIDED_CELL_CLASS
         )}
       >
-        {formatCurrency(price.total)} paid
+        {describePayment(booking).amount}
       </p>
 
       <div

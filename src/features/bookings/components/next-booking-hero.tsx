@@ -4,11 +4,12 @@ import Link from "next/link"
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { buttonVariants } from "@/components/ui/button"
 import { ROUTES } from "@/config/site"
+import { conversationHref } from "@/features/messages/lib/routes"
 import { ProfessionalPortrait } from "@/features/professionals/components/professional-portrait"
-import { formatCurrency } from "@/lib/currency"
 import { formatHours, formatTimeRange } from "@/lib/date"
 import { cn } from "@/lib/utils"
 
+import { describePayment } from "../lib/payment"
 import { bookingDetailsHref } from "../lib/routes"
 import { TIME_ZONE } from "../lib/time-zone"
 import type { Booking } from "../types"
@@ -45,7 +46,7 @@ function BookingHeroDetails({ booking }: { booking: Booking }) {
             {service} · {serviceDetail}
           </p>
           <p className="text-sm leading-[1.3]">
-            {id} · Paid {formatCurrency(price.total)}
+            {id} · {describePayment(booking).headline}
           </p>
         </div>
         <BookingDateTile
@@ -80,13 +81,16 @@ function BookingHeroDetails({ booking }: { booking: Booking }) {
         >
           View booking
         </Link>
-        <ComingSoonButton
-          variant="ghost"
+        <Link
+          href={conversationHref(professional.id)}
           aria-label={`Message ${professional.shortName}`}
-          className="h-11 rounded-full border-white px-7 font-normal text-white hover:bg-white/10 hover:text-white @2xl/page:h-10"
+          className={cn(
+            buttonVariants({ variant: "ghost" }),
+            "h-11 rounded-full border-white px-7 font-normal text-white hover:bg-white/10 hover:text-white @2xl/page:h-10"
+          )}
         >
           Message
-        </ComingSoonButton>
+        </Link>
       </div>
     </>
   )

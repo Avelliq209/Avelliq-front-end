@@ -7,6 +7,7 @@ import walletIcon from "@/assets/icons/dashboard/wallet.svg"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useBookings } from "@/features/bookings/hooks/use-bookings"
 import type { Booking } from "@/features/bookings/types"
+import { useConversations } from "@/features/messages/hooks/use-conversations"
 import { formatRelativeDay, formatTime } from "@/lib/date"
 
 import { ACCOUNT_SUMMARY } from "../data/mock"
@@ -22,7 +23,8 @@ const describeNextBooking = (booking: Booking | undefined, now: Date) =>
 
 export function StatsOverview() {
   const data = useBookings()
-  const { activeCareRequests, newApplicants, savedProfessionals, unreadMessages } = ACCOUNT_SUMMARY
+  const messages = useConversations()
+  const { activeCareRequests, newApplicants, savedProfessionals } = ACCOUNT_SUMMARY
 
   const stats: DashboardStat[] = data
     ? [
@@ -47,7 +49,7 @@ export function StatsOverview() {
         {
           icon: messageIcon,
           label: "Unread messages",
-          value: unreadMessages,
+          value: messages?.unreadTotal ?? 0,
           hint: "Stay in the loop",
         },
       ]

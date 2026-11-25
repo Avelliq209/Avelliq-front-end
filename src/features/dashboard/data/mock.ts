@@ -14,5 +14,4 @@ export const ACCOUNT_SUMMARY = {
   activeCareRequests: 2,
   newApplicants: 3,
   savedProfessionals: 8,
-  unreadMessages: 2,
 }

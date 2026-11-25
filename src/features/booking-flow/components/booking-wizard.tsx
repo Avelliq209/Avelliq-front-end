@@ -4,6 +4,7 @@ import { useEffect, useRef, type ReactNode } from "react"
 
 import { FormikForm } from "@/components/form/formik/formik-form"
 import { BookingSummary } from "@/features/bookings/components/booking-summary"
+import { describePayment } from "@/features/bookings/lib/payment"
 import { DashboardCard } from "@/features/dashboard/components/dashboard-card"
 import { DashboardPageHeader } from "@/features/dashboard/components/dashboard-page-header"
 import { profileHref } from "@/features/professionals/lib/routes"
@@ -63,7 +64,7 @@ export function BookingWizard({ professional, today }: BookingWizardProps) {
           <BookingSummary
             title="Your Booking"
             summary={booking}
-            note={`Paid with ${booking.paymentLabel}.`}
+            note={describePayment(booking).note}
           />
         </div>
       </>
