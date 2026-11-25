@@ -1,6 +1,8 @@
 import type { LucideIcon } from "lucide-react"
 import type { StaticImageData } from "next/image"
 
+import type { Professional } from "@/features/professionals/types"
+
 export interface DashboardUser {
   firstName: string
   fullName: string
@@ -24,11 +26,7 @@ export interface DashboardStat {
 
 export type BookingStatus = "confirmed" | "pending"
 
-export interface BookingProfessional {
-  name: string
-  shortName: string
-  portrait?: StaticImageData
-}
+export type BookingProfessional = Pick<Professional, "name" | "shortName" | "photo">
 
 export interface Booking {
   id: string

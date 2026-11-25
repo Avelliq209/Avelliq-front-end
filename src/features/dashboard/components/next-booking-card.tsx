@@ -3,11 +3,10 @@
 import { Calendar, MapPin } from "lucide-react"
 
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
+import { ProfessionalPortrait } from "@/features/professionals/components/professional-portrait"
 import { formatMonthDay, formatRelativeDay, formatTimeRange } from "@/lib/date"
-import { cn, getInitials } from "@/lib/utils"
 
 import { useBookings } from "../hooks/use-bookings"
 import type { Booking } from "../types"
@@ -15,7 +14,6 @@ import { BookingStatusBadge } from "./booking-status-badge"
 import { DashboardCard } from "./dashboard-card"
 
 const HOUR_MS = 3_600_000
-const PORTRAIT_SHAPE_CLASS = "rounded-[12px]"
 
 function formatDuration({ start, end }: Booking) {
   const hours = (end.getTime() - start.getTime()) / HOUR_MS
@@ -28,16 +26,11 @@ function BookingSummary({ booking, now }: { booking: Booking; now: Date }) {
   return (
     <>
       <div className="flex items-start gap-4 @[23rem]:gap-5">
-        <Avatar className={cn("size-20 after:rounded-[12px]", PORTRAIT_SHAPE_CLASS)}>
-          <AvatarImage
-            src={professional.portrait?.src}
-            alt={professional.name}
-            className={PORTRAIT_SHAPE_CLASS}
-          />
-          <AvatarFallback className={cn("font-heading text-xl text-primary", PORTRAIT_SHAPE_CLASS)}>
-            {getInitials(professional.shortName)}
-          </AvatarFallback>
-        </Avatar>
+        <ProfessionalPortrait
+          professional={professional}
+          sizes="80px"
+          className="size-20 shrink-0 rounded-[12px] text-xl"
+        />
         <div className="flex min-w-0 flex-col gap-2 leading-[1.3] text-muted-foreground">
           <h3 className="font-heading text-xl leading-[1.2] font-medium text-ink-strong">
             {professional.name}

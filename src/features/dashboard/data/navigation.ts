@@ -1,7 +1,6 @@
 import {
   Calendar,
   CircleHelp,
-  Contact,
   CreditCard,
   LayoutGrid,
   MessageSquareMore,
@@ -16,9 +15,8 @@ import type { DashboardNavItem } from "../types"
 export const DASHBOARD_MENUS = {
   main: [
     { title: "Dashboard", icon: LayoutGrid, href: ROUTES.dashboard },
-    { title: "Find Care", icon: Search },
+    { title: "Find Care", icon: Search, href: ROUTES.findCare },
     { title: "My bookings", icon: Calendar },
-    { title: "Booking Details", icon: Contact },
     { title: "Message", icon: MessageSquareMore },
   ],
   report: [

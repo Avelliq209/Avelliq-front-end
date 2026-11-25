@@ -1,0 +1,50 @@
+"use client"
+
+import { useMemo, useState } from "react"
+
+import { DEFAULT_CARE_CATEGORY } from "@/features/professionals/data/categories"
+import { PROFESSIONALS } from "@/features/professionals/data/professionals"
+import type { CareCategorySlug } from "@/features/professionals/types"
+
+import { DEFAULT_CRITERIA, DEFAULT_FILTERS, PAGE_SIZE } from "../data/options"
+import { searchProfessionals } from "../lib/search-professionals"
+import type { CareCriteria, CareFilters, CareSearch, SortOrder } from "../types"
+
+const INITIAL_SEARCH: CareSearch = {
+  category: DEFAULT_CARE_CATEGORY,
+  criteria: DEFAULT_CRITERIA,
+  filters: DEFAULT_FILTERS,
+  sort: "recommended",
+  page: 1,
+}
+
+export function useCareSearch() {
+  const [search, setSearch] = useState(INITIAL_SEARCH)
+  const { category, criteria, filters, sort, page } = search
+
+  const results = useMemo(() => searchProfessionals(PROFESSIONALS, search), [search])
+  const pageCount = Math.max(1, Math.ceil(results.length / PAGE_SIZE))
+  const firstIndex = (page - 1) * PAGE_SIZE
+
+  const update = (changes: Partial<CareSearch>) =>
+    setSearch((current) => ({ ...current, page: 1, ...changes }))
+
+  return {
+    category,
+    criteria,
+    filters,
+    sort,
+    page,
+    pageCount,
+    firstIndex,
+    total: results.length,
+    visible: results.slice(firstIndex, firstIndex + PAGE_SIZE),
+    setCategory: (slug: CareCategorySlug) =>
+      update({ category: slug, filters: { ...filters, careTypes: [] } }),
+    setCriteria: (next: CareCriteria) => update({ criteria: next }),
+    setFilters: (next: CareFilters) => update({ filters: next }),
+    setSort: (next: SortOrder) => update({ sort: next }),
+    setPage: (next: number) => update({ page: next }),
+    reset: () => update({ criteria: DEFAULT_CRITERIA, filters: DEFAULT_FILTERS }),
+  }
+}

@@ -19,6 +19,7 @@ const formatCompactRange = (format: Intl.DateTimeFormat, start: Date, end: Date)
   format.formatRange(start, end).replace(/\s*–\s*/g, "–")
 
 export const formatLongDate = (date: Date) => longDateFormat.format(date)
+export const formatMonthDayYear = (date: Date) => monthDayYearFormat.format(date)
 export const formatMonthDay = (date: Date) => monthDayFormat.format(date)
 export const formatWeekdayInitial = (date: Date) => weekdayInitialFormat.format(date)
 export const formatTime = (date: Date) => timeFormat.format(date)

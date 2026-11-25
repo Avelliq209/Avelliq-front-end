@@ -1,5 +1,5 @@
 import keyllaRose from "@/assets/images/dashboard/keylla-rose.png"
-import eneomaAdebayo from "@/assets/images/dashboard/eneoma-adebayo.jpg"
+import { getProfessional } from "@/features/professionals/data/professionals"
 import { addDays, addHours } from "@/lib/date"
 
 import type { Booking, DashboardUser } from "../types"
@@ -7,7 +7,7 @@ import type { Booking, DashboardUser } from "../types"
 export const CURRENT_USER: DashboardUser = {
   firstName: "Keylla",
   fullName: "Keylla Rose",
-  location: "Austin, TX",
+  location: "New York, NY",
   avatar: keyllaRose,
   unreadNotifications: 5,
 }
@@ -30,7 +30,7 @@ const HOME_LOCATION = `At your home · ${CURRENT_USER.location}`
 const BOOKING_TEMPLATES: BookingTemplate[] = [
   {
     id: "booking-1",
-    professional: { name: "Dr. Eneoma Adebayo", shortName: "Eneoma", portrait: eneomaAdebayo },
+    professional: getProfessional("eneoma-adebayo"),
     service: "Childcare",
     serviceDetail: "After-school care",
     location: HOME_LOCATION,
@@ -41,9 +41,9 @@ const BOOKING_TEMPLATES: BookingTemplate[] = [
   },
   {
     id: "booking-2",
-    professional: { name: "Emily Chen", shortName: "Emily" },
-    service: "Housekeeping",
-    serviceDetail: "Deep cleaning",
+    professional: getProfessional("emily-chen"),
+    service: "Childcare",
+    serviceDetail: "Babysitting",
     location: HOME_LOCATION,
     status: "confirmed",
     dayOffset: 2,
@@ -52,9 +52,9 @@ const BOOKING_TEMPLATES: BookingTemplate[] = [
   },
   {
     id: "booking-3",
-    professional: { name: "Sarah Mitchell", shortName: "Sarah" },
-    service: "Pet Care",
-    serviceDetail: "Dog walking",
+    professional: getProfessional("grace-okafor"),
+    service: "Childcare",
+    serviceDetail: "Care visit",
     location: HOME_LOCATION,
     status: "pending",
     dayOffset: 5,
