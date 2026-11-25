@@ -149,8 +149,11 @@ const PLACEHOLDERS: ProfessionalSeed[] = [
 
 export const PROFESSIONALS = [...FEATURED_CHILDCARE, ...PLACEHOLDERS].map(createProfessional)
 
+export const findProfessional = (id: string | undefined) =>
+  PROFESSIONALS.find((professional) => professional.id === id)
+
 export function getProfessional(id: string) {
-  const professional = PROFESSIONALS.find((candidate) => candidate.id === id)
+  const professional = findProfessional(id)
   if (!professional) throw new Error(`Unknown professional: ${id}`)
   return professional
 }

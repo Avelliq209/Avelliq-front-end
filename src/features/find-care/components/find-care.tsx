@@ -4,10 +4,12 @@ import { useRef, useState } from "react"
 
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { Tabs, TabsContent } from "@/components/ui/tabs"
+import { ROUTES } from "@/config/site"
 import { DashboardPageHeader } from "@/features/dashboard/components/dashboard-page-header"
 import { ProfessionalCard } from "@/features/professionals/components/professional-card"
 import { ProfileSheet } from "@/features/professionals/components/profile-sheet"
 import { getCategoryLabel } from "@/features/professionals/data/categories"
+import { findProfessional } from "@/features/professionals/data/professionals"
 import type { Professional } from "@/features/professionals/types"
 
 import { useCareSearch } from "../hooks/use-care-search"
@@ -20,12 +22,16 @@ import { NoResults } from "./no-results"
 import { ResultsPagination } from "./results-pagination"
 import { ResultsToolbar } from "./results-toolbar"
 
-export function FindCare() {
-  const search = useCareSearch()
+interface FindCareProps {
+  initialProfessionalId?: string
+}
+
+export function FindCare({ initialProfessionalId }: FindCareProps) {
+  const [profile, setProfile] = useState(() => findProfessional(initialProfessionalId))
+  const [isProfileOpen, setIsProfileOpen] = useState(profile !== undefined)
+  const search = useCareSearch(profile?.category)
   const { category, criteria, filters, visible, total, firstIndex, page, pageCount } = search
   const { isSaved, toggleSaved } = useSavedProfessionals()
-  const [profile, setProfile] = useState<Professional | null>(null)
-  const [isProfileOpen, setIsProfileOpen] = useState(false)
   const resultsRef = useRef<HTMLDivElement>(null)
 
   const filterProps = { category, filters, onApply: search.setFilters }
@@ -36,6 +42,11 @@ export function FindCare() {
   const viewProfile = (professional: Professional) => {
     setProfile(professional)
     setIsProfileOpen(true)
+  }
+
+  const handleProfileOpenChange = (open: boolean) => {
+    setIsProfileOpen(open)
+    if (!open && initialProfessionalId) window.history.replaceState(null, "", ROUTES.findCare)
   }
 
   const goToPage = (nextPage: number) => {
@@ -111,8 +122,8 @@ export function FindCare() {
       <ProfileSheet
         professional={profile}
         open={isProfileOpen}
-        onOpenChange={setIsProfileOpen}
-        isSaved={profile !== null && isSaved(profile.id)}
+        onOpenChange={handleProfileOpenChange}
+        isSaved={profile !== undefined && isSaved(profile.id)}
         onToggleSaved={() => profile && toggleSaved(profile.id)}
       />
     </>

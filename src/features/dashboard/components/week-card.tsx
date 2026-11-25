@@ -12,6 +12,8 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
+import { useBookings } from "@/features/bookings/hooks/use-bookings"
+import type { Booking } from "@/features/bookings/types"
 import {
   addDays,
   formatDateRange,
@@ -25,8 +27,6 @@ import {
 } from "@/lib/date"
 import { cn } from "@/lib/utils"
 
-import { useBookings } from "../hooks/use-bookings"
-import type { Booking } from "../types"
 import { DashboardCard } from "./dashboard-card"
 
 const DAYS_PER_WEEK = 7

@@ -16,14 +16,14 @@ Read `.claude/rules/rules.md` before starting any task. Those rules are mandator
 | Contact Us page, new Figma design | Done (`/contact`, validated form, FAQ preview) |
 | FAQs page, new Figma design | Done (`/faqs`, hero illustration, category tabs, four FAQ categories) |
 | Remaining pages (Resources) | Not started |
-| User Dashboard | In progress (mock data, no auth guard): overview (`/dashboard`) and Find Care with profile panel (`/dashboard/find-care`) done; booking flow, My bookings, Booking details and Messages not started |
+| User Dashboard | In progress (mock data, no auth guard): overview (`/dashboard`), Find Care with profile panel (`/dashboard/find-care`) and booking flow (`/dashboard/find-care/[professionalId]/book`) done; My bookings, Booking details and Messages not started |
 | Auth screens | Done (`/sign-in`, `/sign-up`; professional sign up is an account step plus three stages; Formik + Yup, simulated requests, no backend) |
 | Real CTAs, backend | Partial (Sign In and Join as a Professional link to auth; other buttons still show "Coming soon") |
 
 ## Stack
 
 - Next.js 16 (App Router, Turbopack), React 19, TypeScript, Tailwind CSS v4
-- shadcn/ui on Base UI (`components.json` style `base-vega`). Installed: accordion, avatar, badge, button, calendar (react-day-picker), card, carousel, checkbox, dialog, dropdown-menu, field, input, input-group, label, pagination, popover, scroll-area, select, separator, sheet, sidebar, skeleton, slider, tabs, textarea, tooltip
+- shadcn/ui on Base UI (`components.json` style `base-vega`). Installed: accordion, alert-dialog, avatar, badge, button, calendar (react-day-picker), card, carousel, checkbox, dialog, dropdown-menu, field, input, input-group, label, pagination, popover, radio-group, scroll-area, select, separator, sheet, sidebar, skeleton, slider, tabs, textarea, tooltip
 - Forms: react-hook-form + zod (`@hookform/resolvers`), reusable fields in `src/components/form`
 - Embla Carousel with `embla-carousel-autoplay`
 - GSAP 3 (ScrollTrigger, SplitText, `@gsap/react`) and Lenis smooth scroll
@@ -55,9 +55,11 @@ src/
     trust-safety/            hero, framework, screening, safety-features (families and professionals), stats, guidelines, support, feature-card, data, types
     contact/                 hero, highlights, form section, contact-form (client), methods, faq preview, schema (zod), actions (server action), data, types
     faq/                     FaqAccordion (preview and list variants), hero, category nav and section, FAQ_CATEGORIES data (FAQS is the contact preview subset)
-    dashboard/               shell (sidebar, header), DashboardPage and DashboardPageHeader (use on every dashboard screen), overview cards, bookings mock
+    dashboard/               shell (sidebar, header), DashboardPage and DashboardPageHeader (use on every dashboard screen), overview cards
     professionals/           shared professional model, PROFESSIONALS mock list, getProfessional, ProfessionalCard, ProfessionalPortrait, ProfileSheet
     find-care/               FindCare page (tabs, search form, filters form and mobile sheet, sort, pagination), search lib, useCareSearch
+    bookings/                Booking model, mock bookings, in-memory booking store, pricing, useBookings (mock plus created), status badge, saved cards
+    booking-flow/            four-step wizard (schedule, care, payment, review) plus confirmation, useBookingFlow, schedule and summary helpers, BookingSummary
     testimonials/            section, carousel, card, data, types
   config/site.ts             site config, ROUTES, MAIN_NAV, FOOTER_NAV, LEGAL_NAV, SOCIAL_LINKS, ANNOUNCEMENT
   hooks/                     use-autoplay, use-carousel-index, use-scroll-lock
@@ -135,7 +137,12 @@ Carousels:
 - Figma's dashboard greets "Sarah" while the header shows "Keylla Rose", and the week card names "Emily" for the booking shown with Dr. Eneoma Adebayo. The code uses one user (Keylla Rose) and one bookings list
 - Find Care: Figma's first card says "Sarah Mitchell" but the panel it opens is Dr. Eneoma Adebayo (same photo and stats), so the code uses Eneoma for both. The panel's second location ("Boston, NA") and "France" were dropped. The mock user is now in New York to match Find Care
 - Find Care results are mock data: six childcare professionals from Figma plus placeholders without photos (initials shown). Counts and pages are real, so they differ from Figma's 72. Care type filters come from each service's offerings. Only Eneoma has a full profile; the other panels skip sections without data. Saved professionals are kept in memory only
-- Filters and search apply on submit (Figma has Apply and Search buttons). The date filter matches a professional's available weekdays. Message, Book Now, Request details and Post a Care Request show the Coming soon alert
+- Filters and search apply on submit (Figma has Apply and Search buttons). The date filter matches a professional's available weekdays. Message, Request details and Post a Care Request show the Coming soon alert
+- Booking flow: one Formik instance with a Yup schema per step (BOOKING_SCHEMAS). Nothing is stored in the browser, so a refresh restarts the flow, and created bookings live in memory until reload. Confirm is simulated (`simulateRequest`): no payment is taken
+- Booking payment uses the saved card only (read-only fields). The security code is checked for format, held in memory and cleared on confirm. Use a payment provider's hosted fields before taking real cards. Figma has no add-card design
+- Booking Figma copy that was sample data (Alex Morgan, Jamie, 123 Example Street) is shown as placeholders or replaced with the signed-in user. After confirmation the summary note reads "Paid with ..." instead of "You'll review everything before paying"
+- Booking times run 6:00 AM to 10:00 PM in 30 minute slots, one hour minimum, from tomorrow, on the professional's available weekdays. The $10 service fee is from Figma. Times are wall-clock and labelled Eastern Time
+- `/dashboard/find-care?professional=<id>` opens that profile panel. "View booking details" shows Coming soon until that page exists
 - "Booking Details" was removed from the sidebar (missing in the newer Figma frames); it will open from My bookings
 - shadcn tabs, slider, popover, calendar and pagination were added from the official GitHub source because ui.shadcn.com was unreachable; Slider has an extra `getThumbLabel` prop and SheetContent an `overlayClassName` prop
 - Form inputs use the `stroke` border instead of Figma's near-invisible `sand` border for contrast
@@ -143,7 +150,7 @@ Carousels:
 
 ## Next Steps
 
-1. Dashboard: booking flow next, then My bookings with Booking details, then Messages
+1. Dashboard: My bookings with Booking details next, then Messages
 2. Decide whether the home gallery dialog (service-detail.tsx) should be replaced by the new service CTA modal or redesigned separately
 3. Build the remaining page (Resources)
 4. Wire `sendContactMessage` (src/features/contact/actions.ts) to a real delivery channel (email service or API); it only validates today

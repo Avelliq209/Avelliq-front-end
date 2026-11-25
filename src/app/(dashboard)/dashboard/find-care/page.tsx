@@ -9,10 +9,13 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 }
 
-export default function FindCarePage() {
+export default async function FindCarePage({ searchParams }: PageProps<"/dashboard/find-care">) {
+  const { professional } = await searchParams
+  const professionalId = typeof professional === "string" ? professional : undefined
+
   return (
     <DashboardPage>
-      <FindCare />
+      <FindCare initialProfessionalId={professionalId} />
     </DashboardPage>
   )
 }

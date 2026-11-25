@@ -10,7 +10,7 @@ import { ProfileDetails } from "./profile-details"
 import { SaveProfessionalButton } from "./save-professional-button"
 
 interface ProfileSheetProps {
-  professional: Professional | null
+  professional?: Professional
   open: boolean
   onOpenChange: (open: boolean) => void
   isSaved: boolean

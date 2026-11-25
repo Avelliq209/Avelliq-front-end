@@ -10,16 +10,15 @@ import { DEFAULT_CRITERIA, DEFAULT_FILTERS, PAGE_SIZE } from "../data/options"
 import { searchProfessionals } from "../lib/search-professionals"
 import type { CareCriteria, CareFilters, CareSearch, SortOrder } from "../types"
 
-const INITIAL_SEARCH: CareSearch = {
-  category: DEFAULT_CARE_CATEGORY,
+const INITIAL_SEARCH: Omit<CareSearch, "category"> = {
   criteria: DEFAULT_CRITERIA,
   filters: DEFAULT_FILTERS,
   sort: "recommended",
   page: 1,
 }
 
-export function useCareSearch() {
-  const [search, setSearch] = useState(INITIAL_SEARCH)
+export function useCareSearch(initialCategory: CareCategorySlug = DEFAULT_CARE_CATEGORY) {
+  const [search, setSearch] = useState<CareSearch>({ ...INITIAL_SEARCH, category: initialCategory })
   const { category, criteria, filters, sort, page } = search
 
   const results = useMemo(() => searchProfessionals(PROFESSIONALS, search), [search])

@@ -1,8 +1,11 @@
 import { MapPin } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 import checkCircleIcon from "@/assets/icons/check-circle.svg"
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 import { getCategoryLabel } from "../data/categories"
 import {
@@ -11,6 +14,7 @@ import {
   formatExperience,
   formatRating,
 } from "../lib/format"
+import { bookingHref } from "../lib/routes"
 import type { Professional } from "../types"
 import { ProfessionalPortrait } from "./professional-portrait"
 import { ProfileGallery } from "./profile-gallery"
@@ -85,7 +89,12 @@ export function ProfileDetails({ professional }: { professional: Professional })
               <ComingSoonButton variant="outline-primary" className={CTA_CLASS}>
                 Message {shortName}
               </ComingSoonButton>
-              <ComingSoonButton className={CTA_CLASS}>Book Now</ComingSoonButton>
+              <Link
+                href={bookingHref(professional.id)}
+                className={cn(buttonVariants(), CTA_CLASS)}
+              >
+                Book Now
+              </Link>
             </div>
           </div>
 

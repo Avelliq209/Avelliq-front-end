@@ -5,20 +5,19 @@ import { Calendar, MapPin } from "lucide-react"
 import { ComingSoonButton } from "@/components/shared/coming-soon-button"
 import { CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
+import { BookingStatusBadge } from "@/features/bookings/components/booking-status-badge"
+import { useBookings } from "@/features/bookings/hooks/use-bookings"
+import type { Booking } from "@/features/bookings/types"
 import { ProfessionalPortrait } from "@/features/professionals/components/professional-portrait"
-import { formatMonthDay, formatRelativeDay, formatTimeRange } from "@/lib/date"
+import {
+  formatHours,
+  formatMonthDay,
+  formatRelativeDay,
+  formatTimeRange,
+  getHoursBetween,
+} from "@/lib/date"
 
-import { useBookings } from "../hooks/use-bookings"
-import type { Booking } from "../types"
-import { BookingStatusBadge } from "./booking-status-badge"
 import { DashboardCard } from "./dashboard-card"
-
-const HOUR_MS = 3_600_000
-
-function formatDuration({ start, end }: Booking) {
-  const hours = (end.getTime() - start.getTime()) / HOUR_MS
-  return `${hours} ${hours === 1 ? "hour" : "hours"}`
-}
 
 function BookingSummary({ booking, now }: { booking: Booking; now: Date }) {
   const { professional, service, serviceDetail, location, start, end } = booking
@@ -53,7 +52,7 @@ function BookingSummary({ booking, now }: { booking: Booking; now: Date }) {
               {formatRelativeDay(start, now)}, {formatMonthDay(start)}
             </p>
             <p className="text-muted-foreground">
-              {formatTimeRange(start, end)} · {formatDuration(booking)}
+              {formatTimeRange(start, end)} · {formatHours(getHoursBetween(start, end))}
             </p>
           </div>
         </div>

@@ -7,10 +7,22 @@ export function toIsoDate(date: Date) {
 
 const LOCALE = "en-US"
 const DAYS_PER_WEEK = 7
+const HOUR_MS = 3_600_000
 
 const longDateFormat = new Intl.DateTimeFormat(LOCALE, { dateStyle: "full" })
 const monthDayYearFormat = new Intl.DateTimeFormat(LOCALE, { dateStyle: "long" })
 const monthDayFormat = new Intl.DateTimeFormat(LOCALE, { month: "short", day: "numeric" })
+const weekdayMonthDayFormat = new Intl.DateTimeFormat(LOCALE, {
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+})
+const weekdayDateFormat = new Intl.DateTimeFormat(LOCALE, {
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+})
 const weekdayFormat = new Intl.DateTimeFormat(LOCALE, { weekday: "short" })
 const weekdayInitialFormat = new Intl.DateTimeFormat(LOCALE, { weekday: "narrow" })
 const timeFormat = new Intl.DateTimeFormat(LOCALE, { timeStyle: "short" })
@@ -21,6 +33,8 @@ const formatCompactRange = (format: Intl.DateTimeFormat, start: Date, end: Date)
 export const formatLongDate = (date: Date) => longDateFormat.format(date)
 export const formatMonthDayYear = (date: Date) => monthDayYearFormat.format(date)
 export const formatMonthDay = (date: Date) => monthDayFormat.format(date)
+export const formatWeekdayMonthDay = (date: Date) => weekdayMonthDayFormat.format(date)
+export const formatWeekdayDate = (date: Date) => weekdayDateFormat.format(date)
 export const formatWeekdayInitial = (date: Date) => weekdayInitialFormat.format(date)
 export const formatTime = (date: Date) => timeFormat.format(date)
 
@@ -41,6 +55,14 @@ export function addHours(date: Date, hours: number) {
   result.setHours(result.getHours() + hours)
   return result
 }
+
+export const getHoursBetween = (start: Date, end: Date) =>
+  (end.getTime() - start.getTime()) / HOUR_MS
+
+export const formatHours = (hours: number) => `${hours} ${hours === 1 ? "hour" : "hours"}`
+
+export const parseLocalDateTime = (isoDate: string, time = "00:00") =>
+  new Date(`${isoDate}T${time}:00`)
 
 export function isSameDay(first: Date, second: Date) {
   return toIsoDate(first) === toIsoDate(second)

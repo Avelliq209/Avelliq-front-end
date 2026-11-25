@@ -5,11 +5,12 @@ import heartIcon from "@/assets/icons/dashboard/heart.svg"
 import messageIcon from "@/assets/icons/dashboard/message.svg"
 import walletIcon from "@/assets/icons/dashboard/wallet.svg"
 import { Skeleton } from "@/components/ui/skeleton"
+import { useBookings } from "@/features/bookings/hooks/use-bookings"
+import type { Booking } from "@/features/bookings/types"
 import { formatRelativeDay, formatTime } from "@/lib/date"
 
 import { ACCOUNT_SUMMARY } from "../data/mock"
-import { useBookings } from "../hooks/use-bookings"
-import type { Booking, DashboardStat } from "../types"
+import type { DashboardStat } from "../types"
 import { StatCard } from "./stat-card"
 
 const STAT_COUNT = 4
